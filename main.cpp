@@ -27,11 +27,18 @@ struct Area
     for (int area_row = 0; area_row < row; area_row++)
       for (int area_column = 0; area_column < column; area_column++)
         matrix[area_row][area_column] = 0;
+  }
 
-    matrix[1][1] = 2;
-    matrix[2][1] = 2;
-    matrix[3][1] = 8;
-    matrix[1][3] = 2;
+  int get_empty_cell_length()
+  {
+    int count = 0;
+
+    for (int area_row = 0; area_row < row; area_row++)
+      for (int area_column = 0; area_column < column; area_column++)
+        if (matrix[area_row][area_column] == 0)
+          count++;
+
+    return count;
   }
 };
 
@@ -144,6 +151,39 @@ struct Game
     }
   }
 
+  void fill_random_cell()
+  {
+    int empty_cells = area.get_empty_cell_length();
+
+    if (empty_cells != 0)
+    {
+      int selected_cell = rand() % (empty_cells - 1 + 1) + 1;
+
+      for (int area_row = 0; area_row < area.row; area_row++)
+      {
+        for (int area_column = 0; area_column < area.column; area_column++)
+        {
+          if (area.matrix[area_row][area_column] == 0 && selected_cell == 1)
+          {
+            area.matrix[area_row][area_column] = 2;
+            selected_cell = 0;
+          }
+          else if (area.matrix[area_row][area_column] == 0)
+          {
+            selected_cell--;
+          }
+        }
+      }
+    }
+    else
+    {
+      system("clear");
+      std::cout << "Game over: " << std::endl;
+      output();
+      exit(0);
+    }
+  }
+
   void _compare_cells(int *prev_cell, int *curr_cell, bool *exists_action)
   {
     if (*prev_cell == 0 && *curr_cell != 0)
@@ -164,6 +204,8 @@ struct Game
 
 int main()
 {
+  srand(time(0));
+
   Game game;
 
   while (1)
@@ -171,6 +213,8 @@ int main()
     system("clear");
 
     std::cout << "Game:" << std::endl;
+
+    game.fill_random_cell();
 
     game.output();
 
