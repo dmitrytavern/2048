@@ -1,12 +1,12 @@
 #include <iostream>
-#include "../include/MatrixActions.h"
+#include "../include/GameMatrixActions.h"
 
-MatrixActions::MatrixActions(Matrix &matrix)
+GameMatrixActions::GameMatrixActions(GameMatrix &matrix)
 {
   this->matrix = &matrix;
 }
 
-void MatrixActions::SwipeUp()
+void GameMatrixActions::SwipeUp()
 {
   unsigned int **matrix = this->matrix->GetMatrix();
   unsigned int size = this->matrix->GetMatrixSize();
@@ -33,7 +33,7 @@ void MatrixActions::SwipeUp()
   }
 }
 
-void MatrixActions::SwipeDown()
+void GameMatrixActions::SwipeDown()
 {
   unsigned int **matrix = this->matrix->GetMatrix();
   unsigned int size = this->matrix->GetMatrixSize();
@@ -60,7 +60,7 @@ void MatrixActions::SwipeDown()
   }
 }
 
-void MatrixActions::SwipeLeft()
+void GameMatrixActions::SwipeLeft()
 {
   unsigned int **matrix = this->matrix->GetMatrix();
   unsigned int size = this->matrix->GetMatrixSize();
@@ -87,7 +87,7 @@ void MatrixActions::SwipeLeft()
   }
 }
 
-void MatrixActions::SwipeRight()
+void GameMatrixActions::SwipeRight()
 {
   unsigned int **matrix = this->matrix->GetMatrix();
   unsigned int size = this->matrix->GetMatrixSize();
@@ -114,7 +114,7 @@ void MatrixActions::SwipeRight()
   }
 }
 
-void MatrixActions::FillRandomCell()
+void GameMatrixActions::FillRandomCell()
 {
   unsigned int **matrix = this->matrix->GetMatrix();
   unsigned int size = this->matrix->GetMatrixSize();
@@ -145,7 +145,7 @@ void MatrixActions::FillRandomCell()
   }
 }
 
-void MatrixActions::CompareCells(unsigned int *previous_cell, unsigned int *current_cell)
+void GameMatrixActions::CompareCells(unsigned int *previous_cell, unsigned int *current_cell)
 {
   if (*previous_cell == 0 && *current_cell != 0)
   {
@@ -160,7 +160,7 @@ void MatrixActions::CompareCells(unsigned int *previous_cell, unsigned int *curr
   }
 }
 
-bool MatrixActions::ExistCompareCells(unsigned int *previous_cell, unsigned int *current_cell)
+bool GameMatrixActions::ExistCompareCells(unsigned int *previous_cell, unsigned int *current_cell)
 {
   if (*previous_cell == 0 && *current_cell != 0)
     return true;

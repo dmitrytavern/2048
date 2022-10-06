@@ -2,13 +2,13 @@
 #define GAMEUI_H
 
 #include <iostream>
-#include "Matrix.h"
+#include "GameMatrix.h"
 
 class GameUI
 {
 public:
   void OutputTitle(std::string title);
-  void OutputMatrix(Matrix &matrix);
+  void OutputMatrix(GameMatrix &matrix);
   void OutputMatrixActions();
 };
 

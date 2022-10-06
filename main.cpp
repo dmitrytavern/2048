@@ -1,9 +1,9 @@
 #include <iostream>
 #include <iomanip>
 #include <conio.h>
-#include "./src/Matrix.cpp"
-#include "./src/MatrixActions.cpp"
 #include "./src/GameUI.cpp"
+#include "./src/GameMatrix.cpp"
+#include "./src/GameMatrixActions.cpp"
 
 #define KEY_UP 119
 #define KEY_DOWN 115
@@ -17,12 +17,8 @@ int main()
   setlocale(LC_ALL, "");
 
   GameUI ui;
-  Matrix matrix(4);
-  MatrixActions controls(matrix);
-
-  matrix.GetMatrix()[0][0] = 256;
-  matrix.GetMatrix()[0][1] = 2048;
-  matrix.GetMatrix()[1][1] = 512;
+  GameMatrix matrix(4);
+  GameMatrixActions controls(matrix);
 
   while (1)
   {

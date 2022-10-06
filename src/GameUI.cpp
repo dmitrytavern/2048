@@ -1,7 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include "../include/GameUI.h"
-#include "../include/Matrix.h"
+#include "../include/GameMatrix.h"
 
 using namespace std;
 
@@ -10,7 +10,7 @@ void GameUI::OutputTitle(string title)
   cout << title << endl;
 }
 
-void GameUI::OutputMatrix(Matrix &matrix)
+void GameUI::OutputMatrix(GameMatrix &matrix)
 {
   unsigned int matrix_size = matrix.GetMatrixSize();
   unsigned int chars_matrix_rows = matrix_size * 3;
@@ -110,12 +110,7 @@ void GameUI::OutputMatrix(Matrix &matrix)
       if (column == 0)
         cout << "│";
 
-      if (chars_matrix[row][column] == "-")
-        cout << setw(2);
-      else if (chars_matrix[row][column] != "+")
-        cout << chars_matrix[row][column];
-
-      cout << std::setfill('-');
+      cout << chars_matrix[row][column];
 
       if (column == chars_matrix_columns - 1)
         cout << "│";
@@ -139,9 +134,9 @@ void GameUI::OutputMatrix(Matrix &matrix)
 
 void GameUI::OutputMatrixActions()
 {
-  std::cout << "w - swipe to up" << std::endl;
-  std::cout << "a - swipe to left" << std::endl;
-  std::cout << "s - swipe to down" << std::endl;
-  std::cout << "d - swipe to right" << std::endl;
-  std::cout << "e - exit" << std::endl;
+  cout << "w - swipe to up" << endl;
+  cout << "a - swipe to left" << endl;
+  cout << "s - swipe to down" << endl;
+  cout << "d - swipe to right" << endl;
+  cout << "e - exit" << endl;
 }

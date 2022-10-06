@@ -1,18 +1,18 @@
-#ifndef MATRIXACTIONS_H
-#define MATRIXACTIONS_H
+#ifndef GAMEMATRIXACTIONS_H
+#define GAMEMATRIXACTIONS_H
 
-#include "Matrix.h"
+#include "GameMatrix.h"
 
-class MatrixActions
+class GameMatrixActions
 {
 private:
-  Matrix *matrix;
+  GameMatrix *matrix;
 
   void CompareCells(unsigned int *previous_cell, unsigned int *current_cell);
   bool ExistCompareCells(unsigned int *previous_cell, unsigned int *current_cell);
 
 public:
-  MatrixActions(Matrix &matrix);
+  GameMatrixActions(GameMatrix &matrix);
   void SwipeUp();
   void SwipeLeft();
   void SwipeDown();
