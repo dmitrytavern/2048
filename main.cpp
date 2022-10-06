@@ -1,7 +1,9 @@
 #include <iostream>
+#include <iomanip>
 #include <conio.h>
 #include "./src/Matrix.cpp"
 #include "./src/MatrixActions.cpp"
+#include "./src/GameUI.cpp"
 
 #define KEY_UP 119
 #define KEY_DOWN 115
@@ -9,14 +11,18 @@
 #define KEY_RIGHT 100
 #define KEY_EXIT 101
 
-void show_control_menu();
-
 int main()
 {
   srand(time(0));
+  setlocale(LC_ALL, "");
 
+  GameUI ui;
   Matrix matrix(4);
   MatrixActions controls(matrix);
+
+  matrix.GetMatrix()[0][0] = 256;
+  matrix.GetMatrix()[0][1] = 2048;
+  matrix.GetMatrix()[1][1] = 512;
 
   while (1)
   {
@@ -26,16 +32,14 @@ int main()
 
     if (matrix.GetEmptyCellCount() == 0)
     {
-      std::cout << "Game over" << std::endl;
-      matrix.OutputMatrix();
+      ui.OutputTitle("Game Over");
+      ui.OutputMatrix(matrix);
       break;
     }
 
-    std::cout << "Game:" << std::endl;
-
-    matrix.OutputMatrix();
-
-    show_control_menu();
+    ui.OutputTitle("2048 Game");
+    ui.OutputMatrix(matrix);
+    ui.OutputMatrixActions();
 
     switch (getch())
     {
@@ -64,13 +68,4 @@ int main()
       std::cout << "Char not found. If you want to exit, press 'e'" << std::endl;
     }
   }
-}
-
-void show_control_menu()
-{
-  std::cout << "w - swipe to up" << std::endl;
-  std::cout << "a - swipe to left" << std::endl;
-  std::cout << "s - swipe to down" << std::endl;
-  std::cout << "d - swipe to right" << std::endl;
-  std::cout << "e - exit" << std::endl;
 }
