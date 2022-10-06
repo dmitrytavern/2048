@@ -1,5 +1,7 @@
 #include <iostream>
 #include <conio.h>
+#include "./src/Matrix.cpp"
+#include "./src/MatrixActions.cpp"
 
 #define KEY_UP 119
 #define KEY_DOWN 115
@@ -9,233 +11,48 @@
 
 void show_control_menu();
 
-struct Area
-{
-  int row;
-  int column;
-  int **matrix;
-
-  Area()
-  {
-    row = 4;
-    column = 4;
-    matrix = new int *[row];
-
-    for (int area_row = 0; area_row < row; area_row++)
-      matrix[area_row] = new int[column];
-
-    for (int area_row = 0; area_row < row; area_row++)
-      for (int area_column = 0; area_column < column; area_column++)
-        matrix[area_row][area_column] = 0;
-  }
-
-  int get_empty_cell_length()
-  {
-    int count = 0;
-
-    for (int area_row = 0; area_row < row; area_row++)
-      for (int area_column = 0; area_column < column; area_column++)
-        if (matrix[area_row][area_column] == 0)
-          count++;
-
-    return count;
-  }
-};
-
-struct Game
-{
-  Area area;
-
-  void output()
-  {
-    for (int area_row = 0; area_row < area.row; area_row++)
-    {
-      for (int area_column = 0; area_column < area.column; area_column++)
-        std::cout << "\t" << area.matrix[area_row][area_column];
-      std::cout << std::endl;
-
-      if (area_row != area.row - 1)
-        std::cout << std::endl;
-    }
-  }
-
-  void swipe_up()
-  {
-    for (int area_column = 0; area_column < area.column; area_column++)
-    {
-      bool action = false;
-      int *currect, *prev;
-
-      prev = &area.matrix[0][area_column];
-
-      for (int area_row = 1; area_row < area.row; area_row++)
-      {
-        currect = &area.matrix[area_row][area_column];
-
-        _compare_cells(prev, currect, &action);
-
-        prev = currect;
-      }
-
-      if (action)
-        area_column--;
-    }
-  }
-
-  void swipe_down()
-  {
-    for (int area_column = 0; area_column < area.column; area_column++)
-    {
-      bool action = false;
-      int *currect, *prev;
-
-      prev = &area.matrix[area.row - 1][area_column];
-
-      for (int area_row = area.row - 2; area_row >= 0; area_row--)
-      {
-        currect = &area.matrix[area_row][area_column];
-
-        _compare_cells(prev, currect, &action);
-
-        prev = currect;
-      }
-
-      if (action)
-        area_column--;
-    }
-  }
-
-  void swipe_left()
-  {
-    for (int area_row = 0; area_row < area.row; area_row++)
-    {
-      bool action = false;
-      int *currect, *prev;
-
-      prev = &area.matrix[area_row][0];
-
-      for (int area_column = 1; area_column < area.column; area_column++)
-      {
-        currect = &area.matrix[area_row][area_column];
-
-        _compare_cells(prev, currect, &action);
-
-        prev = currect;
-      }
-
-      if (action)
-        area_row--;
-    }
-  }
-
-  void swipe_right()
-  {
-    for (int area_row = 0; area_row < area.row; area_row++)
-    {
-      bool action = false;
-      int *currect, *prev;
-
-      prev = &area.matrix[area_row][area.column - 1];
-
-      for (int area_column = area.column - 2; area_column >= 0; area_column--)
-      {
-        currect = &area.matrix[area_row][area_column];
-
-        _compare_cells(prev, currect, &action);
-
-        prev = currect;
-      }
-
-      if (action)
-        area_row--;
-    }
-  }
-
-  void fill_random_cell()
-  {
-    int empty_cells = area.get_empty_cell_length();
-
-    if (empty_cells != 0)
-    {
-      int selected_cell = rand() % (empty_cells - 1 + 1) + 1;
-
-      for (int area_row = 0; area_row < area.row; area_row++)
-      {
-        for (int area_column = 0; area_column < area.column; area_column++)
-        {
-          if (area.matrix[area_row][area_column] == 0 && selected_cell == 1)
-          {
-            area.matrix[area_row][area_column] = 2;
-            selected_cell = 0;
-          }
-          else if (area.matrix[area_row][area_column] == 0)
-          {
-            selected_cell--;
-          }
-        }
-      }
-    }
-    else
-    {
-      system("clear");
-      std::cout << "Game over: " << std::endl;
-      output();
-      exit(0);
-    }
-  }
-
-  void _compare_cells(int *prev_cell, int *curr_cell, bool *exists_action)
-  {
-    if (*prev_cell == 0 && *curr_cell != 0)
-    {
-      *prev_cell = *curr_cell;
-      *curr_cell = 0;
-      *exists_action = true;
-    }
-
-    if ((*prev_cell != 0 && *curr_cell != 0) && (*prev_cell == *curr_cell))
-    {
-      *prev_cell = *curr_cell * 2;
-      *curr_cell = 0;
-      *exists_action = true;
-    }
-  }
-};
-
 int main()
 {
   srand(time(0));
 
-  Game game;
+  Matrix matrix(4);
+  MatrixActions controls(matrix);
 
   while (1)
   {
     system("clear");
 
+    controls.FillRandomCell();
+
+    if (matrix.GetEmptyCellCount() == 0)
+    {
+      std::cout << "Game over" << std::endl;
+      matrix.OutputMatrix();
+      break;
+    }
+
     std::cout << "Game:" << std::endl;
 
-    game.fill_random_cell();
-
-    game.output();
+    matrix.OutputMatrix();
 
     show_control_menu();
 
     switch (getch())
     {
     case KEY_UP:
-      game.swipe_up();
+      controls.SwipeUp();
       break;
 
     case KEY_DOWN:
-      game.swipe_down();
+      controls.SwipeDown();
       break;
 
     case KEY_LEFT:
-      game.swipe_left();
+      controls.SwipeLeft();
       break;
 
     case KEY_RIGHT:
-      game.swipe_right();
+      controls.SwipeRight();
       break;
 
     case KEY_EXIT:
