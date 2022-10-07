@@ -1,18 +1,27 @@
 #include <iostream>
 #include <iomanip>
+#include <functional>
 #include <conio.h>
-#include "./src/GameUI.cpp"
 #include "./src/GameMatrix.cpp"
 #include "./src/GameMatrixActions.cpp"
 #include "./src/Menu.cpp"
+#include "./src/ui/GameUI.cpp"
+#include "./src/ui/MenuUI.cpp"
 
-GameUI ui;
+#define KEY_UP 119
+#define KEY_LEFT 97
+#define KEY_DOWN 115
+#define KEY_RIGHT 100
+#define KEY_EXIT 101
+
+GameUI ui_game;
+MenuUI ui_menu;
 Menu ui_menu_main;
 Menu ui_menu_game;
 
 void SetGameMenu()
 {
-  ui.SetMenu(ui_menu_game);
+  ui_menu.SetMenu(ui_menu_game);
 }
 
 void Exit()
@@ -30,19 +39,19 @@ int main()
 
   ui_menu_main.AddAction(97, "a - start game", &SetGameMenu);
 
-  ui_menu_game.AddAction(119, "w - swipe to up", std::bind(&GameMatrixActions::SwipeUp, controls));
-  ui_menu_game.AddAction(97, "a - swipe to left", std::bind(&GameMatrixActions::SwipeLeft, controls));
-  ui_menu_game.AddAction(115, "s - swipe to down", std::bind(&GameMatrixActions::SwipeDown, controls));
-  ui_menu_game.AddAction(100, "d - swipe to right", std::bind(&GameMatrixActions::SwipeRight, controls));
-  ui_menu_game.AddAction(119, "", std::bind(&GameMatrixActions::FillRandomCell, controls));
-  ui_menu_game.AddAction(97, "", std::bind(&GameMatrixActions::FillRandomCell, controls));
-  ui_menu_game.AddAction(115, "", std::bind(&GameMatrixActions::FillRandomCell, controls));
-  ui_menu_game.AddAction(100, "", std::bind(&GameMatrixActions::FillRandomCell, controls));
-  ui_menu_game.AddAction(101, "e - exit", &Exit);
+  ui_menu_game.AddAction(KEY_UP, "w - swipe to up", std::bind(&GameMatrixActions::SwipeUp, controls));
+  ui_menu_game.AddAction(KEY_LEFT, "a - swipe to left", std::bind(&GameMatrixActions::SwipeLeft, controls));
+  ui_menu_game.AddAction(KEY_DOWN, "s - swipe to down", std::bind(&GameMatrixActions::SwipeDown, controls));
+  ui_menu_game.AddAction(KEY_RIGHT, "d - swipe to right", std::bind(&GameMatrixActions::SwipeRight, controls));
+  ui_menu_game.AddAction(KEY_UP, "", std::bind(&GameMatrixActions::FillRandomCell, controls));
+  ui_menu_game.AddAction(KEY_LEFT, "", std::bind(&GameMatrixActions::FillRandomCell, controls));
+  ui_menu_game.AddAction(KEY_DOWN, "", std::bind(&GameMatrixActions::FillRandomCell, controls));
+  ui_menu_game.AddAction(KEY_RIGHT, "", std::bind(&GameMatrixActions::FillRandomCell, controls));
+  ui_menu_game.AddAction(KEY_EXIT, "e - exit", &Exit);
 
-  ui.SetTitle("2048 Game");
-  ui.SetMatrix(matrix);
-  ui.SetMenu(ui_menu_main);
+  ui_game.SetTitle("2048 Game");
+  ui_game.SetMatrix(matrix);
+  ui_menu.SetMenu(ui_menu_main);
 
   controls.FillRandomCell();
 
@@ -52,15 +61,15 @@ int main()
 
     if (matrix.GetEmptyCellCount() == 0)
     {
-      ui.SetTitle("Game Over");
-      ui.OutputTitle();
-      ui.OutputMatrix();
+      ui_game.SetTitle("Game Over");
+      ui_game.OutputTitle();
+      ui_game.OutputMatrix();
       break;
     }
 
-    ui.OutputTitle();
-    ui.OutputMatrix();
-    ui.OutputMenu();
-    ui.ActivateMenu();
+    ui_game.OutputTitle();
+    ui_game.OutputMatrix();
+    ui_menu.OutputMenu();
+    ui_menu.ActivateMenu();
   }
 }

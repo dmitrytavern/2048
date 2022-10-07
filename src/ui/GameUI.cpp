@@ -1,8 +1,7 @@
 #include <iostream>
 #include <iomanip>
-#include "../include/GameUI.h"
-#include "../include/GameMatrix.h"
-#include "../include/Menu.h"
+#include "../../include/GameMatrix.h"
+#include "../../include/ui/GameUI.h"
 
 using namespace std;
 
@@ -113,27 +112,6 @@ void GameUI::OutputMatrix()
   }
 
   cout << endl;
-}
-
-void GameUI::SetMenu(Menu &menu)
-{
-  this->menu = &menu;
-}
-
-void GameUI::OutputMenu()
-{
-  MenuAction *actions = this->menu->GetActions();
-  int actions_length = this->menu->GetActionsLength();
-
-  for (int index = 0; index < actions_length; index++)
-    if (actions[index].GetTitle() != "")
-      cout << actions[index].GetTitle() << endl;
-}
-
-void GameUI::ActivateMenu()
-{
-  int pressed_key = getch();
-  this->menu->Trigger(pressed_key);
 }
 
 int GameUI::GetTerminalColorByNumber(int number)
