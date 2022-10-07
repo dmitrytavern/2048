@@ -4,26 +4,47 @@
 #include "./src/GameUI.cpp"
 #include "./src/GameMatrix.cpp"
 #include "./src/GameMatrixActions.cpp"
+#include "./src/Menu.cpp"
 
-#define KEY_UP 119
-#define KEY_DOWN 115
-#define KEY_LEFT 97
-#define KEY_RIGHT 100
-#define KEY_EXIT 101
+GameUI ui;
+Menu ui_menu_main;
+Menu ui_menu_game;
+
+void SetGameMenu()
+{
+  ui.SetMenu(ui_menu_game);
+}
+
+void Exit()
+{
+  exit(0);
+}
 
 int main()
 {
   srand(time(0));
   setlocale(LC_ALL, "");
 
-  GameUI ui;
   GameMatrix matrix(4);
   GameMatrixActions controls(matrix);
 
-  controls.FillRandomCell();
+  ui_menu_main.AddAction(97, "a - start game", &SetGameMenu);
+
+  ui_menu_game.AddAction(119, "w - swipe to up", std::bind(&GameMatrixActions::SwipeUp, controls));
+  ui_menu_game.AddAction(97, "a - swipe to left", std::bind(&GameMatrixActions::SwipeLeft, controls));
+  ui_menu_game.AddAction(115, "s - swipe to down", std::bind(&GameMatrixActions::SwipeDown, controls));
+  ui_menu_game.AddAction(100, "d - swipe to right", std::bind(&GameMatrixActions::SwipeRight, controls));
+  ui_menu_game.AddAction(119, "", std::bind(&GameMatrixActions::FillRandomCell, controls));
+  ui_menu_game.AddAction(97, "", std::bind(&GameMatrixActions::FillRandomCell, controls));
+  ui_menu_game.AddAction(115, "", std::bind(&GameMatrixActions::FillRandomCell, controls));
+  ui_menu_game.AddAction(100, "", std::bind(&GameMatrixActions::FillRandomCell, controls));
+  ui_menu_game.AddAction(101, "e - exit", &Exit);
 
   ui.SetTitle("2048 Game");
   ui.SetMatrix(matrix);
+  ui.SetMenu(ui_menu_main);
+
+  controls.FillRandomCell();
 
   while (1)
   {
@@ -39,41 +60,7 @@ int main()
 
     ui.OutputTitle();
     ui.OutputMatrix();
-    ui.OutputMatrixActions();
-
-    switch (getch())
-    {
-    case KEY_UP:
-      controls.SwipeUp();
-      controls.FillRandomCell();
-
-      break;
-
-    case KEY_DOWN:
-      controls.SwipeDown();
-      controls.FillRandomCell();
-
-      break;
-
-    case KEY_LEFT:
-      controls.SwipeLeft();
-      controls.FillRandomCell();
-
-      break;
-
-    case KEY_RIGHT:
-      controls.SwipeRight();
-      controls.FillRandomCell();
-
-      break;
-
-    case KEY_EXIT:
-      std::cout << "Exiting..." << std::endl;
-      exit(0);
-      break;
-
-    default:
-      std::cout << "Char not found. If you want to exit, press 'e'" << std::endl;
-    }
+    ui.OutputMenu();
+    ui.ActivateMenu();
   }
 }

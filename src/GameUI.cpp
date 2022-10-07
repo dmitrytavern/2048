@@ -2,6 +2,7 @@
 #include <iomanip>
 #include "../include/GameUI.h"
 #include "../include/GameMatrix.h"
+#include "../include/Menu.h"
 
 using namespace std;
 
@@ -114,13 +115,25 @@ void GameUI::OutputMatrix()
   cout << endl;
 }
 
-void GameUI::OutputMatrixActions()
+void GameUI::SetMenu(Menu &menu)
 {
-  cout << "w - swipe to up" << endl;
-  cout << "a - swipe to left" << endl;
-  cout << "s - swipe to down" << endl;
-  cout << "d - swipe to right" << endl;
-  cout << "e - exit" << endl;
+  this->menu = &menu;
+}
+
+void GameUI::OutputMenu()
+{
+  MenuAction *actions = this->menu->GetActions();
+  int actions_length = this->menu->GetActionsLength();
+
+  for (int index = 0; index < actions_length; index++)
+    if (actions[index].GetTitle() != "")
+      cout << actions[index].GetTitle() << endl;
+}
+
+void GameUI::ActivateMenu()
+{
+  int pressed_key = getch();
+  this->menu->Trigger(pressed_key);
 }
 
 int GameUI::GetTerminalColorByNumber(int number)
