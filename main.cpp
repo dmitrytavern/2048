@@ -20,11 +20,11 @@ int main()
   GameMatrix matrix(4);
   GameMatrixActions controls(matrix);
 
+  controls.FillRandomCell();
+
   while (1)
   {
     system("clear");
-
-    controls.FillRandomCell();
 
     if (matrix.GetEmptyCellCount() == 0)
     {
@@ -41,18 +41,26 @@ int main()
     {
     case KEY_UP:
       controls.SwipeUp();
+      controls.FillRandomCell();
+
       break;
 
     case KEY_DOWN:
       controls.SwipeDown();
+      controls.FillRandomCell();
+
       break;
 
     case KEY_LEFT:
       controls.SwipeLeft();
+      controls.FillRandomCell();
+
       break;
 
     case KEY_RIGHT:
       controls.SwipeRight();
+      controls.FillRandomCell();
+
       break;
 
     case KEY_EXIT:
