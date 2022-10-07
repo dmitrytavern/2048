@@ -22,19 +22,23 @@ int main()
 
   controls.FillRandomCell();
 
+  ui.SetTitle("2048 Game");
+  ui.SetMatrix(matrix);
+
   while (1)
   {
     system("clear");
 
     if (matrix.GetEmptyCellCount() == 0)
     {
-      ui.OutputTitle("Game Over");
-      ui.OutputMatrix(matrix);
+      ui.SetTitle("Game Over");
+      ui.OutputTitle();
+      ui.OutputMatrix();
       break;
     }
 
-    ui.OutputTitle("2048 Game");
-    ui.OutputMatrix(matrix);
+    ui.OutputTitle();
+    ui.OutputMatrix();
     ui.OutputMatrixActions();
 
     switch (getch())

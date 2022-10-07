@@ -6,9 +6,15 @@
 
 class GameUI
 {
+private:
+  std::string title;
+  GameMatrix *matrix;
+
 public:
-  void OutputTitle(std::string title);
-  void OutputMatrix(GameMatrix &matrix);
+  void SetTitle(std::string title);
+  void SetMatrix(GameMatrix &matrix);
+  void OutputTitle();
+  void OutputMatrix();
   void OutputMatrixActions();
 };
 

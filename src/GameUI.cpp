@@ -5,19 +5,29 @@
 
 using namespace std;
 
-void GameUI::OutputTitle(string title)
+void GameUI::SetTitle(string title)
 {
-  cout << title << endl;
+  this->title = title;
 }
 
-void GameUI::OutputMatrix(GameMatrix &matrix)
+void GameUI::SetMatrix(GameMatrix &matrix)
 {
-  unsigned int matrix_size = matrix.GetMatrixSize();
+  this->matrix = &matrix;
+}
+
+void GameUI::OutputTitle()
+{
+  cout << this->title << endl;
+}
+
+void GameUI::OutputMatrix()
+{
+  unsigned int matrix_size = this->matrix->GetMatrixSize();
   unsigned int chars_matrix_rows = matrix_size * 3;
   unsigned int chars_matrix_columns = matrix_size * 5;
   unsigned int border_columns = matrix_size * 5 + 2;
 
-  unsigned int **int_matrix = matrix.GetMatrix();
+  unsigned int **int_matrix = this->matrix->GetMatrix();
   string chars_matrix[chars_matrix_rows][chars_matrix_columns];
 
   for (int row = 0; row < matrix_size; row++)
