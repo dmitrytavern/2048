@@ -85,5 +85,5 @@ void InitGameOverMenu()
 
 void Exit()
 {
-  exit(0);
+  ui_screen->Exit();
 }

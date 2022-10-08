@@ -1,12 +1,16 @@
 #include "../../include/ui/ScreenUI.h"
+#include "../../include/Screen.h"
+#include "../Screen.cpp"
 
 ScreenUI::ScreenUI()
 {
-  this->screens = new string[0];
+  this->screens = new Screen[0];
   this->screens_length = 0;
+  this->current_screen_exists = false;
+  this->screen_ui_exit = false;
 }
 
-void ScreenUI::AddScreen(string screen)
+void ScreenUI::AddScreen(string screen, function<void()> screen_function)
 {
   if (this->ExistScreen(screen))
   {
@@ -16,15 +20,16 @@ void ScreenUI::AddScreen(string screen)
 
   this->screens_length++;
 
-  string *temp = new string[this->screens_length];
+  Screen *temp = new Screen[this->screens_length];
 
   std::copy(this->screens, this->screens + this->screens_length - 1, temp);
 
   delete[] this->screens;
 
   this->screens = temp;
-
-  this->screens[this->screens_length - 1] = screen;
+  this->screens[this->screens_length - 1] = *new Screen;
+  this->screens[this->screens_length - 1].SetName(screen);
+  this->screens[this->screens_length - 1].SetFunction(screen_function);
 }
 
 void ScreenUI::SetScreen(string screen)
@@ -35,18 +40,46 @@ void ScreenUI::SetScreen(string screen)
     return;
   }
 
-  this->current_screen = screen;
+  this->current_screen = this->GetScreenByName(screen);
+  this->current_screen_exists = true;
 }
 
 bool ScreenUI::ExistScreen(string screen)
 {
   for (int index = 0; index < this->screens_length; index++)
-    if (this->screens[index] == screen)
+    if (this->screens[index].GetName() == screen)
       return true;
   return false;
 }
 
+bool ScreenUI::ExistCurrentScreen()
+{
+  return this->current_screen_exists;
+}
+
 string ScreenUI::GetCurrentScreen()
 {
-  return this->current_screen;
+  if (this->current_screen_exists)
+    return this->current_screen->GetName();
+  exit(1);
+}
+
+void ScreenUI::Output()
+{
+  while (!this->screen_ui_exit)
+    if (this->current_screen_exists)
+      this->current_screen->Execute();
+}
+
+void ScreenUI::Exit()
+{
+  this->screen_ui_exit = true;
+}
+
+Screen *ScreenUI::GetScreenByName(string screen)
+{
+  for (int index = 0; index < this->screens_length; index++)
+    if (this->screens[index].GetName() == screen)
+      return &this->screens[index];
+  exit(1);
 }

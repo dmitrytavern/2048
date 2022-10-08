@@ -33,28 +33,19 @@ int main()
   ui_menu = new MenuUI;
   ui_screen = new ScreenUI;
 
-  ui_screen->AddScreen("main");
-  ui_screen->AddScreen("game");
-  ui_screen->AddScreen("game_over");
+  ui_screen->AddScreen("main", &UIOutputMainScreen);
+  ui_screen->AddScreen("game", &UIOutputGameScreen);
+  ui_screen->AddScreen("game_over", &UIOutputGameOverScreen);
+
   ui_screen->SetScreen("main");
 
   InitMainMenu();
   InitGameMenu();
   InitGameOverMenu();
 
-  while (1)
-  {
-    std::string screen = ui_screen->GetCurrentScreen();
+  ui_screen->Output();
 
-    if (screen == "main")
-      UIOutputMainScreen();
-
-    if (screen == "game")
-      UIOutputGameScreen();
-
-    if (screen == "game_over")
-      UIOutputGameOverScreen();
-  }
+  std::cout << "Exiting..." << std::endl;
 }
 
 void InitGame()
