@@ -15,6 +15,7 @@ extern MenuUI *ui_menu;
 extern ScreenUI *ui_screen;
 extern GameController game;
 
+void StartGame();
 void UIOutputMainScreen();
 void UIOutputGameScreen();
 void UIOutputGameOverScreen();

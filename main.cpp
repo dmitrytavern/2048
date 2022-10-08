@@ -3,15 +3,34 @@
 #include <functional>
 #include <conio.h>
 #include "main.h"
-#include "menus.h"
-#include "./menus.cpp"
 #include "./src/ui/UI.cpp"
 #include "./src/ui/GameUI.cpp"
 #include "./src/ui/MenuUI.cpp"
 #include "./src/ui/ScreenUI.cpp"
+#include "./src/Menu.cpp"
 #include "./src/GameMatrix.cpp"
 #include "./src/GameController.cpp"
-#include "./src/Menu.cpp"
+
+#define MAIN_NAME "main"
+#define GAME_NAME "game"
+#define GAME_OVER_NAME "game_over"
+
+using namespace std;
+
+enum Triggers
+{
+  MAIN_MENU_START_GAME_KEY = 97,
+  MAIN_MENU_CLOSE_GAME_KEY = 101,
+
+  GAME_MENU_SWIPE_UP_KEY = 119,
+  GAME_MENU_SWIPE_LEFT_KEY = 97,
+  GAME_MENU_SWIPE_DOWN_KEY = 115,
+  GAME_MENU_SWIPE_RIGHT_KEY = 100,
+  GAME_MENU_EXIT_KEY = 101,
+
+  GAME_OVER_MENU_START_GAME_KEY = 97,
+  GAME_OVER_MENU_EXIT_KEY = 101,
+};
 
 UI *ui;
 GameUI *ui_game;
@@ -29,25 +48,55 @@ int main()
   ui_menu = new MenuUI;
   ui_screen = new ScreenUI;
 
-  ui_screen->AddScreen("main", &UIOutputMainScreen);
-  ui_screen->AddScreen("game", &UIOutputGameScreen);
-  ui_screen->AddScreen("game_over", &UIOutputGameOverScreen);
+  ui_screen->AddScreen(MAIN_NAME, &UIOutputMainScreen);
+  ui_screen->AddScreen(GAME_NAME, &UIOutputGameScreen);
+  ui_screen->AddScreen(GAME_OVER_NAME, &UIOutputGameOverScreen);
 
-  InitMainMenu();
-  InitGameMenu();
-  InitGameOverMenu();
+  function<void()> ExitFromGame = [&]() -> void
+  {
+    ui_screen->SetScreen(MAIN_NAME);
+  };
 
-  ui_screen->SetScreen("main");
+  Menu main_menu;
+  main_menu.SetName(MAIN_NAME);
+  main_menu.AddAction(MAIN_MENU_START_GAME_KEY, "a - start game", &StartGame);
+  main_menu.AddAction(MAIN_MENU_CLOSE_GAME_KEY, "e - close game", &UIScreenExit);
+  ui_menu->AddMenu(main_menu);
+
+  Menu game_menu;
+  game_menu.SetName(GAME_NAME);
+  game_menu.AddAction(GAME_MENU_SWIPE_UP_KEY, "w - swipe to up", bind(&GameController::SwipeUp, &game));
+  game_menu.AddAction(GAME_MENU_SWIPE_LEFT_KEY, "a - swipe to left", bind(&GameController::SwipeLeft, &game));
+  game_menu.AddAction(GAME_MENU_SWIPE_DOWN_KEY, "s - swipe to down", bind(&GameController::SwipeDown, &game));
+  game_menu.AddAction(GAME_MENU_SWIPE_RIGHT_KEY, "d - swipe to right", bind(&GameController::SwipeRight, &game));
+  game_menu.AddAction(GAME_MENU_EXIT_KEY, "e - exit", ExitFromGame);
+  ui_menu->AddMenu(game_menu);
+
+  Menu game_over_menu;
+  game_over_menu.SetName(GAME_OVER_NAME);
+  game_over_menu.AddAction(GAME_OVER_MENU_START_GAME_KEY, "a - new game", &StartGame);
+  game_over_menu.AddAction(GAME_OVER_MENU_EXIT_KEY, "e - close game", &UIScreenExit);
+  ui_menu->AddMenu(game_over_menu);
+
+  ui_screen->SetScreen(MAIN_NAME);
   ui_screen->Output();
 
-  std::cout << "Exiting..." << std::endl;
+  cout << "Exiting..." << endl;
+}
+
+void StartGame()
+{
+  game.Start();
+
+  ui_game->SetMatrix(*game.GetMatrix());
+  ui_screen->SetScreen(GAME_NAME);
 }
 
 void UIOutputMainScreen()
 {
   system("clear");
 
-  ui_menu->SetMenu("main");
+  ui_menu->SetMenu(MAIN_NAME);
 
   ui->Output("2048 Game");
   ui_menu->Output();
@@ -58,7 +107,7 @@ void UIOutputGameScreen()
 {
   system("clear");
 
-  ui_menu->SetMenu("game");
+  ui_menu->SetMenu(GAME_NAME);
 
   ui->Output("2048 Game Session");
   ui_game->OutputMatrix();
@@ -66,14 +115,14 @@ void UIOutputGameScreen()
   ui_menu->Activate();
 
   if (!game.ExistsMove())
-    ui_screen->SetScreen("game_over");
+    ui_screen->SetScreen(GAME_OVER_NAME);
 }
 
 void UIOutputGameOverScreen()
 {
   system("clear");
 
-  ui_menu->SetMenu("game_over");
+  ui_menu->SetMenu(GAME_OVER_NAME);
 
   ui->Output("2048 Game Over");
   ui_game->OutputMatrix();
