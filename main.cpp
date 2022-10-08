@@ -7,6 +7,7 @@
 #include "./src/Menu.cpp"
 #include "./src/ui/GameUI.cpp"
 #include "./src/ui/MenuUI.cpp"
+#include "./src/ui/ScreenUI.cpp"
 
 #define KEY_UP 119
 #define KEY_LEFT 97
@@ -15,9 +16,10 @@
 #define KEY_EXIT 101
 
 GameUI *ui_game;
+MenuUI *ui_menu;
+ScreenUI *ui_screen;
 GameMatrix *matrix;
 GameMatrixActions *controller;
-MenuUI *ui_menu;
 Menu *ui_menu_main;
 Menu *ui_menu_game;
 Menu *ui_menu_game_over;
@@ -32,28 +34,20 @@ int main()
   srand(time(0));
   setlocale(LC_ALL, "");
 
-  std::string screen;
-
   ui_game = new GameUI;
   ui_menu = new MenuUI;
+  ui_screen = new ScreenUI;
 
-  std::function<void(std::string)> SetScreen = [&](std::string _screen) -> void
-  {
-    screen = _screen;
-  };
-
-  std::function<void()> StartGame = [&]() -> void
-  {
-    InitGame();
-    SetScreen("game");
-  };
+  ui_screen->AddScreen("main");
+  ui_screen->AddScreen("game");
+  ui_screen->AddScreen("game_over");
 
   std::function<void()> ActionSwipeUp = [&]() -> void
   {
     controller->SwipeUp();
     controller->FillRandomCell();
     if (matrix->GetEmptyCellCount() == 0)
-      SetScreen("game_over");
+      ui_screen->SetScreen("game_over");
   };
 
   std::function<void()> ActionSwipeLeft = [&]() -> void
@@ -61,7 +55,7 @@ int main()
     controller->SwipeLeft();
     controller->FillRandomCell();
     if (matrix->GetEmptyCellCount() == 0)
-      SetScreen("game_over");
+      ui_screen->SetScreen("game_over");
   };
 
   std::function<void()> ActionSwipeDown = [&]() -> void
@@ -69,7 +63,7 @@ int main()
     controller->SwipeDown();
     controller->FillRandomCell();
     if (matrix->GetEmptyCellCount() == 0)
-      SetScreen("game_over");
+      ui_screen->SetScreen("game_over");
   };
 
   std::function<void()> ActionSwipeRight = [&]() -> void
@@ -77,7 +71,7 @@ int main()
     controller->SwipeRight();
     controller->FillRandomCell();
     if (matrix->GetEmptyCellCount() == 0)
-      SetScreen("game_over");
+      ui_screen->SetScreen("game_over");
   };
 
   std::function<void()> Exit = [&]() -> void
@@ -86,7 +80,7 @@ int main()
   };
 
   ui_menu_main = new Menu;
-  ui_menu_main->AddAction(97, "a - start game", StartGame);
+  ui_menu_main->AddAction(97, "a - start game", &InitGame);
   ui_menu_main->AddAction(KEY_EXIT, "e - close game", Exit);
 
   ui_menu_game = new Menu;
@@ -95,16 +89,18 @@ int main()
   ui_menu_game->AddAction(KEY_DOWN, "s - swipe to down", ActionSwipeDown);
   ui_menu_game->AddAction(KEY_RIGHT, "d - swipe to right", ActionSwipeRight);
   ui_menu_game->AddAction(KEY_EXIT, "e - exit", [&]() -> void
-                          { SetScreen("main"); });
+                          { ui_screen->SetScreen("main"); });
 
   ui_menu_game_over = new Menu;
-  ui_menu_game_over->AddAction(97, "a - new game", StartGame);
+  ui_menu_game_over->AddAction(97, "a - new game", &InitGame);
   ui_menu_game_over->AddAction(KEY_EXIT, "e - close game", Exit);
 
-  SetScreen("main");
+  ui_screen->SetScreen("main");
 
   while (1)
   {
+    std::string screen = ui_screen->GetCurrentScreen();
+
     if (screen == "main")
       UIOutputMainScreen();
 
@@ -122,6 +118,7 @@ void InitGame()
   controller = new GameMatrixActions(*matrix);
   controller->FillRandomCell();
   ui_game->SetMatrix(*matrix);
+  ui_screen->SetScreen("game");
 }
 
 void UIOutputMainScreen()
