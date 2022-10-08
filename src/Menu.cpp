@@ -12,6 +12,16 @@ Menu::Menu()
   this->actions = new MenuAction[0];
 }
 
+string Menu::GetName()
+{
+  return this->name;
+}
+
+void Menu::SetName(string name)
+{
+  this->name = name;
+}
+
 void Menu::AddAction(int trigger, string title, function<void()> callback)
 {
   this->actions_length++;

@@ -1,6 +1,9 @@
 #include <iostream>
+#include <functional>
 #include "main.h"
 #include "menus.h"
+
+using namespace std;
 
 enum Triggers
 {
@@ -17,70 +20,47 @@ enum Triggers
   GAME_OVER_MENU_EXIT_KEY = 101,
 };
 
-void InitMainMenu();
-void InitGameMenu();
-void InitGameOverMenu();
-void Exit();
+void InitGame()
+{
+  game.Start();
+
+  ui_game->SetMatrix(*game.GetMatrix());
+  ui_screen->SetScreen("game");
+}
 
 void InitMainMenu()
 {
-  ui_menu_main = new Menu;
-  ui_menu_main->AddAction(MAIN_MENU_START_GAME_KEY, "a - start game", &InitGame);
-  ui_menu_main->AddAction(MAIN_MENU_CLOSE_GAME_KEY, "e - close game", &Exit);
+  Menu main_menu;
+  main_menu.SetName("main");
+  main_menu.AddAction(MAIN_MENU_START_GAME_KEY, "a - start game", &InitGame);
+  main_menu.AddAction(MAIN_MENU_CLOSE_GAME_KEY, "e - close game", &Exit);
+  ui_menu->AddMenu(main_menu);
 }
 
 void InitGameMenu()
 {
-  std::function<void()> ActionSwipeUp = [&]() -> void
-  {
-    controller->SwipeUp();
-    controller->FillRandomCell();
-    if (matrix->GetEmptyCellCount() == 0)
-      ui_screen->SetScreen("game_over");
-  };
-
-  std::function<void()> ActionSwipeLeft = [&]() -> void
-  {
-    controller->SwipeLeft();
-    controller->FillRandomCell();
-    if (matrix->GetEmptyCellCount() == 0)
-      ui_screen->SetScreen("game_over");
-  };
-
-  std::function<void()> ActionSwipeDown = [&]() -> void
-  {
-    controller->SwipeDown();
-    controller->FillRandomCell();
-    if (matrix->GetEmptyCellCount() == 0)
-      ui_screen->SetScreen("game_over");
-  };
-
-  std::function<void()> ActionSwipeRight = [&]() -> void
-  {
-    controller->SwipeRight();
-    controller->FillRandomCell();
-    if (matrix->GetEmptyCellCount() == 0)
-      ui_screen->SetScreen("game_over");
-  };
-
-  std::function<void()> ActionSetMenu = [&]() -> void
+  std::function<void()> ExitFromGame = [&]() -> void
   {
     ui_screen->SetScreen("main");
   };
 
-  ui_menu_game = new Menu;
-  ui_menu_game->AddAction(GAME_MENU_SWIPE_UP_KEY, "w - swipe to up", ActionSwipeUp);
-  ui_menu_game->AddAction(GAME_MENU_SWIPE_LEFT_KEY, "a - swipe to left", ActionSwipeLeft);
-  ui_menu_game->AddAction(GAME_MENU_SWIPE_DOWN_KEY, "s - swipe to down", ActionSwipeDown);
-  ui_menu_game->AddAction(GAME_MENU_SWIPE_RIGHT_KEY, "d - swipe to right", ActionSwipeRight);
-  ui_menu_game->AddAction(GAME_MENU_EXIT_KEY, "e - exit", ActionSetMenu);
+  Menu game_menu;
+  game_menu.SetName("game");
+  game_menu.AddAction(GAME_MENU_SWIPE_UP_KEY, "w - swipe to up", std::bind(&GameController::SwipeUp, &game));
+  game_menu.AddAction(GAME_MENU_SWIPE_LEFT_KEY, "a - swipe to left", std::bind(&GameController::SwipeLeft, &game));
+  game_menu.AddAction(GAME_MENU_SWIPE_DOWN_KEY, "s - swipe to down", std::bind(&GameController::SwipeDown, &game));
+  game_menu.AddAction(GAME_MENU_SWIPE_RIGHT_KEY, "d - swipe to right", std::bind(&GameController::SwipeRight, &game));
+  game_menu.AddAction(GAME_MENU_EXIT_KEY, "e - exit", ExitFromGame);
+  ui_menu->AddMenu(game_menu);
 }
 
 void InitGameOverMenu()
 {
-  ui_menu_game_over = new Menu;
-  ui_menu_game_over->AddAction(GAME_OVER_MENU_START_GAME_KEY, "a - new game", &InitGame);
-  ui_menu_game_over->AddAction(GAME_OVER_MENU_EXIT_KEY, "e - close game", &Exit);
+  Menu game_over_menu;
+  game_over_menu.SetName("game_over");
+  game_over_menu.AddAction(GAME_OVER_MENU_START_GAME_KEY, "a - new game", &InitGame);
+  game_over_menu.AddAction(GAME_OVER_MENU_EXIT_KEY, "e - close game", &Exit);
+  ui_menu->AddMenu(game_over_menu);
 }
 
 void Exit()

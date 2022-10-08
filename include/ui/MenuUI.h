@@ -9,12 +9,21 @@ using namespace std;
 class MenuUI
 {
 private:
-  Menu *menu;
+  Menu *menus;
+  Menu *current_menu;
+  bool current_menu_exists;
+  unsigned int menus_length;
+  Menu *GetMenuByName(string menu_name);
 
 public:
-  void SetMenu(Menu &menu);
-  void OutputMenu();
-  void ActivateMenu();
+  MenuUI();
+  void AddMenu(Menu &menu);
+  void SetMenu(string menu_name);
+  bool ExistMenu(string menu_name);
+  bool ExistCurrentMenu();
+  string GetCurrentMenu();
+  void Output();
+  void Activate();
 };
 
 #endif

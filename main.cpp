@@ -10,18 +10,14 @@
 #include "./src/ui/MenuUI.cpp"
 #include "./src/ui/ScreenUI.cpp"
 #include "./src/GameMatrix.cpp"
-#include "./src/GameMatrixActions.cpp"
+#include "./src/GameController.cpp"
 #include "./src/Menu.cpp"
 
 UI *ui;
 GameUI *ui_game;
 MenuUI *ui_menu;
 ScreenUI *ui_screen;
-GameMatrix *matrix;
-GameMatrixActions *controller;
-Menu *ui_menu_main;
-Menu *ui_menu_game;
-Menu *ui_menu_game_over;
+GameController game;
 
 int main()
 {
@@ -37,57 +33,50 @@ int main()
   ui_screen->AddScreen("game", &UIOutputGameScreen);
   ui_screen->AddScreen("game_over", &UIOutputGameOverScreen);
 
-  ui_screen->SetScreen("main");
-
   InitMainMenu();
   InitGameMenu();
   InitGameOverMenu();
 
+  ui_screen->SetScreen("main");
   ui_screen->Output();
 
   std::cout << "Exiting..." << std::endl;
-}
-
-void InitGame()
-{
-  matrix = new GameMatrix(4);
-  controller = new GameMatrixActions(*matrix);
-  controller->FillRandomCell();
-  ui_game->SetMatrix(*matrix);
-  ui_screen->SetScreen("game");
 }
 
 void UIOutputMainScreen()
 {
   system("clear");
 
-  ui_menu->SetMenu(*ui_menu_main);
+  ui_menu->SetMenu("main");
 
   ui->Output("2048 Game");
-  ui_menu->OutputMenu();
-  ui_menu->ActivateMenu();
+  ui_menu->Output();
+  ui_menu->Activate();
 }
 
 void UIOutputGameScreen()
 {
   system("clear");
 
-  ui_menu->SetMenu(*ui_menu_game);
+  ui_menu->SetMenu("game");
 
   ui->Output("2048 Game Session");
   ui_game->OutputMatrix();
-  ui_menu->OutputMenu();
-  ui_menu->ActivateMenu();
+  ui_menu->Output();
+  ui_menu->Activate();
+
+  if (!game.ExistsMove())
+    ui_screen->SetScreen("game_over");
 }
 
 void UIOutputGameOverScreen()
 {
   system("clear");
 
-  ui_menu->SetMenu(*ui_menu_game_over);
+  ui_menu->SetMenu("game_over");
 
   ui->Output("2048 Game Over");
   ui_game->OutputMatrix();
-  ui_menu->OutputMenu();
-  ui_menu->ActivateMenu();
+  ui_menu->Output();
+  ui_menu->Activate();
 }
