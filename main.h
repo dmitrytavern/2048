@@ -18,5 +18,6 @@ extern GameController game;
 void UIOutputMainScreen();
 void UIOutputGameScreen();
 void UIOutputGameOverScreen();
+void UIScreenExit();
 
 #endif

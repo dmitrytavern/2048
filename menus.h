@@ -5,6 +5,5 @@ void InitGame();
 void InitMainMenu();
 void InitGameMenu();
 void InitGameOverMenu();
-void Exit();
 
 #endif

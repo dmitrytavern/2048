@@ -80,3 +80,8 @@ void UIOutputGameOverScreen()
   ui_menu->Output();
   ui_menu->Activate();
 }
+
+void UIScreenExit()
+{
+  ui_screen->Exit();
+}
