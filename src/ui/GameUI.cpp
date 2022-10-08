@@ -10,11 +10,6 @@ GameUI::GameUI()
   this->cell_start_color = 40;
 }
 
-void GameUI::SetTitle(string title)
-{
-  this->title = title;
-}
-
 void GameUI::SetMatrix(GameMatrix &matrix)
 {
   this->matrix = &matrix;
@@ -23,11 +18,6 @@ void GameUI::SetMatrix(GameMatrix &matrix)
 void GameUI::SetCellStartColor(int color)
 {
   this->cell_start_color = color;
-}
-
-void GameUI::OutputTitle()
-{
-  cout << this->title << endl;
 }
 
 void GameUI::OutputMatrix()
