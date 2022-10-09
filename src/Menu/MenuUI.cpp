@@ -1,7 +1,11 @@
+#include <iostream>
+#include <iomanip>
 #include <conio.h>
 #include <string>
-#include "../../include/ui/UI.h"
-#include "../../include/ui/MenuUI.h"
+#include "../../include/UI/UI.h"
+#include "../../include/Menu/Menu.h"
+#include "../../include/Menu/MenuAction.h"
+#include "../../include/Menu/MenuUI.h"
 
 MenuUI::MenuUI()
 {

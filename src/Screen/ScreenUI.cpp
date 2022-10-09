@@ -1,6 +1,9 @@
-#include "../../include/ui/ScreenUI.h"
-#include "../../include/Screen.h"
-#include "../Screen.cpp"
+#include <iostream>
+#include <functional>
+#include "../../include/Screen/Screen.h"
+#include "../../include/Screen/ScreenUI.h"
+
+using namespace std;
 
 ScreenUI::ScreenUI()
 {

@@ -2,7 +2,7 @@
 #define GAME_H
 
 #include <iostream>
-#include "./GameController.h"
+#include <functional>
 #include "./MenuAction.h"
 
 using namespace std;

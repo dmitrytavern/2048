@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "../include/GameController.h"
+#include "../../include/Game/GameController.h"
 
 GameController::GameController()
 {

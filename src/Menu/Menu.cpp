@@ -1,8 +1,7 @@
 #include <iostream>
 #include <functional>
-#include "../include/Menu.h"
-#include "../include/MenuAction.h"
-#include "../src/MenuAction.cpp"
+#include "../../include/Menu/Menu.h"
+#include "../../include/Menu/MenuAction.h"
 
 using namespace std;
 

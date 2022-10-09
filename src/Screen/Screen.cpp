@@ -1,4 +1,8 @@
-#include "../include/Screen.h"
+#include <iostream>
+#include <functional>
+#include "../../include/Screen/Screen.h"
+
+using namespace std;
 
 string Screen::GetName()
 {

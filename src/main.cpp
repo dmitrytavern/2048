@@ -2,14 +2,15 @@
 #include <iomanip>
 #include <functional>
 #include <conio.h>
-#include "main.h"
-#include "./src/ui/UI.cpp"
-#include "./src/ui/GameUI.cpp"
-#include "./src/ui/MenuUI.cpp"
-#include "./src/ui/ScreenUI.cpp"
-#include "./src/Menu.cpp"
-#include "./src/GameMatrix.cpp"
-#include "./src/GameController.cpp"
+#include "./UI/UI.cpp"
+#include "./Screen/Screen.cpp"
+#include "./Screen/ScreenUI.cpp"
+#include "./Menu/Menu.cpp"
+#include "./Menu/MenuAction.cpp"
+#include "./Menu/MenuUI.cpp"
+#include "./Game/GameMatrix.cpp"
+#include "./Game/GameController.cpp"
+#include "./Game/GameUI.cpp"
 
 #define MAIN_NAME "main"
 #define GAME_NAME "game"
@@ -31,6 +32,12 @@ enum Triggers
   GAME_OVER_MENU_START_GAME_KEY = 97,
   GAME_OVER_MENU_EXIT_KEY = 101,
 };
+
+void StartGame();
+void UIOutputMainScreen();
+void UIOutputGameScreen();
+void UIOutputGameOverScreen();
+void UIScreenExit();
 
 GameUI *ui_game;
 MenuUI *ui_menu;

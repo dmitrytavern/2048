@@ -1,10 +1,7 @@
 #ifndef GAMEUI_H
 #define GAMEUI_H
 
-#include <iostream>
-#include "../GameMatrix.h"
-
-using namespace std;
+#include "./GameMatrix.h"
 
 class GameUI
 {

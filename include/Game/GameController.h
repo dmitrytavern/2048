@@ -1,7 +1,7 @@
 #ifndef GAMECONTROLLER_H
 #define GAMECONTROLLER_H
 
-#include "GameMatrix.h"
+#include "./GameMatrix.h"
 
 class GameController
 {

@@ -1,7 +1,8 @@
 #include <iostream>
 #include <iomanip>
-#include "../../include/GameMatrix.h"
-#include "../../include/ui/GameUI.h"
+#include "../../include/UI/UI.h"
+#include "../../include/Game/GameMatrix.h"
+#include "../../include/Game/GameUI.h"
 
 using namespace std;
 
