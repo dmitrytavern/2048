@@ -5,8 +5,9 @@
 
 using namespace std;
 
-GameUI::GameUI()
+GameUI::GameUI(UI &ui)
 {
+  this->ui = &ui;
   this->cell_start_color = 40;
 }
 
@@ -26,6 +27,7 @@ void GameUI::OutputMatrix()
   unsigned int chars_matrix_rows = matrix_size * 3;
   unsigned int chars_matrix_columns = matrix_size * 5;
   unsigned int border_columns = matrix_size * 5 + 2;
+  unsigned int centered_chars_count = this->ui->GetTerminalSize()->ws_col / 2 - border_columns / 2;
 
   unsigned int **int_matrix = this->matrix->GetMatrix();
   string chars_matrix[chars_matrix_rows][chars_matrix_columns];
@@ -63,20 +65,13 @@ void GameUI::OutputMatrix()
       chars_matrix[row * 3 + 2][column * 5 + 4] = number != 0 ? "\033[38:5:" + to_string(color) + "m┘\033[0m" : " ";
     }
 
-  for (int column = 0; column < border_columns; column++)
-  {
-    if (column == 0)
-      cout << "┌";
-    else if (column == border_columns - 1)
-      cout << "┐";
-    else
-      cout << "─";
-  }
-
-  cout << endl;
+  this->ui->OutputSpaces(centered_chars_count);
+  this->ui->OutputBorderTop(border_columns);
 
   for (int row = 0; row < chars_matrix_rows; row++)
   {
+    this->ui->OutputSpaces(centered_chars_count);
+
     for (int column = 0; column < chars_matrix_columns; column++)
     {
       if (column == 0)
@@ -91,17 +86,8 @@ void GameUI::OutputMatrix()
     cout << endl;
   }
 
-  for (int column = 0; column < border_columns; column++)
-  {
-    if (column == 0)
-      cout << "└";
-    else if (column == border_columns - 1)
-      cout << "┘";
-    else
-      cout << "─";
-  }
-
-  cout << endl;
+  this->ui->OutputSpaces(centered_chars_count);
+  this->ui->OutputBorderBottom(border_columns);
 }
 
 int GameUI::GetTerminalColorByNumber(int number)

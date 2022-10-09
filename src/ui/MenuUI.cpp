@@ -1,8 +1,10 @@
 #include <conio.h>
+#include <string>
 #include "../../include/ui/MenuUI.h"
 
-MenuUI::MenuUI()
+MenuUI::MenuUI(UI &ui)
 {
+  this->ui = &ui;
   this->menus = new Menu[0];
   this->menus_length = 0;
   this->current_menu_exists = false;
@@ -72,10 +74,37 @@ void MenuUI::Output()
   {
     MenuAction *actions = this->current_menu->GetActions();
     int actions_length = this->current_menu->GetActionsLength();
+    int centered_chars_count = this->ui->GetTerminalSize()->ws_col / 2;
+    int window_length = 0;
+    int content_length = 0;
+    int padding_length = 3;
+    int border_length = 1;
+
+    for (int index = 0; index < actions_length; index++)
+    {
+      int length = actions[index].GetTitle().length();
+      content_length = length > content_length ? length : content_length;
+    }
+
+    window_length += content_length + padding_length * 2 + border_length * 2;
+    centered_chars_count -= window_length / 2;
+
+    this->ui->OutputSpaces(centered_chars_count);
+    this->ui->OutputBorderTop(window_length);
 
     for (int index = 0; index < actions_length; index++)
       if (actions[index].GetTitle() != "")
-        cout << actions[index].GetTitle() << endl;
+      {
+        this->ui->OutputSpaces(centered_chars_count);
+        cout << "│";
+        this->ui->OutputSpaces(padding_length);
+        cout << std::left << setw(content_length) << actions[index].GetTitle();
+        this->ui->OutputSpaces(padding_length);
+        cout << "│" << endl;
+      }
+
+    this->ui->OutputSpaces(centered_chars_count);
+    this->ui->OutputBorderBottom(window_length);
   }
   else
   {

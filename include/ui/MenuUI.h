@@ -9,6 +9,7 @@ using namespace std;
 class MenuUI
 {
 private:
+  UI *ui;
   Menu *menus;
   Menu *current_menu;
   bool current_menu_exists;
@@ -16,7 +17,7 @@ private:
   Menu *GetMenuByName(string menu_name);
 
 public:
-  MenuUI();
+  MenuUI(UI &ui);
   void AddMenu(Menu &menu);
   void SetMenu(string menu_name);
   bool ExistMenu(string menu_name);

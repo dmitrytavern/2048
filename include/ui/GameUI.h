@@ -9,12 +9,13 @@ using namespace std;
 class GameUI
 {
 private:
+  UI *ui;
   GameMatrix *matrix;
   int cell_start_color;
   int GetTerminalColorByNumber(int number);
 
 public:
-  GameUI();
+  GameUI(UI &ui);
   void SetMatrix(GameMatrix &matrix);
   void SetCellStartColor(int color);
   void OutputMatrix();
