@@ -37,7 +37,7 @@ void UI::PrintWindowBorderTop(int chars_count)
   for (int index = 0; index < chars_count; index++)
     if (index == 0)
       cout << UI::BORDER_TOP_LEFT_CHAR;
-    else if (index == chars_count)
+    else if (index == chars_count - 1)
       cout << UI::BORDER_TOP_RIGHT_CHAR;
     else
       cout << UI::BORDER_HORIZONTAL_CHAR;
