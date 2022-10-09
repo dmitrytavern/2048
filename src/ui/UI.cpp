@@ -29,15 +29,24 @@ void UI::OutputSpaces(int count)
     cout << " ";
 }
 
-void UI::OutputBorderTop(int count)
+void UI::OutputBorderTop(int count, string title = "")
 {
-  for (int index = 0; index < count; index++)
-    if (index == 0)
+  int length = title == "" ? 1 : title.length();
+  int start_out = count / 2 - length / 2;
+
+  for (int index = 1; index <= count; index++)
+    if (index == 1)
       cout << "┌";
-    else if (index == count - 1)
+    else if (index == count)
       cout << "┐";
+    else if (title != "" && index == start_out)
+    {
+      cout << " " << title << " ";
+      index += length + 1;
+    }
     else
       cout << "─";
+
   cout << endl;
 }
 

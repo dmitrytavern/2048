@@ -17,7 +17,7 @@ public:
   void Output(string text);
   void OutputCenter(string text, int text_length);
   void OutputSpaces(int count);
-  void OutputBorderTop(int count);
+  void OutputBorderTop(int count, string title);
   void OutputBorderBottom(int count);
   void UpdateTerminalSize();
   winsize *GetTerminalSize();

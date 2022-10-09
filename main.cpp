@@ -59,12 +59,14 @@ int main()
 
   Menu main_menu;
   main_menu.SetName(MAIN_NAME);
+  main_menu.SetTitle("Main");
   main_menu.AddAction(MAIN_MENU_START_GAME_KEY, "a - start game", &StartGame);
   main_menu.AddAction(MAIN_MENU_CLOSE_GAME_KEY, "e - close game", &UIScreenExit);
   ui_menu->AddMenu(main_menu);
 
   Menu game_menu;
   game_menu.SetName(GAME_NAME);
+  game_menu.SetTitle("Control");
   game_menu.AddAction(GAME_MENU_SWIPE_UP_KEY, "w - swipe to up", bind(&GameController::SwipeUp, &game));
   game_menu.AddAction(GAME_MENU_SWIPE_LEFT_KEY, "a - swipe to left", bind(&GameController::SwipeLeft, &game));
   game_menu.AddAction(GAME_MENU_SWIPE_DOWN_KEY, "s - swipe to down", bind(&GameController::SwipeDown, &game));
@@ -74,6 +76,7 @@ int main()
 
   Menu game_over_menu;
   game_over_menu.SetName(GAME_OVER_NAME);
+  game_over_menu.SetTitle("Game Over");
   game_over_menu.AddAction(GAME_OVER_MENU_START_GAME_KEY, "a - new game", &StartGame);
   game_over_menu.AddAction(GAME_OVER_MENU_EXIT_KEY, "e - close game", &UIScreenExit);
   ui_menu->AddMenu(game_over_menu);

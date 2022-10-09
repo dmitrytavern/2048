@@ -17,9 +17,19 @@ string Menu::GetName()
   return this->name;
 }
 
+string Menu::GetTitle()
+{
+  return this->title;
+}
+
 void Menu::SetName(string name)
 {
   this->name = name;
+}
+
+void Menu::SetTitle(string title)
+{
+  this->title = title;
 }
 
 void Menu::AddAction(int trigger, string title, function<void()> callback)

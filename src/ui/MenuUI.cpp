@@ -90,7 +90,7 @@ void MenuUI::Output()
     centered_chars_count -= window_length / 2;
 
     this->ui->OutputSpaces(centered_chars_count);
-    this->ui->OutputBorderTop(window_length);
+    this->ui->OutputBorderTop(window_length, this->current_menu->GetTitle());
 
     for (int index = 0; index < actions_length; index++)
       if (actions[index].GetTitle() != "")

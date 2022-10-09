@@ -11,13 +11,16 @@ class Menu
 {
 private:
   string name;
+  string title;
   MenuAction *actions;
   unsigned int actions_length;
 
 public:
   Menu();
   string GetName();
+  string GetTitle();
   void SetName(string name);
+  void SetTitle(string name);
   void Trigger(int trigger);
   void AddAction(int trigger, string title, function<void()>);
   int GetActionsLength();
