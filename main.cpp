@@ -32,7 +32,6 @@ enum Triggers
   GAME_OVER_MENU_EXIT_KEY = 101,
 };
 
-UI *ui;
 GameUI *ui_game;
 MenuUI *ui_menu;
 ScreenUI *ui_screen;
@@ -43,10 +42,9 @@ int main()
   srand(time(0));
   setlocale(LC_ALL, "");
 
-  ui = new UI;
-  ui_game = new GameUI(*ui);
-  ui_menu = new MenuUI(*ui);
-  ui_screen = new ScreenUI(*ui);
+  ui_game = new GameUI();
+  ui_menu = new MenuUI();
+  ui_screen = new ScreenUI();
 
   ui_screen->AddScreen(MAIN_NAME, &UIOutputMainScreen);
   ui_screen->AddScreen(GAME_NAME, &UIOutputGameScreen);
@@ -84,7 +82,7 @@ int main()
   ui_screen->SetScreen(MAIN_NAME);
   ui_screen->Output();
 
-  ui->Output("Exiting...");
+  UI::Print("Exiting...");
 }
 
 void StartGame()
@@ -101,8 +99,7 @@ void UIOutputMainScreen()
 
   ui_menu->SetMenu(MAIN_NAME);
 
-  ui->UpdateTerminalSize();
-  ui->OutputCenter("━━━━ 2048 Game Menu ━━━━", 24);
+  UI::PrintCenter("━━━━ 2048 Game Menu ━━━━", 24);
   ui_menu->Output();
   ui_menu->Activate();
 }
@@ -113,8 +110,7 @@ void UIOutputGameScreen()
 
   ui_menu->SetMenu(GAME_NAME);
 
-  ui->UpdateTerminalSize();
-  ui->OutputCenter("━━━━ 2048 Game Session ━━━━", 28);
+  UI::PrintCenter("━━━━ 2048 Game Session ━━━━", 28);
   ui_game->OutputMatrix();
   ui_menu->Output();
   ui_menu->Activate();
@@ -129,8 +125,7 @@ void UIOutputGameOverScreen()
 
   ui_menu->SetMenu(GAME_OVER_NAME);
 
-  ui->UpdateTerminalSize();
-  ui->OutputCenter("━━━━ 2048 Game Over ━━━━", 24);
+  UI::PrintCenter("━━━━ 2048 Game Over ━━━━", 24);
   ui_game->OutputMatrix();
   ui_menu->Output();
   ui_menu->Activate();

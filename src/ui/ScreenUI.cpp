@@ -2,9 +2,8 @@
 #include "../../include/Screen.h"
 #include "../Screen.cpp"
 
-ScreenUI::ScreenUI(UI &ui)
+ScreenUI::ScreenUI()
 {
-  this->ui = &ui;
   this->screens = new Screen[0];
   this->screens_length = 0;
   this->current_screen_exists = false;
