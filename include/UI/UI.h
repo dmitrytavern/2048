@@ -15,8 +15,7 @@ public:
   static string BORDER_BOTTOM_LEFT_CHAR;
   static string BORDER_BOTTOM_RIGHT_CHAR;
 
-  template <typename T>
-  static void Print(T message);
+  static void Print(string message);
   static void PrintCenter(string message, int message_length);
   static void PrintSpaces(int spaces_count);
   static void PrintWindowBorderTop(int chars_count);

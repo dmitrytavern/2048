@@ -10,8 +10,7 @@ string UI::BORDER_TOP_RIGHT_CHAR = "┐";
 string UI::BORDER_BOTTOM_LEFT_CHAR = "└";
 string UI::BORDER_BOTTOM_RIGHT_CHAR = "┘";
 
-template <typename T>
-void UI::Print(T message)
+void UI::Print(string message)
 {
   cout << message << endl;
 }

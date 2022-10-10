@@ -1,16 +1,14 @@
 #include <iostream>
 #include <iomanip>
 #include <functional>
-#include <conio.h>
-#include "./UI/UI.cpp"
-#include "./Screen/Screen.cpp"
-#include "./Screen/ScreenUI.cpp"
-#include "./Menu/Menu.cpp"
-#include "./Menu/MenuAction.cpp"
-#include "./Menu/MenuUI.cpp"
-#include "./Game/GameMatrix.cpp"
-#include "./Game/GameController.cpp"
-#include "./Game/GameUI.cpp"
+
+#include "../include/Game/GameController.h"
+#include "../include/Menu/Menu.h"
+
+#include "../include/UI/UI.h"
+#include "../include/Game/GameUI.h"
+#include "../include/Menu/MenuUI.h"
+#include "../include/Screen/ScreenUI.h"
 
 #define MAIN_NAME "main"
 #define GAME_NAME "game"
