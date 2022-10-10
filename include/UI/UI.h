@@ -18,6 +18,7 @@ public:
   static void Print(string message);
   static void PrintCenter(string message, int message_length);
   static void PrintSpaces(int spaces_count);
+  static void PrintVerticalAlign(int content_row_count);
   static void PrintWindowBorderTop(int chars_count);
   static void PrintWindowBorderTopWithTitle(int chars_count, string title);
   static void PrintWindowBorderBottom(int chars_count);

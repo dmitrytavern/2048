@@ -31,6 +31,15 @@ void UI::PrintSpaces(int spaces_count)
     cout << " ";
 }
 
+void UI::PrintVerticalAlign(int content_row_count)
+{
+  unsigned int window_height = UI::GetTerminalHeight();
+  unsigned int length = (window_height - content_row_count) / 2;
+
+  for (int i = 0; i < length; i++)
+    cout << endl;
+}
+
 void UI::PrintWindowBorderTop(int chars_count)
 {
   for (int index = 0; index < chars_count; index++)
