@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <functional>
+#include <csignal>
 
 #include "../include/Game/GameController.h"
 #include "../include/Menu/Menu.h"
@@ -100,25 +101,23 @@ void StartGame()
 
 void UIOutputMainScreen()
 {
-  system("clear");
-
   ui_menu->SetMenu(MAIN_NAME);
 
   UI::PrintVerticalAlign(6);
   UI::PrintCenter("━━━━ 2048 Game Menu ━━━━", 24);
   UI::Print("");
+
   ui_menu->Output();
   ui_menu->Activate();
 }
 
 void UIOutputGameScreen()
 {
-  system("clear");
-
   ui_menu->SetMenu(GAME_NAME);
 
   UI::PrintVerticalAlign(4 * 3 + 2 + 1 + 7);
   UI::PrintCenter("━━━━ 2048 Game Session ━━━━", 28);
+
   ui_game->OutputMatrix();
   ui_menu->Output();
   ui_menu->Activate();
@@ -129,12 +128,11 @@ void UIOutputGameScreen()
 
 void UIOutputGameOverScreen()
 {
-  system("clear");
-
   ui_menu->SetMenu(GAME_OVER_NAME);
 
   UI::PrintVerticalAlign(4 * 3 + 2 + 1 + 4);
   UI::PrintCenter("━━━━ 2048 Game Over ━━━━", 24);
+
   ui_game->OutputMatrix();
   ui_menu->Output();
   ui_menu->Activate();

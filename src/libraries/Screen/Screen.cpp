@@ -1,6 +1,6 @@
 #include <iostream>
 #include <functional>
-#include "../../include/Screen/Screen.h"
+#include "Screen/Screen.h"
 
 using namespace std;
 

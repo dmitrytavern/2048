@@ -1,7 +1,7 @@
 #include <iostream>
 #include <functional>
-#include "../../include/Screen/Screen.h"
-#include "../../include/Screen/ScreenUI.h"
+#include "Screen/Screen.h"
+#include "Screen/ScreenUI.h"
 
 using namespace std;
 
@@ -69,9 +69,19 @@ string ScreenUI::GetCurrentScreen()
 
 void ScreenUI::Output()
 {
+  // Hide teminal pointer
+  printf("\33[?25l");
+
   while (!this->screen_ui_exit)
     if (this->current_screen_exists)
+    {
+      system("clear");
+
       this->current_screen->Execute();
+    }
+
+  // Show teminal pointer
+  printf("\33[?25h");
 }
 
 void ScreenUI::Exit()

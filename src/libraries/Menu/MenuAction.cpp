@@ -1,6 +1,6 @@
 #include <iostream>
 #include <functional>
-#include "../../include/Menu/MenuAction.h"
+#include "Menu/MenuAction.h"
 
 int MenuAction::GetTrigger()
 {

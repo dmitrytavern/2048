@@ -2,10 +2,10 @@
 #include <iomanip>
 #include <conio.h>
 #include <string>
-#include "../../include/UI/UI.h"
-#include "../../include/Menu/Menu.h"
-#include "../../include/Menu/MenuAction.h"
-#include "../../include/Menu/MenuUI.h"
+#include "UI/UI.h"
+#include "Menu/Menu.h"
+#include "Menu/MenuAction.h"
+#include "Menu/MenuUI.h"
 
 MenuUI::MenuUI()
 {
