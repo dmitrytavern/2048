@@ -5,8 +5,9 @@
 
 using namespace std;
 
-Menu::Menu()
+Menu::Menu(string name)
 {
+  this->name = name;
   this->actions_length = 0;
   this->actions = new MenuAction[0];
 }
@@ -19,11 +20,6 @@ string Menu::GetName()
 string Menu::GetTitle()
 {
   return this->title;
-}
-
-void Menu::SetName(string name)
-{
-  this->name = name;
 }
 
 void Menu::SetTitle(string title)

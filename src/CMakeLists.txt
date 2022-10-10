@@ -11,6 +11,7 @@ add_library(GameLibrary
 add_library(MenuLibrary
   libraries/Menu/Menu.cpp
   libraries/Menu/MenuAction.cpp
+  libraries/Menu/MenuFactory.cpp
   libraries/Menu/MenuUI.cpp
 )
 

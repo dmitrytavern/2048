@@ -16,10 +16,9 @@ private:
   unsigned int actions_length;
 
 public:
-  Menu();
+  Menu(string name);
   string GetName();
   string GetTitle();
-  void SetName(string name);
   void SetTitle(string name);
   void Trigger(int trigger);
   void AddAction(int trigger, string title, function<void()>);

@@ -5,6 +5,7 @@
 
 #include "../include/Game/GameController.h"
 #include "../include/Menu/Menu.h"
+#include "../include/Menu/MenuFactory.h"
 
 #include "../include/UI/UI.h"
 #include "../include/Game/GameUI.h"
@@ -61,29 +62,23 @@ int main()
     ui_screen->SetScreen(MAIN_NAME);
   };
 
-  Menu main_menu;
-  main_menu.SetName(MAIN_NAME);
-  main_menu.SetTitle("Main");
-  main_menu.AddAction(MAIN_MENU_START_GAME_KEY, "a - start game", &StartGame);
-  main_menu.AddAction(MAIN_MENU_CLOSE_GAME_KEY, "e - close game", &UIScreenExit);
-  ui_menu->AddMenu(main_menu);
+  Menu *main_menu = MenuFactory::CreateMenu(MAIN_NAME);
+  main_menu->SetTitle("Main");
+  main_menu->AddAction(MAIN_MENU_START_GAME_KEY, "a - start game", &StartGame);
+  main_menu->AddAction(MAIN_MENU_CLOSE_GAME_KEY, "e - close game", &UIScreenExit);
 
-  Menu game_menu;
-  game_menu.SetName(GAME_NAME);
-  game_menu.SetTitle("Control");
-  game_menu.AddAction(GAME_MENU_SWIPE_UP_KEY, "w - swipe to up", bind(&GameController::SwipeUp, &game));
-  game_menu.AddAction(GAME_MENU_SWIPE_LEFT_KEY, "a - swipe to left", bind(&GameController::SwipeLeft, &game));
-  game_menu.AddAction(GAME_MENU_SWIPE_DOWN_KEY, "s - swipe to down", bind(&GameController::SwipeDown, &game));
-  game_menu.AddAction(GAME_MENU_SWIPE_RIGHT_KEY, "d - swipe to right", bind(&GameController::SwipeRight, &game));
-  game_menu.AddAction(GAME_MENU_EXIT_KEY, "e - exit", ExitFromGame);
-  ui_menu->AddMenu(game_menu);
+  Menu *game_menu = MenuFactory::CreateMenu(GAME_NAME);
+  game_menu->SetTitle("Control");
+  game_menu->AddAction(GAME_MENU_SWIPE_UP_KEY, "w - swipe to up", bind(&GameController::SwipeUp, &game));
+  game_menu->AddAction(GAME_MENU_SWIPE_LEFT_KEY, "a - swipe to left", bind(&GameController::SwipeLeft, &game));
+  game_menu->AddAction(GAME_MENU_SWIPE_DOWN_KEY, "s - swipe to down", bind(&GameController::SwipeDown, &game));
+  game_menu->AddAction(GAME_MENU_SWIPE_RIGHT_KEY, "d - swipe to right", bind(&GameController::SwipeRight, &game));
+  game_menu->AddAction(GAME_MENU_EXIT_KEY, "e - exit", ExitFromGame);
 
-  Menu game_over_menu;
-  game_over_menu.SetName(GAME_OVER_NAME);
-  game_over_menu.SetTitle("Game Over");
-  game_over_menu.AddAction(GAME_OVER_MENU_START_GAME_KEY, "a - new game", &StartGame);
-  game_over_menu.AddAction(GAME_OVER_MENU_EXIT_KEY, "e - close game", &UIScreenExit);
-  ui_menu->AddMenu(game_over_menu);
+  Menu *game_over_menu = MenuFactory::CreateMenu(GAME_OVER_NAME);
+  game_over_menu->SetTitle("Game Over");
+  game_over_menu->AddAction(GAME_OVER_MENU_START_GAME_KEY, "a - new game", &StartGame);
+  game_over_menu->AddAction(GAME_OVER_MENU_EXIT_KEY, "e - close game", &UIScreenExit);
 
   ui_screen->SetScreen(MAIN_NAME);
   ui_screen->Output();
@@ -101,26 +96,27 @@ void StartGame()
 
 void UIOutputMainScreen()
 {
-  ui_menu->SetMenu(MAIN_NAME);
+  Menu *screen_menu = MenuFactory::GetMenu(MAIN_NAME);
 
   UI::PrintVerticalAlign(6);
   UI::PrintCenter("━━━━ 2048 Game Menu ━━━━", 24);
   UI::Print("");
 
-  ui_menu->Output();
-  ui_menu->Activate();
+  MenuUI::PrintMenu(screen_menu);
+  MenuUI::ActivateMenu(screen_menu);
 }
 
 void UIOutputGameScreen()
 {
-  ui_menu->SetMenu(GAME_NAME);
+  Menu *screen_menu = MenuFactory::GetMenu(GAME_NAME);
 
   UI::PrintVerticalAlign(4 * 3 + 2 + 1 + 7);
   UI::PrintCenter("━━━━ 2048 Game Session ━━━━", 28);
 
   ui_game->OutputMatrix();
-  ui_menu->Output();
-  ui_menu->Activate();
+
+  MenuUI::PrintMenu(screen_menu);
+  MenuUI::ActivateMenu(screen_menu);
 
   if (!game.ExistsMove())
     ui_screen->SetScreen(GAME_OVER_NAME);
@@ -128,14 +124,15 @@ void UIOutputGameScreen()
 
 void UIOutputGameOverScreen()
 {
-  ui_menu->SetMenu(GAME_OVER_NAME);
+  Menu *screen_menu = MenuFactory::GetMenu(GAME_OVER_NAME);
 
   UI::PrintVerticalAlign(4 * 3 + 2 + 1 + 4);
   UI::PrintCenter("━━━━ 2048 Game Over ━━━━", 24);
 
   ui_game->OutputMatrix();
-  ui_menu->Output();
-  ui_menu->Activate();
+
+  MenuUI::PrintMenu(screen_menu);
+  MenuUI::ActivateMenu(screen_menu);
 }
 
 void UIScreenExit()
