@@ -11,6 +11,7 @@
 #include "../include/Game/GameUI.h"
 #include "../include/Menu/MenuUI.h"
 
+#include "../include/Screen/Screen.h"
 #include "../include/Screen/ScreenFactory.h"
 #include "../include/Screen/ScreenManager.h"
 
@@ -53,10 +54,21 @@ int main()
   ui_game = new GameUI();
   screen_manager = new ScreenManager();
 
-  ScreenFactory::AddScreen(MAIN_NAME, &UIOutputMainScreen);
-  ScreenFactory::AddScreen(GAME_NAME, &UIOutputGameScreen);
-  ScreenFactory::AddScreen(GAME_OVER_NAME, &UIOutputGameOverScreen);
+  /**
+   * Init application screens
+   */
+  Screen *main_screen = ScreenFactory::CreateScreen(MAIN_NAME);
+  main_screen->SetFunction(&UIOutputMainScreen);
 
+  Screen *game_screen = ScreenFactory::CreateScreen(GAME_NAME);
+  game_screen->SetFunction(&UIOutputGameScreen);
+
+  Screen *game_over_screen = ScreenFactory::CreateScreen(GAME_OVER_NAME);
+  game_over_screen->SetFunction(&UIOutputGameOverScreen);
+
+  /**
+   * Init application menus
+   */
   function<void()> ExitFromGame = [&]() -> void
   {
     screen_manager->Set(ScreenFactory::GetScreen(MAIN_NAME));
@@ -80,6 +92,9 @@ int main()
   game_over_menu->AddAction(GAME_OVER_MENU_START_GAME_KEY, "a - new game", &StartGame);
   game_over_menu->AddAction(GAME_OVER_MENU_EXIT_KEY, "e - close game", &UIScreenExit);
 
+  /**
+   * Start application
+   */
   screen_manager->Set(ScreenFactory::GetScreen(MAIN_NAME));
   screen_manager->Run();
 

@@ -7,7 +7,7 @@
 
 vector<Screen> ScreenFactory::screens = {};
 
-void ScreenFactory::AddScreen(string screen_name, function<void()> screen_function)
+Screen *ScreenFactory::CreateScreen(string screen_name)
 {
   if (ScreenFactory::ExistsScreen(screen_name))
   {
@@ -15,11 +15,9 @@ void ScreenFactory::AddScreen(string screen_name, function<void()> screen_functi
     exit(1);
   }
 
-  Screen *new_screen = new Screen(screen_name);
+  ScreenFactory::screens.push_back(*new Screen(screen_name));
 
-  new_screen->SetFunction(screen_function);
-
-  ScreenFactory::screens.push_back(*new_screen);
+  return &ScreenFactory::screens[ScreenFactory::screens.size() - 1];
 }
 
 Screen *ScreenFactory::GetScreen(string screen)
@@ -27,7 +25,7 @@ Screen *ScreenFactory::GetScreen(string screen)
   for (int index = 0; index < ScreenFactory::screens.size(); index++)
     if (ScreenFactory::screens[index].GetName() == screen)
       return &ScreenFactory::screens[index];
-  cout << "Error: menu not found" << endl;
+  cout << "Error: screen not found" << endl;
   exit(1);
 }
 
