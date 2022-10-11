@@ -10,13 +10,16 @@ class Screen
 {
 private:
   string name;
-  function<void()> fn;
+  function<void()> ui_function;
+  function<void()> action_function;
 
 public:
   Screen(string name);
   string GetName();
-  void SetFunction(function<void()> fn);
-  void Execute();
+  void SetUIFunction(function<void()> fn);
+  void SetActionFunction(function<void()> fn);
+  void RunUI();
+  void RunAction();
 };
 
 #endif

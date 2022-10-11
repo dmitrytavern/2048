@@ -37,9 +37,12 @@ enum Triggers
 };
 
 void StartGame();
-void UIOutputMainScreen();
-void UIOutputGameScreen();
-void UIOutputGameOverScreen();
+void UIMainScreen();
+void UIGameScreen();
+void UIGameOverScreen();
+void MainScreenAction();
+void GameScreenAction();
+void GameOverScreenAction();
 void UIScreenExit();
 
 GameUI *ui_game;
@@ -58,13 +61,16 @@ int main()
    * Init application screens
    */
   Screen *main_screen = ScreenFactory::CreateScreen(MAIN_NAME);
-  main_screen->SetFunction(&UIOutputMainScreen);
+  main_screen->SetUIFunction(&UIMainScreen);
+  main_screen->SetActionFunction(&MainScreenAction);
 
   Screen *game_screen = ScreenFactory::CreateScreen(GAME_NAME);
-  game_screen->SetFunction(&UIOutputGameScreen);
+  game_screen->SetUIFunction(&UIGameScreen);
+  game_screen->SetActionFunction(&GameScreenAction);
 
   Screen *game_over_screen = ScreenFactory::CreateScreen(GAME_OVER_NAME);
-  game_over_screen->SetFunction(&UIOutputGameOverScreen);
+  game_over_screen->SetUIFunction(&UIGameOverScreen);
+  game_over_screen->SetActionFunction(&GameOverScreenAction);
 
   /**
    * Init application menus
@@ -109,7 +115,7 @@ void StartGame()
   screen_manager->Set(ScreenFactory::GetScreen(GAME_NAME));
 }
 
-void UIOutputMainScreen()
+void UIMainScreen()
 {
   Menu *screen_menu = MenuFactory::GetMenu(MAIN_NAME);
 
@@ -118,10 +124,15 @@ void UIOutputMainScreen()
   UI::Print("");
 
   MenuUI::PrintMenu(screen_menu);
+}
+
+void MainScreenAction()
+{
+  Menu *screen_menu = MenuFactory::GetMenu(MAIN_NAME);
   MenuUI::ActivateMenu(screen_menu);
 }
 
-void UIOutputGameScreen()
+void UIGameScreen()
 {
   Menu *screen_menu = MenuFactory::GetMenu(GAME_NAME);
 
@@ -131,13 +142,18 @@ void UIOutputGameScreen()
   ui_game->OutputMatrix();
 
   MenuUI::PrintMenu(screen_menu);
+}
+
+void GameScreenAction()
+{
+  Menu *screen_menu = MenuFactory::GetMenu(GAME_NAME);
   MenuUI::ActivateMenu(screen_menu);
 
   if (!game.ExistsMove())
     screen_manager->Set(ScreenFactory::GetScreen(GAME_OVER_NAME));
 }
 
-void UIOutputGameOverScreen()
+void UIGameOverScreen()
 {
   Menu *screen_menu = MenuFactory::GetMenu(GAME_OVER_NAME);
 
@@ -147,6 +163,11 @@ void UIOutputGameOverScreen()
   ui_game->OutputMatrix();
 
   MenuUI::PrintMenu(screen_menu);
+}
+
+void GameOverScreenAction()
+{
+  Menu *screen_menu = MenuFactory::GetMenu(GAME_OVER_NAME);
   MenuUI::ActivateMenu(screen_menu);
 }
 

@@ -14,12 +14,22 @@ string Screen::GetName()
   return this->name;
 }
 
-void Screen::SetFunction(function<void()> fn)
+void Screen::SetUIFunction(function<void()> fn)
 {
-  this->fn = fn;
+  this->ui_function = fn;
 }
 
-void Screen::Execute()
+void Screen::SetActionFunction(function<void()> fn)
 {
-  this->fn();
+  this->action_function = fn;
+}
+
+void Screen::RunUI()
+{
+  this->ui_function();
+}
+
+void Screen::RunAction()
+{
+  this->action_function();
 }

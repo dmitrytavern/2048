@@ -27,7 +27,8 @@ void ScreenManager::Run()
     {
       system("clear");
 
-      this->current_screen->Execute();
+      this->current_screen->RunUI();
+      this->current_screen->RunAction();
     }
 
   // Show teminal pointer
