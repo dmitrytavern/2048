@@ -18,7 +18,7 @@ add_library(MenuLibrary
 add_library(ScreenLibrary
   libraries/Screen/Screen.cpp
   libraries/Screen/ScreenFactory.cpp
-  libraries/Screen/ScreenUI.cpp
+  libraries/Screen/ScreenManager.cpp
 )
 
 add_executable(main main.cpp)

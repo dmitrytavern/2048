@@ -7,20 +7,20 @@
 
 using namespace std;
 
-class ScreenUI
+class ScreenManager
 {
 private:
   Screen *current_screen;
   bool current_screen_exists;
-  bool screen_ui_exit;
+  bool ui_exit;
 
 public:
-  ScreenUI();
-  void SetScreen(Screen *screen);
-  bool ExistCurrentScreen();
-  string GetCurrentScreen();
-  void Output();
+  ScreenManager();
+  void Set(Screen *screen);
+  void Run();
   void Exit();
+  bool ExistActiveScreen();
+  Screen *GetActiveScreen();
 };
 
 #endif

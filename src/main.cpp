@@ -12,7 +12,7 @@
 #include "../include/Menu/MenuUI.h"
 
 #include "../include/Screen/ScreenFactory.h"
-#include "../include/Screen/ScreenUI.h"
+#include "../include/Screen/ScreenManager.h"
 
 #define MAIN_NAME "main"
 #define GAME_NAME "game"
@@ -42,7 +42,7 @@ void UIOutputGameOverScreen();
 void UIScreenExit();
 
 GameUI *ui_game;
-ScreenUI *ui_screen;
+ScreenManager *screen_manager;
 GameController game;
 
 int main()
@@ -51,7 +51,7 @@ int main()
   setlocale(LC_ALL, "");
 
   ui_game = new GameUI();
-  ui_screen = new ScreenUI();
+  screen_manager = new ScreenManager();
 
   ScreenFactory::AddScreen(MAIN_NAME, &UIOutputMainScreen);
   ScreenFactory::AddScreen(GAME_NAME, &UIOutputGameScreen);
@@ -59,7 +59,7 @@ int main()
 
   function<void()> ExitFromGame = [&]() -> void
   {
-    ui_screen->SetScreen(ScreenFactory::GetScreen(MAIN_NAME));
+    screen_manager->Set(ScreenFactory::GetScreen(MAIN_NAME));
   };
 
   Menu *main_menu = MenuFactory::CreateMenu(MAIN_NAME);
@@ -80,8 +80,8 @@ int main()
   game_over_menu->AddAction(GAME_OVER_MENU_START_GAME_KEY, "a - new game", &StartGame);
   game_over_menu->AddAction(GAME_OVER_MENU_EXIT_KEY, "e - close game", &UIScreenExit);
 
-  ui_screen->SetScreen(ScreenFactory::GetScreen(MAIN_NAME));
-  ui_screen->Output();
+  screen_manager->Set(ScreenFactory::GetScreen(MAIN_NAME));
+  screen_manager->Run();
 
   UI::Print("Exiting...");
 }
@@ -91,7 +91,7 @@ void StartGame()
   game.Start();
 
   ui_game->SetMatrix(*game.GetMatrix());
-  ui_screen->SetScreen(ScreenFactory::GetScreen(GAME_NAME));
+  screen_manager->Set(ScreenFactory::GetScreen(GAME_NAME));
 }
 
 void UIOutputMainScreen()
@@ -119,7 +119,7 @@ void UIOutputGameScreen()
   MenuUI::ActivateMenu(screen_menu);
 
   if (!game.ExistsMove())
-    ui_screen->SetScreen(ScreenFactory::GetScreen(GAME_OVER_NAME));
+    screen_manager->Set(ScreenFactory::GetScreen(GAME_OVER_NAME));
 }
 
 void UIOutputGameOverScreen()
@@ -137,5 +137,5 @@ void UIOutputGameOverScreen()
 
 void UIScreenExit()
 {
-  ui_screen->Exit();
+  screen_manager->Exit();
 }
