@@ -10,6 +10,8 @@
 #include "../include/UI/UI.h"
 #include "../include/Game/GameUI.h"
 #include "../include/Menu/MenuUI.h"
+
+#include "../include/Screen/ScreenFactory.h"
 #include "../include/Screen/ScreenUI.h"
 
 #define MAIN_NAME "main"
@@ -40,7 +42,6 @@ void UIOutputGameOverScreen();
 void UIScreenExit();
 
 GameUI *ui_game;
-MenuUI *ui_menu;
 ScreenUI *ui_screen;
 GameController game;
 
@@ -50,16 +51,15 @@ int main()
   setlocale(LC_ALL, "");
 
   ui_game = new GameUI();
-  ui_menu = new MenuUI();
   ui_screen = new ScreenUI();
 
-  ui_screen->AddScreen(MAIN_NAME, &UIOutputMainScreen);
-  ui_screen->AddScreen(GAME_NAME, &UIOutputGameScreen);
-  ui_screen->AddScreen(GAME_OVER_NAME, &UIOutputGameOverScreen);
+  ScreenFactory::AddScreen(MAIN_NAME, &UIOutputMainScreen);
+  ScreenFactory::AddScreen(GAME_NAME, &UIOutputGameScreen);
+  ScreenFactory::AddScreen(GAME_OVER_NAME, &UIOutputGameOverScreen);
 
   function<void()> ExitFromGame = [&]() -> void
   {
-    ui_screen->SetScreen(MAIN_NAME);
+    ui_screen->SetScreen(ScreenFactory::GetScreen(MAIN_NAME));
   };
 
   Menu *main_menu = MenuFactory::CreateMenu(MAIN_NAME);
@@ -80,7 +80,7 @@ int main()
   game_over_menu->AddAction(GAME_OVER_MENU_START_GAME_KEY, "a - new game", &StartGame);
   game_over_menu->AddAction(GAME_OVER_MENU_EXIT_KEY, "e - close game", &UIScreenExit);
 
-  ui_screen->SetScreen(MAIN_NAME);
+  ui_screen->SetScreen(ScreenFactory::GetScreen(MAIN_NAME));
   ui_screen->Output();
 
   UI::Print("Exiting...");
@@ -91,7 +91,7 @@ void StartGame()
   game.Start();
 
   ui_game->SetMatrix(*game.GetMatrix());
-  ui_screen->SetScreen(GAME_NAME);
+  ui_screen->SetScreen(ScreenFactory::GetScreen(GAME_NAME));
 }
 
 void UIOutputMainScreen()
@@ -119,7 +119,7 @@ void UIOutputGameScreen()
   MenuUI::ActivateMenu(screen_menu);
 
   if (!game.ExistsMove())
-    ui_screen->SetScreen(GAME_OVER_NAME);
+    ui_screen->SetScreen(ScreenFactory::GetScreen(GAME_OVER_NAME));
 }
 
 void UIOutputGameOverScreen()

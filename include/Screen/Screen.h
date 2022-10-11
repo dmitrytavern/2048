@@ -13,8 +13,8 @@ private:
   function<void()> fn;
 
 public:
+  Screen(string name);
   string GetName();
-  void SetName(string name);
   void SetFunction(function<void()> fn);
   void Execute();
 };

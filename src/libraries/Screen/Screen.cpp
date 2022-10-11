@@ -4,14 +4,14 @@
 
 using namespace std;
 
+Screen::Screen(string name)
+{
+  this->name = name;
+}
+
 string Screen::GetName()
 {
   return this->name;
-}
-
-void Screen::SetName(string name)
-{
-  this->name = name;
 }
 
 void Screen::SetFunction(function<void()> fn)
