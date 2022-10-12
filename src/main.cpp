@@ -1,7 +1,5 @@
 #include <iostream>
-#include <iomanip>
 #include <functional>
-#include <csignal>
 
 #include "../include/Game/GameController.h"
 #include "../include/Menu/Menu.h"
