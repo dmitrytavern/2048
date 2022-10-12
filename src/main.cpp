@@ -43,7 +43,6 @@ void GameScreenAction();
 void GameOverScreenAction();
 void UIScreenExit();
 
-GameUI *ui_game;
 ScreenManager *screen_manager;
 GameController game;
 
@@ -52,7 +51,6 @@ int main()
   srand(time(0));
   setlocale(LC_ALL, "");
 
-  ui_game = new GameUI();
   screen_manager = new ScreenManager();
 
   /**
@@ -109,7 +107,6 @@ void StartGame()
 {
   game.Start();
 
-  ui_game->SetMatrix(*game.GetMatrix());
   screen_manager->Set(ScreenFactory::GetScreen(GAME_NAME));
 }
 
@@ -133,11 +130,12 @@ void MainScreenAction()
 void UIGameScreen()
 {
   Menu *screen_menu = MenuFactory::GetMenu(GAME_NAME);
+  GameMatrix *matrix = game.GetMatrix();
 
   UI::PrintVerticalAlign(4 * 3 + 2 + 1 + 7);
   UI::PrintCenter("━━━━ 2048 Game Session ━━━━", 28);
 
-  ui_game->OutputMatrix();
+  GameUI::OutputMatrix(matrix);
 
   MenuUI::PrintMenu(screen_menu);
 }
@@ -154,11 +152,12 @@ void GameScreenAction()
 void UIGameOverScreen()
 {
   Menu *screen_menu = MenuFactory::GetMenu(GAME_OVER_NAME);
+  GameMatrix *matrix = game.GetMatrix();
 
   UI::PrintVerticalAlign(4 * 3 + 2 + 1 + 4);
   UI::PrintCenter("━━━━ 2048 Game Over ━━━━", 24);
 
-  ui_game->OutputMatrix();
+  GameUI::OutputMatrix(matrix);
 
   MenuUI::PrintMenu(screen_menu);
 }

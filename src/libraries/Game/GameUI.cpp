@@ -6,37 +6,24 @@
 
 using namespace std;
 
-GameUI::GameUI()
-{
-  this->cell_start_color = 40;
-}
+int GameUI::cell_start_color = 40;
 
-void GameUI::SetMatrix(GameMatrix &matrix)
+void GameUI::OutputMatrix(GameMatrix *matrix)
 {
-  this->matrix = &matrix;
-}
-
-void GameUI::SetCellStartColor(int color)
-{
-  this->cell_start_color = color;
-}
-
-void GameUI::OutputMatrix()
-{
-  unsigned int matrix_size = this->matrix->GetMatrixSize();
+  unsigned int matrix_size = matrix->GetMatrixSize();
   unsigned int chars_matrix_rows = matrix_size * 3;
   unsigned int chars_matrix_columns = matrix_size * 5;
   unsigned int border_columns = matrix_size * 5 + 2;
   unsigned int centered_chars_count = UI::GetTerminalWidth() / 2 - border_columns / 2;
 
-  unsigned int **int_matrix = this->matrix->GetMatrix();
+  unsigned int **int_matrix = matrix->GetMatrix();
   string chars_matrix[chars_matrix_rows][chars_matrix_columns];
 
   for (int row = 0; row < matrix_size; row++)
     for (int column = 0; column < matrix_size; column++)
     {
       int number = int_matrix[row][column];
-      int color = this->GetTerminalColorByNumber(number);
+      int color = GameUI::GetTerminalColorByNumber(number);
 
       // Row 1
       chars_matrix[row * 3 + 0][column * 5 + 0] = number != 0 ? "\033[38:5:" + to_string(color) + "m┌\033[0m" : " ";
@@ -92,7 +79,7 @@ void GameUI::OutputMatrix()
 
 int GameUI::GetTerminalColorByNumber(int number)
 {
-  int color = this->cell_start_color;
+  int color = GameUI::cell_start_color;
 
   for (int i = 1; number > 2; i++)
   {
