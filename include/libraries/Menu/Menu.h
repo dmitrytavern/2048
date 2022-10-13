@@ -1,6 +1,4 @@
-#ifndef GAME_H
-#define GAME_H
-
+#pragma once
 #include <iostream>
 #include <functional>
 #include "MenuAction.h"
@@ -23,5 +21,3 @@ public:
   int GetActionsLength();
   MenuAction *GetActions();
 };
-
-#endif

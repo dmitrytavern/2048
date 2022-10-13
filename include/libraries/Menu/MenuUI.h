@@ -1,6 +1,4 @@
-#ifndef MENUUI_H
-#define MENUUI_H
-
+#pragma once
 #include <iostream>
 #include "Menu.h"
 
@@ -12,5 +10,3 @@ public:
   static void PrintMenu(Menu *menu);
   static void ActivateMenu(Menu *menu);
 };
-
-#endif

@@ -1,6 +1,4 @@
-#ifndef MENUACTION_H
-#define MENUACTION_H
-
+#pragma once
 #include <iostream>
 #include <functional>
 
@@ -21,5 +19,3 @@ public:
   void SetCallback(function<void()>);
   void Execute();
 };
-
-#endif

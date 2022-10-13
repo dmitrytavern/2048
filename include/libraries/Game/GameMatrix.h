@@ -1,5 +1,4 @@
-#ifndef GAMEMATRIX_H
-#define GAMEMATRIX_H
+#pragma once
 
 class GameMatrix
 {
@@ -21,5 +20,3 @@ public:
   unsigned int GetMatrixSize();
   unsigned int GetEmptyCellCount();
 };
-
-#endif

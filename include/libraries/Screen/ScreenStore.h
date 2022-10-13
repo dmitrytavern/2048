@@ -1,6 +1,4 @@
-#ifndef SCREENSTORE_H
-#define SCREENSTORE_H
-
+#pragma once
 #include "vector"
 #include "Screen.h"
 
@@ -18,5 +16,3 @@ public:
   Screen *GetScreen(string screen_name);
   bool ExistsScreen(string screen_name);
 };
-
-#endif

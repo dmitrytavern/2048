@@ -1,6 +1,4 @@
-#ifndef SCREENMANAGER_H
-#define SCREENMANAGER_H
-
+#pragma once
 #include <iostream>
 #include "Screen.h"
 
@@ -22,5 +20,3 @@ public:
   void Exit();
   bool ExistsActiveScreen();
 };
-
-#endif

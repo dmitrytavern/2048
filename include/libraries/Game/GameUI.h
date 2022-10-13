@@ -1,6 +1,4 @@
-#ifndef GAMEUI_H
-#define GAMEUI_H
-
+#pragma once
 #include "./GameMatrix.h"
 
 class GameUI
@@ -12,5 +10,3 @@ private:
 public:
   static void OutputMatrix(GameMatrix *matrix);
 };
-
-#endif

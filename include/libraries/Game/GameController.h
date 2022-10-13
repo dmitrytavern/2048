@@ -1,7 +1,6 @@
-#ifndef GAMECONTROLLER_H
-#define GAMECONTROLLER_H
+#pragma once
 
-#include "./GameMatrix.h"
+#include "GameMatrix.h"
 
 class GameController
 {
@@ -22,5 +21,3 @@ public:
   bool ExistsMatrix();
   GameMatrix *GetMatrix();
 };
-
-#endif

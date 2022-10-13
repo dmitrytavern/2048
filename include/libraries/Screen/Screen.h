@@ -1,6 +1,4 @@
-#ifndef SCREEN_H
-#define SCREEN_H
-
+#pragma once
 #include <iostream>
 #include "ScreenStore.h"
 #include "ScreenManager.h"
@@ -23,5 +21,3 @@ public:
   virtual void Action() = 0;
   virtual void Exit() = 0;
 };
-
-#endif

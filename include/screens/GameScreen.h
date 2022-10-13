@@ -1,6 +1,4 @@
-#ifndef GAMESCREEN_H
-#define GAMESCREEN_H
-
+#pragma once
 #include "../libraries/Game/GameController.h"
 #include "../libraries/Screen/Screen.h"
 #include "../libraries/Menu/Menu.h"
@@ -26,5 +24,3 @@ public:
   void Action();
   void Exit();
 };
-
-#endif
