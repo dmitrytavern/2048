@@ -43,15 +43,13 @@ void GameScreenAction();
 void GameOverScreenAction();
 void UIScreenExit();
 
-ScreenManager *screen_manager;
 GameController game;
+ScreenManager app_screen_manager;
 
 int main()
 {
   srand(time(0));
   setlocale(LC_ALL, "");
-
-  screen_manager = new ScreenManager();
 
   /**
    * Init application screens
@@ -73,7 +71,7 @@ int main()
    */
   function<void()> ExitFromGame = [&]() -> void
   {
-    screen_manager->Set(ScreenFactory::GetScreen(MAIN_NAME));
+    app_screen_manager.Set(ScreenFactory::GetScreen(MAIN_NAME));
   };
 
   Menu *main_menu = MenuFactory::CreateMenu(MAIN_NAME);
@@ -97,8 +95,8 @@ int main()
   /**
    * Start application
    */
-  screen_manager->Set(ScreenFactory::GetScreen(MAIN_NAME));
-  screen_manager->Run();
+  app_screen_manager.Set(ScreenFactory::GetScreen(MAIN_NAME));
+  app_screen_manager.Run();
 
   UI::Print("Exiting...");
 }
@@ -107,7 +105,7 @@ void StartGame()
 {
   game.Start();
 
-  screen_manager->Set(ScreenFactory::GetScreen(GAME_NAME));
+  app_screen_manager.Set(ScreenFactory::GetScreen(GAME_NAME));
 }
 
 void UIMainScreen()
@@ -146,7 +144,7 @@ void GameScreenAction()
   MenuUI::ActivateMenu(screen_menu);
 
   if (!game.ExistsMove())
-    screen_manager->Set(ScreenFactory::GetScreen(GAME_OVER_NAME));
+    app_screen_manager.Set(ScreenFactory::GetScreen(GAME_OVER_NAME));
 }
 
 void UIGameOverScreen()
@@ -170,5 +168,5 @@ void GameOverScreenAction()
 
 void UIScreenExit()
 {
-  screen_manager->Exit();
+  app_screen_manager.Exit();
 }
