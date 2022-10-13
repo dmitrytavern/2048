@@ -28,7 +28,8 @@ void GameScreen::Initialize()
 {
   this->fn_exit_to_main_screen = [&]() -> void
   {
-    this->app_screen_manager->Set("main");
+    Screen *main_screen = this->app_screen_store->GetScreen("main");
+    this->app_screen_manager->Set(main_screen);
   };
 
   this->fn_exit = [&]() -> void

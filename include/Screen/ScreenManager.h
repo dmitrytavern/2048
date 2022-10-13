@@ -17,7 +17,7 @@ private:
 
 public:
   ScreenManager();
-  void Set(string screen_name);
+  void Set(Screen *screen);
   void Run();
   void Exit();
   bool ExistsActiveScreen();

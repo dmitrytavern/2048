@@ -2,7 +2,6 @@
 #include <functional>
 #include <csignal>
 #include "Screen/Screen.h"
-#include "Screen/ScreenFactory.h"
 #include "Screen/ScreenManager.h"
 
 using namespace std;
@@ -24,17 +23,11 @@ ScreenManager::ScreenManager()
   this->ui_exit = false;
 }
 
-void ScreenManager::Set(string screen_name)
+void ScreenManager::Set(Screen *screen)
 {
-  if (!ScreenFactory::ExistsScreen(screen_name))
-  {
-    cout << "Error: screen " << screen_name << " cannot be setted because screen not exists.";
-    return;
-  }
-
   if (this->current_screen_exists)
     this->current_screen->Exit();
-  this->current_screen = ScreenFactory::GetScreen(screen_name);
+  this->current_screen = screen;
   this->current_screen_exists = true;
   this->current_screen->Initialize();
 }

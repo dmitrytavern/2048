@@ -22,7 +22,8 @@ void MainScreen::Initialize()
 {
   function<void()> StartGame = [&]() -> void
   {
-    this->app_screen_manager->Set("game");
+    Screen *game_screen = this->app_screen_store->GetScreen("game");
+    this->app_screen_manager->Set(game_screen);
   };
 
   function<void()> Exit = [&]() -> void

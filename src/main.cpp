@@ -1,7 +1,7 @@
 #include <iostream>
 #include <functional>
 
-#include "Screen/ScreenFactory.h"
+#include "Screen/ScreenStore.h"
 #include "Screen/ScreenManager.h"
 
 #include "./screens/MainScreen.h"
@@ -19,18 +19,19 @@ int main()
   /**
    * Init application screens
    */
+  ScreenStore app_screen_store;
   ScreenManager app_screen_manager;
 
-  MainScreen app_main_screen(&app_screen_manager);
-  ScreenFactory::AddScreen(&app_main_screen);
+  MainScreen app_main_screen(&app_screen_store, &app_screen_manager);
+  app_screen_store.AddScreen(&app_main_screen);
 
-  GameScreen app_game_screen(&app_screen_manager);
-  ScreenFactory::AddScreen(&app_game_screen);
+  GameScreen app_game_screen(&app_screen_store, &app_screen_manager);
+  app_screen_store.AddScreen(&app_game_screen);
 
   /**
    * Start application
    */
-  app_screen_manager.Set("main");
+  app_screen_manager.Set(&app_main_screen);
   app_screen_manager.Run();
 
   UI::Print("Exiting...");
