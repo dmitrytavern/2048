@@ -9,7 +9,7 @@
 
 void MenuUI::PrintMenu(Menu *menu)
 {
-  MenuAction *actions = menu->GetActions();
+  vector<MenuAction> actions = menu->GetActions();
   int actions_length = menu->GetActionsLength();
   int centered_chars_count = UI::GetTerminalWidth() / 2;
   int window_length = 0;

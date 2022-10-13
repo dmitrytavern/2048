@@ -26,11 +26,11 @@ ScreenManager::ScreenManager()
 
 void ScreenManager::Set(Screen *screen)
 {
+  screen->Initialize();
   if (this->current_screen_exists)
     this->current_screen->Exit();
   this->current_screen = screen;
   this->current_screen_exists = true;
-  this->current_screen->Initialize();
 }
 
 void ScreenManager::Run()

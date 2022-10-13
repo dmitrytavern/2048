@@ -9,8 +9,7 @@ class Menu
 {
 private:
   string title;
-  MenuAction *actions;
-  unsigned int actions_length;
+  vector<MenuAction> actions;
 
 public:
   Menu();
@@ -19,5 +18,5 @@ public:
   void Trigger(int trigger);
   void AddAction(int trigger, string title, function<void()>);
   int GetActionsLength();
-  MenuAction *GetActions();
+  vector<MenuAction> &GetActions();
 };
