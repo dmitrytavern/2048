@@ -2,24 +2,23 @@
 #define SCREEN_H
 
 #include <iostream>
-#include <functional>
+#include "ScreenManager.h"
 
 using namespace std;
 
+class ScreenManager;
 class Screen
 {
-private:
-  string name;
-  function<void()> ui_function;
-  function<void()> action_function;
+protected:
+  ScreenManager *app_screen_manager;
 
 public:
-  Screen(string name);
-  string GetName();
-  void SetUIFunction(function<void()> fn);
-  void SetActionFunction(function<void()> fn);
-  void RunUI();
-  void RunAction();
+  Screen(ScreenManager *app_screen_manager);
+  virtual string GetName() = 0;
+  virtual void Initialize() = 0;
+  virtual void Graphic() = 0;
+  virtual void Action() = 0;
+  virtual void Exit() = 0;
 };
 
 #endif

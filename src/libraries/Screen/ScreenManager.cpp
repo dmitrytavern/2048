@@ -2,6 +2,7 @@
 #include <functional>
 #include <csignal>
 #include "Screen/Screen.h"
+#include "Screen/ScreenFactory.h"
 #include "Screen/ScreenManager.h"
 
 using namespace std;
@@ -23,10 +24,19 @@ ScreenManager::ScreenManager()
   this->ui_exit = false;
 }
 
-void ScreenManager::Set(Screen *screen)
+void ScreenManager::Set(string screen_name)
 {
-  this->current_screen = screen;
+  if (!ScreenFactory::ExistsScreen(screen_name))
+  {
+    cout << "Error: screen " << screen_name << " cannot be setted because screen not exists.";
+    return;
+  }
+
+  if (this->current_screen_exists)
+    this->current_screen->Exit();
+  this->current_screen = ScreenFactory::GetScreen(screen_name);
   this->current_screen_exists = true;
+  this->current_screen->Initialize();
 }
 
 void ScreenManager::Run()
@@ -39,8 +49,8 @@ void ScreenManager::Run()
     {
       system("clear");
 
-      this->current_screen->RunUI();
-      this->current_screen->RunAction();
+      this->current_screen->Graphic();
+      this->current_screen->Action();
     }
 
   // Show teminal pointer
@@ -49,6 +59,8 @@ void ScreenManager::Run()
 
 void ScreenManager::Exit()
 {
+  if (this->current_screen_exists)
+    this->current_screen->Exit();
   this->ui_exit = true;
 }
 
@@ -57,18 +69,12 @@ bool ScreenManager::ExistsActiveScreen()
   return this->current_screen_exists;
 }
 
-Screen *ScreenManager::GetActiveScreen()
-{
-  if (this->current_screen_exists)
-    return this->current_screen;
-  exit(1);
-}
-
 void ScreenManager::WindowsResizeHandler()
 {
   if (this->ExistsActiveScreen())
   {
     system("clear");
-    this->GetActiveScreen()->RunUI();
+    if (this->current_screen_exists)
+      this->current_screen->Graphic();
   }
 }

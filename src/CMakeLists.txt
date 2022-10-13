@@ -11,7 +11,6 @@ add_library(GameLibrary
 add_library(MenuLibrary
   libraries/Menu/Menu.cpp
   libraries/Menu/MenuAction.cpp
-  libraries/Menu/MenuFactory.cpp
   libraries/Menu/MenuUI.cpp
 )
 
@@ -21,7 +20,11 @@ add_library(ScreenLibrary
   libraries/Screen/ScreenManager.cpp
 )
 
-add_executable(main main.cpp)
+add_executable(main
+  main.cpp
+  ./screens/MainScreen.cpp
+  ./screens/GameScreen.cpp
+)
 
 target_link_libraries(GameLibrary UILibrary)
 target_link_libraries(MenuLibrary UILibrary)

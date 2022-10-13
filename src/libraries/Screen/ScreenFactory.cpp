@@ -5,26 +5,24 @@
 #include "Screen/Screen.h"
 #include "Screen/ScreenFactory.h"
 
-vector<Screen> ScreenFactory::screens = {};
+vector<Screen *> ScreenFactory::screens = {};
 
-Screen *ScreenFactory::CreateScreen(string screen_name)
+void ScreenFactory::AddScreen(Screen *screen)
 {
-  if (ScreenFactory::ExistsScreen(screen_name))
+  if (ScreenFactory::ExistsScreen(screen->GetName()))
   {
-    cout << "Error: screen " << screen_name << " already exists" << endl;
+    cout << "Error: screen " << screen->GetName() << " already exists" << endl;
     exit(1);
   }
 
-  ScreenFactory::screens.push_back(*new Screen(screen_name));
-
-  return &ScreenFactory::screens[ScreenFactory::screens.size() - 1];
+  ScreenFactory::screens.push_back(screen);
 }
 
 Screen *ScreenFactory::GetScreen(string screen)
 {
   for (int index = 0; index < ScreenFactory::screens.size(); index++)
-    if (ScreenFactory::screens[index].GetName() == screen)
-      return &ScreenFactory::screens[index];
+    if (ScreenFactory::screens[index]->GetName() == screen)
+      return ScreenFactory::screens[index];
   cout << "Error: screen not found" << endl;
   exit(1);
 }
@@ -32,7 +30,7 @@ Screen *ScreenFactory::GetScreen(string screen)
 bool ScreenFactory::ExistsScreen(string menu)
 {
   for (int index = 0; index < ScreenFactory::screens.size(); index++)
-    if (ScreenFactory::screens[index].GetName() == menu)
+    if (ScreenFactory::screens[index]->GetName() == menu)
       return true;
   return false;
 }

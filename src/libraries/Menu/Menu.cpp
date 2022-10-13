@@ -5,16 +5,10 @@
 
 using namespace std;
 
-Menu::Menu(string name)
+Menu::Menu()
 {
-  this->name = name;
   this->actions_length = 0;
   this->actions = new MenuAction[0];
-}
-
-string Menu::GetName()
-{
-  return this->name;
 }
 
 string Menu::GetTitle()

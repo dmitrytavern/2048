@@ -9,10 +9,10 @@ using namespace std;
 class ScreenFactory
 {
 private:
-  static vector<Screen> screens;
+  static vector<Screen *> screens;
 
 public:
-  static Screen *CreateScreen(string screen_name);
+  static void AddScreen(Screen *screen);
   static Screen *GetScreen(string screen_name);
   static bool ExistsScreen(string screen_name);
 };

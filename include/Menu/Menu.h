@@ -3,23 +3,21 @@
 
 #include <iostream>
 #include <functional>
-#include "./MenuAction.h"
+#include "MenuAction.h"
 
 using namespace std;
 
 class Menu
 {
 private:
-  string name;
   string title;
   MenuAction *actions;
   unsigned int actions_length;
 
 public:
-  Menu(string name);
-  string GetName();
+  Menu();
   string GetTitle();
-  void SetTitle(string name);
+  void SetTitle(string title);
   void Trigger(int trigger);
   void AddAction(int trigger, string title, function<void()>);
   int GetActionsLength();

@@ -1,11 +1,12 @@
-#ifndef SCREENUI_H
-#define SCREENUI_H
+#ifndef SCREENMANAGER_H
+#define SCREENMANAGER_H
 
 #include <iostream>
-#include "./Screen.h"
+#include "Screen.h"
 
 using namespace std;
 
+class Screen;
 class ScreenManager
 {
 private:
@@ -16,11 +17,10 @@ private:
 
 public:
   ScreenManager();
-  void Set(Screen *screen);
+  void Set(string screen_name);
   void Run();
   void Exit();
   bool ExistsActiveScreen();
-  Screen *GetActiveScreen();
 };
 
 #endif

@@ -1,35 +1,9 @@
 #include <iostream>
-#include <functional>
 #include "Screen/Screen.h"
 
 using namespace std;
 
-Screen::Screen(string name)
+Screen::Screen(ScreenManager *app_screen_manager)
 {
-  this->name = name;
-}
-
-string Screen::GetName()
-{
-  return this->name;
-}
-
-void Screen::SetUIFunction(function<void()> fn)
-{
-  this->ui_function = fn;
-}
-
-void Screen::SetActionFunction(function<void()> fn)
-{
-  this->action_function = fn;
-}
-
-void Screen::RunUI()
-{
-  this->ui_function();
-}
-
-void Screen::RunAction()
-{
-  this->action_function();
+  this->app_screen_manager = app_screen_manager;
 }
