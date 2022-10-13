@@ -1,17 +1,18 @@
 #include <iostream>
 #include <functional>
 
-#include "../include/Game/GameController.h"
-#include "../include/Menu/Menu.h"
-#include "../include/Menu/MenuFactory.h"
+#include "Game/GameController.h"
 
-#include "../include/UI/UI.h"
-#include "../include/Game/GameUI.h"
-#include "../include/Menu/MenuUI.h"
+#include "Screen/Screen.h"
+#include "Screen/ScreenFactory.h"
+#include "Screen/ScreenManager.h"
 
-#include "../include/Screen/Screen.h"
-#include "../include/Screen/ScreenFactory.h"
-#include "../include/Screen/ScreenManager.h"
+#include "Menu/Menu.h"
+#include "Menu/MenuFactory.h"
+
+#include "UI/UI.h"
+#include "Game/GameUI.h"
+#include "Menu/MenuUI.h"
 
 #define MAIN_NAME "main"
 #define GAME_NAME "game"
