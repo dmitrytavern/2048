@@ -1,8 +1,8 @@
 #ifndef MAINSCREEN_H
 #define MAINSCREEN_H
 
-#include "Screen/Screen.h"
-#include "Menu/Menu.h"
+#include "libraries/Screen/Screen.h"
+#include "libraries/Menu/Menu.h"
 
 class MainScreen : public Screen
 {

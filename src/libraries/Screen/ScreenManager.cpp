@@ -1,8 +1,9 @@
 #include <iostream>
 #include <functional>
 #include <csignal>
-#include "Screen/Screen.h"
-#include "Screen/ScreenManager.h"
+
+#include "libraries/Screen/Screen.h"
+#include "libraries/Screen/ScreenManager.h"
 
 using namespace std;
 

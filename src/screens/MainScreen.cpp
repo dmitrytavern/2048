@@ -1,9 +1,9 @@
-#include "Screen/ScreenManager.h"
-#include "Menu/Menu.h"
-#include "Menu/MenuUI.h"
-#include "UI/UI.h"
+#include "libraries/Screen/ScreenManager.h"
+#include "libraries/Menu/Menu.h"
+#include "libraries/Menu/MenuUI.h"
+#include "libraries/UI/UI.h"
 
-#include "MainScreen.h"
+#include "screens/MainScreen.h"
 
 #define MAIN_NAME "main"
 

@@ -1,11 +1,12 @@
 #include <iostream>
 #include <functional>
-#include "Menu/Menu.h"
-#include "Menu/MenuUI.h"
-#include "Game/GameUI.h"
-#include "UI/UI.h"
 
-#include "GameScreen.h"
+#include "libraries/Menu/Menu.h"
+#include "libraries/Menu/MenuUI.h"
+#include "libraries/Game/GameUI.h"
+#include "libraries/UI/UI.h"
+
+#include "screens/GameScreen.h"
 
 #define SCREEN_NAME "game"
 

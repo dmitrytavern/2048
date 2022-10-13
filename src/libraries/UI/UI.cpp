@@ -1,7 +1,8 @@
 #include <sys/ioctl.h>
 #include <unistd.h>
 #include <string>
-#include "UI/UI.h"
+
+#include "libraries/UI/UI.h"
 
 string UI::BORDER_VERTICAL_CHAR = "│";
 string UI::BORDER_HORIZONTAL_CHAR = "─";

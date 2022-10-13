@@ -22,8 +22,8 @@ add_library(ScreenLibrary
 
 add_executable(main
   main.cpp
-  ./screens/MainScreen.cpp
-  ./screens/GameScreen.cpp
+  screens/MainScreen.cpp
+  screens/GameScreen.cpp
 )
 
 target_link_libraries(GameLibrary UILibrary)

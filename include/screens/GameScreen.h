@@ -1,9 +1,9 @@
 #ifndef GAMESCREEN_H
 #define GAMESCREEN_H
 
-#include "Game/GameController.h"
-#include "Screen/Screen.h"
-#include "Menu/Menu.h"
+#include "../libraries/Game/GameController.h"
+#include "../libraries/Screen/Screen.h"
+#include "../libraries/Menu/Menu.h"
 
 class GameScreen : public Screen
 {

@@ -1,9 +1,10 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
-#include "UI/UI.h"
-#include "Screen/Screen.h"
-#include "Screen/ScreenStore.h"
+
+#include "libraries/Screen/Screen.h"
+#include "libraries/Screen/ScreenStore.h"
+#include "libraries/UI/UI.h"
 
 ScreenStore::ScreenStore()
 {

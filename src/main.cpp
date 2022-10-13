@@ -1,13 +1,12 @@
 #include <iostream>
 #include <functional>
 
-#include "Screen/ScreenStore.h"
-#include "Screen/ScreenManager.h"
+#include "libraries/Screen/ScreenStore.h"
+#include "libraries/Screen/ScreenManager.h"
+#include "libraries/UI/UI.h"
 
-#include "./screens/MainScreen.h"
-#include "./screens/GameScreen.h"
-
-#include "UI/UI.h"
+#include "screens/MainScreen.h"
+#include "screens/GameScreen.h"
 
 using namespace std;
 

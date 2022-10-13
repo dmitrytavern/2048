@@ -2,9 +2,10 @@
 #include <iomanip>
 #include <conio.h>
 #include <string>
-#include "UI/UI.h"
-#include "Menu/Menu.h"
-#include "Menu/MenuUI.h"
+
+#include "libraries/Menu/Menu.h"
+#include "libraries/Menu/MenuUI.h"
+#include "libraries/UI/UI.h"
 
 void MenuUI::PrintMenu(Menu *menu)
 {
