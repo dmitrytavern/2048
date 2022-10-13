@@ -39,7 +39,6 @@ unsigned int GameMatrix::GetEmptyCellCount()
 
 void GameMatrix::SwipeUp()
 {
-  std::cout << "Hello test" << this->size << std::endl;
   for (int column = 0; column < this->size; column++)
   {
     unsigned int *current_cell, *previous_cell;

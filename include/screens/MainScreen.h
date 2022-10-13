@@ -10,7 +10,6 @@ private:
   Menu *screen_menu;
 
 public:
-  string GetName();
   void Initialize();
   void Graphic();
   void Action();

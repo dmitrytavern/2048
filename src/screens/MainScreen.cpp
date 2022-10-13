@@ -1,11 +1,10 @@
-#include "libraries/Screen/ScreenManager.h"
+#include "ScreenNames.h"
+
 #include "libraries/Menu/Menu.h"
 #include "libraries/Menu/MenuUI.h"
 #include "libraries/UI/UI.h"
 
 #include "screens/MainScreen.h"
-
-#define MAIN_NAME "main"
 
 enum Triggers
 {
@@ -13,16 +12,11 @@ enum Triggers
   MAIN_MENU_CLOSE_GAME_KEY = 101,
 };
 
-string MainScreen::GetName()
-{
-  return MAIN_NAME;
-}
-
 void MainScreen::Initialize()
 {
   function<void()> StartGame = [&]() -> void
   {
-    Screen *game_screen = this->app_screen_store->GetScreen("game");
+    Screen *game_screen = this->app_screen_store->GetScreen(SCREEN_GAME_NAME);
     this->app_screen_manager->Set(game_screen);
   };
 

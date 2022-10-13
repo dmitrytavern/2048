@@ -1,7 +1,7 @@
 #pragma once
-#include "../libraries/Game/GameController.h"
-#include "../libraries/Screen/Screen.h"
-#include "../libraries/Menu/Menu.h"
+#include "libraries/Game/GameController.h"
+#include "libraries/Screen/Screen.h"
+#include "libraries/Menu/Menu.h"
 
 class GameScreen : public Screen
 {
@@ -18,7 +18,6 @@ private:
   void CallGameOver();
 
 public:
-  string GetName();
   void Initialize();
   void Graphic();
   void Action();

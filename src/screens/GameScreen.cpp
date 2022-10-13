@@ -1,5 +1,4 @@
-#include <iostream>
-#include <functional>
+#include "ScreenNames.h"
 
 #include "libraries/Menu/Menu.h"
 #include "libraries/Menu/MenuUI.h"
@@ -7,8 +6,6 @@
 #include "libraries/UI/UI.h"
 
 #include "screens/GameScreen.h"
-
-#define SCREEN_NAME "game"
 
 enum Triggers
 {
@@ -20,16 +17,11 @@ enum Triggers
   GAME_MENU_START_GAME_KEY = 97,
 };
 
-string GameScreen::GetName()
-{
-  return SCREEN_NAME;
-}
-
 void GameScreen::Initialize()
 {
   this->fn_exit_to_main_screen = [&]() -> void
   {
-    Screen *main_screen = this->app_screen_store->GetScreen("main");
+    Screen *main_screen = this->app_screen_store->GetScreen(SCREEN_MAIN_NAME);
     this->app_screen_manager->Set(main_screen);
   };
 
