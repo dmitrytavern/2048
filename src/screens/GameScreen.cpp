@@ -1,5 +1,6 @@
 #include "ScreenNames.h"
 
+#include "libraries/Screen/ScreenSignal.h"
 #include "libraries/Menu/Menu.h"
 #include "libraries/Menu/MenuUI.h"
 #include "libraries/Game/GameUI.h"
@@ -19,15 +20,14 @@ enum Triggers
 
 void GameScreen::Initialize()
 {
-  this->fn_exit_to_main_screen = [&]() -> void
-  {
-    Screen *main_screen = this->app_screen_store->GetScreen(SCREEN_MAIN_NAME);
-    this->app_screen_manager->Set(main_screen);
-  };
-
   this->fn_exit = [&]() -> void
   {
-    this->app_screen_manager->Exit();
+    this->SetSignal(SCREEN_SIGNAL_EXIT);
+  };
+
+  this->fn_exit_to_main_screen = [&]() -> void
+  {
+    this->SetSignal(SCREEN_SIGNAL_SET, SCREEN_MAIN_NAME);
   };
 
   this->fn_start_game = [&]() -> void
@@ -38,7 +38,13 @@ void GameScreen::Initialize()
   this->fn_start_game();
 }
 
-void GameScreen::Graphic()
+void GameScreen::Terminate()
+{
+  delete (this->screen_menu);
+  delete (this->game);
+}
+
+void GameScreen::Graphics()
 {
   GameMatrix *matrix = this->game->GetMatrix();
 
@@ -50,7 +56,7 @@ void GameScreen::Graphic()
   MenuUI::PrintMenu(this->screen_menu);
 }
 
-void GameScreen::Action()
+void GameScreen::Run()
 {
   MenuUI::ActivateMenu(this->screen_menu);
 
@@ -81,10 +87,4 @@ void GameScreen::CallGameOver()
   screen_menu->AddAction(GAME_MENU_START_GAME_KEY, "a - new game", this->fn_start_game);
   screen_menu->AddAction(GAME_MENU_EXIT_KEY, "e - close game", this->fn_exit);
   this->screen_menu = screen_menu;
-}
-
-void GameScreen::Exit()
-{
-  delete (this->screen_menu);
-  delete (this->game);
 }

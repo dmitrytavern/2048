@@ -4,7 +4,6 @@
 
 using namespace std;
 
-class Screen;
 class ScreenStore
 {
 private:

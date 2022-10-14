@@ -1,24 +1,23 @@
 #pragma once
 #include <iostream>
-#include "ScreenStore.h"
-#include "ScreenManager.h"
+#include "ScreenSignal.h"
 
 using namespace std;
 
-class ScreenStore;
-class ScreenManager;
 class Screen
 {
-protected:
+private:
   string name;
-  ScreenStore *app_screen_store;
-  ScreenManager *app_screen_manager;
+  ScreenSignal signal;
 
 public:
-  Screen(string name, ScreenStore *app_screen_store, ScreenManager *app_screen_manager);
+  Screen(string name);
   string GetName();
+  ScreenSignal GetSignal();
+  void SetSignal(int signum);
+  void SetSignal(int signum, string payload);
   virtual void Initialize() = 0;
-  virtual void Graphic() = 0;
-  virtual void Action() = 0;
-  virtual void Exit() = 0;
+  virtual void Terminate() = 0;
+  virtual void Graphics() = 0;
+  virtual void Run() = 0;
 };

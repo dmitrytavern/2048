@@ -1,5 +1,6 @@
 #include "ScreenNames.h"
 
+#include "libraries/Screen/ScreenSignal.h"
 #include "libraries/Menu/Menu.h"
 #include "libraries/Menu/MenuUI.h"
 #include "libraries/UI/UI.h"
@@ -14,25 +15,29 @@ enum Triggers
 
 void MainScreen::Initialize()
 {
-  function<void()> StartGame = [&]() -> void
+  this->fn_exit = [&]() -> void
   {
-    Screen *game_screen = this->app_screen_store->GetScreen(SCREEN_GAME_NAME);
-    this->app_screen_manager->Set(game_screen);
+    this->SetSignal(SCREEN_SIGNAL_EXIT);
   };
 
-  function<void()> Exit = [&]() -> void
+  this->fn_start_game = [&]() -> void
   {
-    this->app_screen_manager->Exit();
+    this->SetSignal(SCREEN_SIGNAL_SET, SCREEN_GAME_NAME);
   };
 
   Menu *screen_menu = new Menu;
   screen_menu->SetTitle("Main");
-  screen_menu->AddAction(MAIN_MENU_START_GAME_KEY, "a - start game", StartGame);
-  screen_menu->AddAction(MAIN_MENU_CLOSE_GAME_KEY, "e - close game", Exit);
+  screen_menu->AddAction(MAIN_MENU_START_GAME_KEY, "a - start game", this->fn_start_game);
+  screen_menu->AddAction(MAIN_MENU_CLOSE_GAME_KEY, "e - close game", this->fn_exit);
   this->screen_menu = screen_menu;
 }
 
-void MainScreen::Graphic()
+void MainScreen::Terminate()
+{
+  delete (this->screen_menu);
+}
+
+void MainScreen::Graphics()
 {
   UI::PrintVerticalAlign(6);
   UI::PrintCenter("━━━━ 2048 Game Menu ━━━━", 24);
@@ -41,12 +46,7 @@ void MainScreen::Graphic()
   MenuUI::PrintMenu(this->screen_menu);
 }
 
-void MainScreen::Action()
+void MainScreen::Run()
 {
   MenuUI::ActivateMenu(this->screen_menu);
-}
-
-void MainScreen::Exit()
-{
-  delete (this->screen_menu);
 }

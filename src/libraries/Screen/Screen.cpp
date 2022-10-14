@@ -1,17 +1,32 @@
 #include <iostream>
 
 #include "libraries/Screen/Screen.h"
+#include "libraries/Screen/ScreenSignal.h"
 
 using namespace std;
 
-Screen::Screen(string screen_name, ScreenStore *app_screen_store, ScreenManager *app_screen_manager)
+Screen::Screen(string screen_name)
 {
   this->name = screen_name;
-  this->app_screen_store = app_screen_store;
-  this->app_screen_manager = app_screen_manager;
+  this->signal = {0, ""};
 }
 
 string Screen::GetName()
 {
   return this->name;
+}
+
+ScreenSignal Screen::GetSignal()
+{
+  return this->signal;
+}
+
+void Screen::SetSignal(int signum)
+{
+  this->signal = {signum, ""};
+}
+
+void Screen::SetSignal(int signum, string payload)
+{
+  this->signal = {signum, payload};
 }

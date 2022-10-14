@@ -8,10 +8,12 @@ class MainScreen : public Screen
 
 private:
   Menu *screen_menu;
+  function<void()> fn_exit;
+  function<void()> fn_start_game;
 
 public:
   void Initialize();
-  void Graphic();
-  void Action();
-  void Exit();
+  void Terminate();
+  void Graphics();
+  void Run();
 };

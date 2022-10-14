@@ -19,7 +19,7 @@ private:
 
 public:
   void Initialize();
-  void Graphic();
-  void Action();
-  void Exit();
+  void Terminate();
+  void Graphics();
+  void Run();
 };
