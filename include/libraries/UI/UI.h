@@ -13,6 +13,7 @@ public:
   static string BORDER_BOTTOM_LEFT_CHAR;
   static string BORDER_BOTTOM_RIGHT_CHAR;
 
+  static void Print();
   static void Print(string message);
   static void PrintCenter(string message, int message_length);
   static void PrintSpaces(int spaces_count);

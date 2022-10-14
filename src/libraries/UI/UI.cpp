@@ -11,6 +11,11 @@ string UI::BORDER_TOP_RIGHT_CHAR = "┐";
 string UI::BORDER_BOTTOM_LEFT_CHAR = "└";
 string UI::BORDER_BOTTOM_RIGHT_CHAR = "┘";
 
+void UI::Print()
+{
+  cout << endl;
+}
+
 void UI::Print(string message)
 {
   cout << message << endl;

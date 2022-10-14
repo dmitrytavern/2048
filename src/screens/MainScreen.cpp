@@ -44,7 +44,7 @@ void MainScreen::Render()
 {
   UI::PrintVerticalAlign(6);
   UI::PrintCenter("━━━━ 2048 Game Menu ━━━━", 24);
-  UI::Print("");
+  UI::Print();
 
   MenuUI::PrintMenu(this->screen_menu);
 }
