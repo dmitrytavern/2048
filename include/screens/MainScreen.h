@@ -4,14 +4,13 @@
 
 class MainScreen : public Screen
 {
-  using Screen::Screen;
-
 private:
   Menu *screen_menu;
   function<void()> fn_exit;
   function<void()> fn_start_game;
 
 public:
+  MainScreen();
   void Initialize();
   void Terminate();
   void Render();

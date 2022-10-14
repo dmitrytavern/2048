@@ -13,7 +13,7 @@ enum Triggers
   MAIN_MENU_CLOSE_GAME_KEY = 101,
 };
 
-void MainScreen::Initialize()
+MainScreen::MainScreen() : Screen(SCREEN_MAIN_NAME)
 {
   this->fn_exit = [&]() -> void
   {
@@ -24,7 +24,10 @@ void MainScreen::Initialize()
   {
     this->SetSignal(SCREEN_SIGNAL_SET, SCREEN_GAME_NAME);
   };
+}
 
+void MainScreen::Initialize()
+{
   Menu *screen_menu = new Menu;
   screen_menu->SetTitle("Main");
   screen_menu->AddAction(MAIN_MENU_START_GAME_KEY, "a - start game", this->fn_start_game);

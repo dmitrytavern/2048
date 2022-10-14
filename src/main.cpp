@@ -1,8 +1,6 @@
 #include <iostream>
 #include <functional>
 
-#include "ScreenNames.h"
-
 #include "libraries/Screen/ScreenStore.h"
 #include "libraries/Screen/ScreenManager.h"
 #include "libraries/UI/UI.h"
@@ -22,10 +20,10 @@ int main()
    */
   ScreenStore app_screen_store;
 
-  MainScreen app_main_screen(SCREEN_MAIN_NAME);
+  MainScreen app_main_screen;
   app_screen_store.AddScreen(&app_main_screen);
 
-  GameScreen app_game_screen(SCREEN_GAME_NAME);
+  GameScreen app_game_screen;
   app_screen_store.AddScreen(&app_game_screen);
 
   /**
