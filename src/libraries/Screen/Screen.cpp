@@ -30,3 +30,11 @@ void Screen::SetSignal(int signum, string payload)
 {
   this->signal = {signum, payload};
 }
+
+void Screen::Initialize()
+{
+}
+
+void Screen::Terminate()
+{
+}

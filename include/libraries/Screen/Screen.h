@@ -16,8 +16,8 @@ public:
   ScreenSignal GetSignal();
   void SetSignal(int signum);
   void SetSignal(int signum, string payload);
-  virtual void Initialize() = 0;
-  virtual void Terminate() = 0;
+  virtual void Initialize();
+  virtual void Terminate();
   virtual void Render() = 0;
   virtual void Run() = 0;
 };
