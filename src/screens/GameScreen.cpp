@@ -44,7 +44,7 @@ void GameScreen::Terminate()
   delete (this->game);
 }
 
-void GameScreen::Graphics()
+void GameScreen::Render()
 {
   GameMatrix *matrix = this->game->GetMatrix();
 

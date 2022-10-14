@@ -18,6 +18,6 @@ public:
   void SetSignal(int signum, string payload);
   virtual void Initialize() = 0;
   virtual void Terminate() = 0;
-  virtual void Graphics() = 0;
+  virtual void Render() = 0;
   virtual void Run() = 0;
 };

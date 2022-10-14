@@ -46,7 +46,7 @@ void ScreenManager::Run()
     {
       system("clear");
 
-      this->current_screen->Graphics();
+      this->current_screen->Render();
 
       this->current_screen->Run();
 
@@ -99,6 +99,6 @@ void ScreenManager::WindowsResizeHandler()
   {
     system("clear");
     if (this->current_screen_exists)
-      this->current_screen->Graphics();
+      this->current_screen->Render();
   }
 }

@@ -20,6 +20,6 @@ private:
 public:
   void Initialize();
   void Terminate();
-  void Graphics();
+  void Render();
   void Run();
 };

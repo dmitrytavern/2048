@@ -37,7 +37,7 @@ void MainScreen::Terminate()
   delete (this->screen_menu);
 }
 
-void MainScreen::Graphics()
+void MainScreen::Render()
 {
   UI::PrintVerticalAlign(6);
   UI::PrintCenter("━━━━ 2048 Game Menu ━━━━", 24);
