@@ -41,10 +41,11 @@ void MenuUI::PrintMenu(Menu *menu)
   UI::PrintWindowBorderBottom(windows_size);
 }
 
-void MenuUI::ActivateMenu(Menu *menu)
+int MenuUI::ActivateMenu(Menu *menu)
 {
   int pressed_key = getch();
   menu->Trigger(pressed_key);
+  return pressed_key;
 }
 
 int MenuUI::CalcContentSize(Menu *menu)
