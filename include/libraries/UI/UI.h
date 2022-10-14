@@ -20,6 +20,8 @@ public:
   static void PrintWindowBorderTop(int chars_count);
   static void PrintWindowBorderTopWithTitle(int chars_count, string title);
   static void PrintWindowBorderBottom(int chars_count);
+  static string PaintText(int color, string text);
   static unsigned int GetTerminalWidth();
   static unsigned int GetTerminalHeight();
+  static unsigned int CalcSpacesCount(int windows_size);
 };

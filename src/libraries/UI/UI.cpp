@@ -91,6 +91,16 @@ void UI::PrintWindowBorderBottom(int count)
   cout << endl;
 }
 
+string UI::PaintText(int color, string message)
+{
+  return "\033[38:5:" + to_string(color) + "m" + message + "\033[0m";
+}
+
+unsigned int UI::CalcSpacesCount(int windows_size)
+{
+  return UI::GetTerminalWidth() / 2 - windows_size / 2;
+}
+
 unsigned int UI::GetTerminalWidth()
 {
   struct winsize window;

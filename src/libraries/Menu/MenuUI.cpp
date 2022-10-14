@@ -7,7 +7,7 @@
 #include "libraries/Menu/MenuUI.h"
 #include "libraries/UI/UI.h"
 
-int MenuUI::BORDER_LENGTH = 1;
+int MenuUI::BORDER_SIZE = 1;
 int MenuUI::BORDER_WINDOW_PADDING = 3;
 
 void MenuUI::PrintMenu(Menu *menu)
@@ -18,7 +18,7 @@ void MenuUI::PrintMenu(Menu *menu)
 
   int content_size = MenuUI::CalcContentSize(menu);
   int windows_size = MenuUI::CalcWindowsSize(content_size);
-  int spaces_count = MenuUI::CalcSpacesCount(windows_size);
+  int spaces_count = UI::CalcSpacesCount(windows_size);
 
   UI::PrintSpaces(spaces_count);
   UI::PrintWindowBorderTopWithTitle(windows_size, menu_title);
@@ -66,10 +66,5 @@ int MenuUI::CalcContentSize(Menu *menu)
 
 int MenuUI::CalcWindowsSize(int content_size)
 {
-  return content_size + MenuUI::BORDER_WINDOW_PADDING * 2 + MenuUI::BORDER_LENGTH * 2;
-}
-
-int MenuUI::CalcSpacesCount(int windows_size)
-{
-  return UI::GetTerminalWidth() / 2 - windows_size / 2;
+  return content_size + MenuUI::BORDER_WINDOW_PADDING * 2 + MenuUI::BORDER_SIZE * 2;
 }
