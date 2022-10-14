@@ -21,7 +21,6 @@ int main()
    * Init application screens
    */
   ScreenStore app_screen_store;
-  ScreenManager app_screen_manager(&app_screen_store);
 
   MainScreen app_main_screen(SCREEN_MAIN_NAME);
   app_screen_store.AddScreen(&app_main_screen);
@@ -32,6 +31,7 @@ int main()
   /**
    * Start application
    */
+  ScreenManager app_screen_manager(&app_screen_store);
   app_screen_manager.Set(&app_main_screen);
   app_screen_manager.Run();
 
