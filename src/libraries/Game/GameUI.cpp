@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <string>
 
 #include "libraries/Game/GameMatrix.h"
 #include "libraries/Game/GameUI.h"
@@ -21,7 +22,10 @@ void GameUI::OutputMatrix(GameMatrix *matrix)
   unsigned int windows_size = GameUI::CalcWindowsSize(output_matrix_columns);
   unsigned int spaces_count = UI::CalcSpacesCount(windows_size);
 
-  string chars_matrix[output_matrix_rows][output_matrix_columns];
+  string **chars_matrix;
+  chars_matrix = new string *[output_matrix_rows];
+  for (int i = 0; i < output_matrix_rows; i++)
+    chars_matrix[i] = new string[output_matrix_columns];
 
   for (int row = 0; row < matrix_size; row++)
     for (int column = 0; column < matrix_size; column++)
