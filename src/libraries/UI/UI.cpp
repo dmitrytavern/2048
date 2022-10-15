@@ -4,12 +4,12 @@
 
 #include "libraries/UI/UI.h"
 
-string UI::BORDER_VERTICAL_CHAR = "│";
-string UI::BORDER_HORIZONTAL_CHAR = "─";
-string UI::BORDER_TOP_LEFT_CHAR = "┌";
-string UI::BORDER_TOP_RIGHT_CHAR = "┐";
-string UI::BORDER_BOTTOM_LEFT_CHAR = "└";
-string UI::BORDER_BOTTOM_RIGHT_CHAR = "┘";
+const string UI::BORDER_VERTICAL_CHAR = "│";
+const string UI::BORDER_HORIZONTAL_CHAR = "─";
+const string UI::BORDER_TOP_LEFT_CHAR = "┌";
+const string UI::BORDER_TOP_RIGHT_CHAR = "┐";
+const string UI::BORDER_BOTTOM_LEFT_CHAR = "└";
+const string UI::BORDER_BOTTOM_RIGHT_CHAR = "┘";
 
 void UI::Print()
 {
@@ -23,10 +23,10 @@ void UI::Print(string message)
 
 void UI::PrintCenter(string message, int message_length = 0)
 {
-  unsigned int window_width = UI::GetTerminalWidth();
   unsigned int length = message_length == 0 ? message.length() : message_length;
+  unsigned int spaces_count = UI::CalcSpacesCount(length);
 
-  UI::PrintSpaces(window_width / 2 - length / 2);
+  UI::PrintSpaces(spaces_count);
 
   cout << message << endl;
 }

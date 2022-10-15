@@ -6,12 +6,12 @@ using namespace std;
 class UI
 {
 public:
-  static string BORDER_VERTICAL_CHAR;
-  static string BORDER_HORIZONTAL_CHAR;
-  static string BORDER_TOP_LEFT_CHAR;
-  static string BORDER_TOP_RIGHT_CHAR;
-  static string BORDER_BOTTOM_LEFT_CHAR;
-  static string BORDER_BOTTOM_RIGHT_CHAR;
+  static const string BORDER_VERTICAL_CHAR;
+  static const string BORDER_HORIZONTAL_CHAR;
+  static const string BORDER_TOP_LEFT_CHAR;
+  static const string BORDER_TOP_RIGHT_CHAR;
+  static const string BORDER_BOTTOM_LEFT_CHAR;
+  static const string BORDER_BOTTOM_RIGHT_CHAR;
 
   static void Print();
   static void Print(string message);

@@ -7,8 +7,8 @@ using namespace std;
 class MenuUI
 {
 public:
-  static int BORDER_SIZE;
-  static int BORDER_WINDOW_PADDING;
+  static const int BORDER_SIZE;
+  static const int BORDER_WINDOW_PADDING;
 
   static void PrintMenu(Menu *menu);
   static int ActivateMenu(Menu *menu);

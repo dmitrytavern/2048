@@ -7,8 +7,8 @@
 #include "libraries/Menu/MenuUI.h"
 #include "libraries/UI/UI.h"
 
-int MenuUI::BORDER_SIZE = 1;
-int MenuUI::BORDER_WINDOW_PADDING = 3;
+const int MenuUI::BORDER_SIZE = 1;
+const int MenuUI::BORDER_WINDOW_PADDING = 3;
 
 void MenuUI::PrintMenu(Menu *menu)
 {

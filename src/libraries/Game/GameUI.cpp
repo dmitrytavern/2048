@@ -8,10 +8,10 @@
 
 using namespace std;
 
-int GameUI::BORDER_SIZE = 1;
-int GameUI::CELL_WIDTH = 5;
-int GameUI::CELL_HEIGHT = 3;
-int GameUI::CELL_START_COLOR = 40;
+const int GameUI::BORDER_SIZE = 1;
+const int GameUI::CELL_WIDTH = 5;
+const int GameUI::CELL_HEIGHT = 3;
+const int GameUI::CELL_START_COLOR = 40;
 
 void GameUI::OutputMatrix(GameMatrix *matrix)
 {
@@ -24,8 +24,8 @@ void GameUI::OutputMatrix(GameMatrix *matrix)
 
   string **chars_matrix;
   chars_matrix = new string *[output_matrix_rows];
-  for (int i = 0; i < output_matrix_rows; i++)
-    chars_matrix[i] = new string[output_matrix_columns];
+  for (int row = 0; row < output_matrix_rows; row++)
+    chars_matrix[row] = new string[output_matrix_columns];
 
   for (int row = 0; row < matrix_size; row++)
     for (int column = 0; column < matrix_size; column++)
