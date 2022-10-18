@@ -1,10 +1,10 @@
 #pragma once
-
 #include "GameMatrix.h"
 
 class GameController
 {
 private:
+  int score;
   GameMatrix *matrix;
   bool exists_move;
   bool exists_matrix;
@@ -13,6 +13,7 @@ private:
 
 public:
   GameController();
+  int GetScore();
   void Start();
   void SwipeUp();
   void SwipeLeft();

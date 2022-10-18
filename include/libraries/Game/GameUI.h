@@ -1,5 +1,5 @@
 #pragma once
-#include "./GameMatrix.h"
+#include "GameMatrix.h"
 
 class GameUI
 {

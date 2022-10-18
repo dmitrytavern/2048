@@ -13,6 +13,7 @@ public:
 
   static void Print();
   static void Print(std::string message);
+  static void PrintCenter(std::string message);
   static void PrintCenter(std::string message, int message_length);
   static void PrintSpaces(int spaces_count);
   static void PrintVerticalAlign(int content_row_count);

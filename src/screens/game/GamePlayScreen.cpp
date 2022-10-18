@@ -1,3 +1,4 @@
+#include <string>
 #include "ScreenNames.h"
 #include "libraries/UI/UI.h"
 #include "libraries/Menu/Menu.h"
@@ -52,9 +53,11 @@ void GamePlayScreen::Terminate()
 void GamePlayScreen::Render()
 {
   GameMatrix *matrix = (*this->game)->GetMatrix();
+  int score = (*this->game)->GetScore();
 
   UI::PrintVerticalAlign(4 * 3 + 2 + 1 + 7);
   UI::PrintCenter("━━━━ 2048 Game Session ━━━━", 28);
+  UI::PrintCenter("Your score: " + std::to_string(score));
 
   GameUI::OutputMatrix(matrix);
 

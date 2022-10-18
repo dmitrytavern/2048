@@ -43,9 +43,11 @@ void GameOverScreen::Terminate()
 void GameOverScreen::Render()
 {
   GameMatrix *matrix = (*this->game)->GetMatrix();
+  int score = (*this->game)->GetScore();
 
   UI::PrintVerticalAlign(4 * 3 + 2 + 1 + 7);
   UI::PrintCenter("━━━━ 2048 Game Session ━━━━", 28);
+  UI::PrintCenter("Your result: " + std::to_string(score));
 
   GameUI::OutputMatrix(matrix);
 

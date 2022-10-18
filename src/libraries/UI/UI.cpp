@@ -22,9 +22,19 @@ void UI::Print(string message)
   cout << message << endl;
 }
 
-void UI::PrintCenter(string message, int message_length = 0)
+void UI::PrintCenter(string message)
 {
-  unsigned int length = message_length == 0 ? message.length() : message_length;
+  unsigned int length = message.length();
+  unsigned int spaces_count = UI::CalcSpacesCount(length);
+
+  UI::PrintSpaces(spaces_count);
+
+  cout << message << endl;
+}
+
+void UI::PrintCenter(string message, int message_length)
+{
+  unsigned int length = message_length;
   unsigned int spaces_count = UI::CalcSpacesCount(length);
 
   UI::PrintSpaces(spaces_count);
