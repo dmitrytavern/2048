@@ -120,3 +120,13 @@ unsigned int UI::GetTerminalHeight()
   ioctl(STDOUT_FILENO, TIOCGWINSZ, &window);
   return window.ws_row;
 }
+
+void UI::HideCursor()
+{
+  printf("\33[?25l");
+}
+
+void UI::ShowCursor()
+{
+  printf("\33[?25h");
+}

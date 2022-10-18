@@ -23,4 +23,6 @@ public:
   static unsigned int GetTerminalWidth();
   static unsigned int GetTerminalHeight();
   static unsigned int CalcSpacesCount(int windows_size);
+  static void HideCursor();
+  static void ShowCursor();
 };

@@ -9,6 +9,8 @@ int main()
   srand(time(0));
   setlocale(LC_ALL, "");
 
+  UI::HideCursor();
+
   /**
    * Init application screens
    */
@@ -28,4 +30,5 @@ int main()
   app_screen_manager.Run();
 
   UI::Print("Exiting...");
+  UI::ShowCursor();
 }

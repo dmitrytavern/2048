@@ -38,9 +38,6 @@ void ScreenManager::Set(Screen *screen)
 
 void ScreenManager::Run()
 {
-  // Hide teminal pointer
-  printf("\33[?25l");
-
   while (!this->ui_exit)
     if (this->current_screen_exists)
     {
@@ -57,9 +54,6 @@ void ScreenManager::Run()
       if (signal.signum != 1)
         this->current_screen->SetSignal(0);
     }
-
-  // Show teminal pointer
-  printf("\33[?25h");
 }
 
 void ScreenManager::Exit()
