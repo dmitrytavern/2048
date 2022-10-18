@@ -33,7 +33,8 @@ void ScreenManager::Set(Screen *screen)
     this->current_screen->Terminate();
   this->current_screen = screen;
   this->current_screen_exists = true;
-  screen->Initialize();
+  this->current_screen->SetSignal(0);
+  this->current_screen->Initialize();
 }
 
 void ScreenManager::Run()

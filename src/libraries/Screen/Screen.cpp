@@ -38,3 +38,7 @@ void Screen::Initialize()
 void Screen::Terminate()
 {
 }
+
+void Screen::Render()
+{
+}

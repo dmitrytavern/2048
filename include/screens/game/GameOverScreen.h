@@ -1,22 +1,20 @@
 #pragma once
-#include "libraries/Screen/ScreenStore.h"
-#include "libraries/Screen/ScreenManager.h"
-
 #include "libraries/Game/GameController.h"
 #include "libraries/Screen/Screen.h"
 #include "libraries/Menu/Menu.h"
 
-class GameScreen : public Screen
+class GameOverScreen : public Screen
 {
 private:
-  ScreenStore *game_screen_store;
-  ScreenManager *game_screen_manager;
-  GameController *game;
+  Menu *screen_menu;
+  GameController **game;
   function<void()> fn_exit;
+  function<void()> fn_call_game_play;
 
 public:
-  GameScreen();
+  GameOverScreen(GameController **game);
   void Initialize();
   void Terminate();
+  void Render();
   void Run();
 };
