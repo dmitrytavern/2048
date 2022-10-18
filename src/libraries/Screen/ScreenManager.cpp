@@ -54,6 +54,11 @@ void ScreenManager::Run()
       if (signal.signum != 1)
         this->current_screen->SetSignal(0);
     }
+    else
+    {
+      this->ui_exit = true;
+      std::cout << "Warning: ScreenManager have not setted screen." << std::endl;
+    }
 }
 
 void ScreenManager::Exit()
