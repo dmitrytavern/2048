@@ -1,5 +1,4 @@
 #include <iostream>
-
 #include "libraries/Screen/Screen.h"
 #include "libraries/Screen/ScreenSignal.h"
 

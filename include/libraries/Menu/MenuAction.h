@@ -1,21 +1,18 @@
 #pragma once
 #include <iostream>
-#include <functional>
-
-using namespace std;
 
 class MenuAction
 {
 private:
   int trigger;
-  string title;
-  function<void()> callback;
+  std::string title;
+  std::function<void()> callback;
 
 public:
-  string GetTitle();
+  std::string GetTitle();
   int GetTrigger();
-  void SetTitle(string title);
+  void SetTitle(std::string title);
   void SetTrigger(int code);
-  void SetCallback(function<void()>);
+  void SetCallback(std::function<void()>);
   void Execute();
 };

@@ -5,10 +5,8 @@
 #define SCREEN_SIGNAL_SET 1
 #define SCREEN_SIGNAL_EXIT 2
 
-using namespace std;
-
 struct ScreenSignal
 {
   int signum;
-  string payload;
+  std::string payload;
 };

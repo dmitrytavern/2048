@@ -1,10 +1,8 @@
 #include "ScreenNames.h"
-
 #include "libraries/Screen/ScreenSignal.h"
 #include "libraries/Menu/Menu.h"
 #include "libraries/Menu/MenuUI.h"
 #include "libraries/UI/UI.h"
-
 #include "screens/MainScreen.h"
 
 enum Triggers

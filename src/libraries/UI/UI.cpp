@@ -1,8 +1,9 @@
 #include <sys/ioctl.h>
 #include <unistd.h>
 #include <string>
-
 #include "libraries/UI/UI.h"
+
+using namespace std;
 
 const string UI::BORDER_VERTICAL_CHAR = "│";
 const string UI::BORDER_HORIZONTAL_CHAR = "─";

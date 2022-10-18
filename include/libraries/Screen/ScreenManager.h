@@ -3,8 +3,6 @@
 #include "Screen.h"
 #include "ScreenSignal.h"
 
-using namespace std;
-
 class ScreenManager
 {
 private:

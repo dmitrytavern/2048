@@ -1,7 +1,6 @@
 #include <iostream>
 #include <functional>
 #include <csignal>
-
 #include "libraries/Screen/Screen.h"
 #include "libraries/Screen/ScreenStore.h"
 #include "libraries/Screen/ScreenSignal.h"

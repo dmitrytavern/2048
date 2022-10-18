@@ -1,7 +1,6 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
-
 #include "libraries/Game/GameMatrix.h"
 #include "libraries/Game/GameUI.h"
 #include "libraries/UI/UI.h"

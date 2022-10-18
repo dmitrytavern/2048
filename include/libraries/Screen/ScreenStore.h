@@ -1,17 +1,16 @@
 #pragma once
-#include "vector"
+#include <iostream>
+#include <vector>
 #include "Screen.h"
-
-using namespace std;
 
 class ScreenStore
 {
 private:
-  vector<Screen *> screens;
+  std::vector<Screen *> screens;
 
 public:
   ScreenStore();
   void AddScreen(Screen *screen);
-  Screen *GetScreen(string screen_name);
-  bool ExistsScreen(string screen_name);
+  Screen *GetScreen(std::string screen_name);
+  bool ExistsScreen(std::string screen_name);
 };

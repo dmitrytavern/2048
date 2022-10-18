@@ -1,5 +1,4 @@
 #include <iostream>
-
 #include "libraries/Menu/Menu.h"
 #include "libraries/Menu/MenuAction.h"
 

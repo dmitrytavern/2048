@@ -2,20 +2,18 @@
 #include <iostream>
 #include "ScreenSignal.h"
 
-using namespace std;
-
 class Screen
 {
 private:
-  string name;
+  std::string name;
   ScreenSignal signal;
 
 public:
-  Screen(string name);
-  string GetName();
+  Screen(std::string name);
+  std::string GetName();
   ScreenSignal GetSignal();
   void SetSignal(int signum);
-  void SetSignal(int signum, string payload);
+  void SetSignal(int signum, std::string payload);
   virtual void Initialize();
   virtual void Terminate();
   virtual void Render();

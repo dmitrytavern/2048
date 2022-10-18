@@ -1,5 +1,4 @@
 #include <iostream>
-
 #include "libraries/Game/GameMatrix.h"
 
 GameMatrix::GameMatrix(unsigned int size)

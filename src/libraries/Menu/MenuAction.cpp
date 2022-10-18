@@ -1,7 +1,8 @@
 #include <iostream>
 #include <functional>
-
 #include "libraries/Menu/MenuAction.h"
+
+using namespace std;
 
 int MenuAction::GetTrigger()
 {

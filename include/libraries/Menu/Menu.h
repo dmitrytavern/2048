@@ -3,20 +3,18 @@
 #include <functional>
 #include "MenuAction.h"
 
-using namespace std;
-
 class Menu
 {
 private:
-  string title;
-  vector<MenuAction> actions;
+  std::string title;
+  std::vector<MenuAction> actions;
 
 public:
   Menu();
-  string GetTitle();
-  void SetTitle(string title);
+  std::string GetTitle();
+  void SetTitle(std::string title);
   void Trigger(int trigger);
-  void AddAction(int trigger, string title, function<void()>);
+  void AddAction(int trigger, std::string title, std::function<void()>);
   int GetActionsLength();
-  vector<MenuAction> &GetActions();
+  std::vector<MenuAction> &GetActions();
 };
