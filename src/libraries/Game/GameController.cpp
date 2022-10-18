@@ -56,7 +56,13 @@ GameMatrix *GameController::GetMatrix()
 
 void GameController::Next()
 {
-  this->matrix->FillRandomCell();
+  int number = this->GenerateMatrixNumber();
+  this->matrix->FillRandomCell(number);
   if (matrix->GetEmptyCellCount() == 0)
     this->exists_move = false;
+}
+
+int GameController::GenerateMatrixNumber()
+{
+  return 2;
 }

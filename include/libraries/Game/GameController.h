@@ -9,6 +9,7 @@ private:
   bool exists_move;
   bool exists_matrix;
   void Next();
+  int GenerateMatrixNumber();
 
 public:
   GameController();

@@ -15,7 +15,7 @@ public:
   void SwipeLeft();
   void SwipeDown();
   void SwipeRight();
-  void FillRandomCell();
+  void FillRandomCell(int number);
   unsigned int **GetMatrix();
   unsigned int GetMatrixSize();
   unsigned int GetEmptyCellCount();

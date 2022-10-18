@@ -132,7 +132,7 @@ void GameMatrix::SwipeRight()
   }
 }
 
-void GameMatrix::FillRandomCell()
+void GameMatrix::FillRandomCell(int number)
 {
   unsigned int empty_cells = this->GetEmptyCellCount();
 
@@ -148,7 +148,7 @@ void GameMatrix::FillRandomCell()
         {
           if (selected_cell == 1)
           {
-            this->matrix[row][column] = 2;
+            this->matrix[row][column] = number;
             selected_cell = 0;
           }
           else if (selected_cell > 1)
