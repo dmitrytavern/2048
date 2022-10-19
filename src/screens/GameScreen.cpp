@@ -16,6 +16,7 @@ void GameScreen::Initialize()
   this->game_screen_store = new ScreenStore;
   this->game_screen_manager = new ScreenManager(this->game_screen_store);
 
+  this->game = new GameController();
   this->game_screen_store->AddScreen(new GamePlayScreen(&this->game));
   this->game_screen_store->AddScreen(new GameOverScreen(&this->game));
 

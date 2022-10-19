@@ -32,7 +32,6 @@ GamePlayScreen::GamePlayScreen(GameController **game) : Screen(SCREEN_GAME_PLAY_
 
 void GamePlayScreen::Initialize()
 {
-  (*this->game) = new GameController();
   (*this->game)->Start();
 
   Menu *screen_menu = new Menu;
