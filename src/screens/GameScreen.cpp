@@ -1,4 +1,4 @@
-#include "ScreenNames.h"
+#include "global.h"
 #include "screens/GameScreen.h"
 #include "screens/game/GamePlayScreen.h"
 #include "screens/game/GameOverScreen.h"

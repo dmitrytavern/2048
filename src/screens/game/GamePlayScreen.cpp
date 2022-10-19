@@ -1,5 +1,5 @@
 #include <string>
-#include "ScreenNames.h"
+#include "global.h"
 #include "libraries/UI/UI.h"
 #include "libraries/Menu/Menu.h"
 #include "libraries/Menu/MenuUI.h"

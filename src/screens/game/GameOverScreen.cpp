@@ -1,4 +1,4 @@
-#include "ScreenNames.h"
+#include "global.h"
 #include "libraries/Menu/Menu.h"
 #include "libraries/Menu/MenuUI.h"
 #include "libraries/Game/GameUI.h"
