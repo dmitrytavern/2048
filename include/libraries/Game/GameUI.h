@@ -1,5 +1,4 @@
 #pragma once
-#include "GameMatrix.h"
 
 class GameUI
 {
@@ -12,7 +11,7 @@ public:
   static const int CELL_HEIGHT;
   static const int CELL_START_COLOR;
 
-  static void OutputMatrix(GameMatrix *matrix);
+  static void OutputMatrix(unsigned int **matrix, const int matrix_size);
   static int CalcOutputMatrixRow(int matrix_size);
   static int CalcOutputMatrixColumns(int matrix_size);
   static int CalcWindowsSize(int content_size);

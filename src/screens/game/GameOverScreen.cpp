@@ -49,7 +49,7 @@ void GameOverScreen::Render()
   UI::PrintCenter("━━━━ 2048 Game Session ━━━━", 28);
   UI::PrintCenter("Your result: " + std::to_string(score));
 
-  GameUI::OutputMatrix(matrix);
+  GameUI::OutputMatrix(matrix->GetMatrix(), matrix->GetMatrixSize());
 
   MenuUI::PrintMenu(this->screen_menu);
 }

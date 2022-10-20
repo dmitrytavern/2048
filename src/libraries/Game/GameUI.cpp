@@ -12,10 +12,8 @@ const int GameUI::CELL_WIDTH = 5;
 const int GameUI::CELL_HEIGHT = 3;
 const int GameUI::CELL_START_COLOR = 40;
 
-void GameUI::OutputMatrix(GameMatrix *matrix)
+void GameUI::OutputMatrix(unsigned int **matrix, int matrix_size)
 {
-  unsigned int **int_matrix = matrix->GetMatrix();
-  unsigned int matrix_size = matrix->GetMatrixSize();
   unsigned int output_matrix_rows = GameUI::CalcOutputMatrixRow(matrix_size);
   unsigned int output_matrix_columns = GameUI::CalcOutputMatrixColumns(matrix_size);
   unsigned int windows_size = GameUI::CalcWindowsSize(output_matrix_columns);
@@ -29,7 +27,7 @@ void GameUI::OutputMatrix(GameMatrix *matrix)
   for (int row = 0; row < matrix_size; row++)
     for (int column = 0; column < matrix_size; column++)
     {
-      int number = int_matrix[row][column];
+      int number = matrix[row][column];
       int number_row = row * GameUI::CELL_HEIGHT;
       int number_column = column * GameUI::CELL_WIDTH;
       int number_color = GameUI::GetTerminalColorByNumber(number);
