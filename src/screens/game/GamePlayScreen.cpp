@@ -1,5 +1,8 @@
 #include <string>
 #include "global.h"
+#include "core/Core.h"
+#include "core/CoreMatrix.h"
+#include "core/CoreScore.h"
 #include "libraries/UI/UI.h"
 #include "libraries/Menu/Menu.h"
 #include "libraries/Menu/MenuUI.h"
@@ -15,7 +18,7 @@ enum Triggers
   GAME_MENU_EXIT_KEY = 101,
 };
 
-GamePlayScreen::GamePlayScreen(GameController **game) : Screen(SCREEN_GAME_PLAY_NAME)
+GamePlayScreen::GamePlayScreen() : Screen(SCREEN_GAME_PLAY_NAME)
 {
   this->fn_exit = [&]() -> void
   {
@@ -26,20 +29,18 @@ GamePlayScreen::GamePlayScreen(GameController **game) : Screen(SCREEN_GAME_PLAY_
   {
     this->SetSignal(SCREEN_SIGNAL_SET, SCREEN_GAME_OVER_NAME);
   };
-
-  this->game = game;
 }
 
 void GamePlayScreen::Initialize()
 {
-  (*this->game)->Start();
+  Core::ToStartGame();
 
   Menu *screen_menu = new Menu;
   screen_menu->SetTitle("Control");
-  screen_menu->AddAction(GAME_MENU_SWIPE_UP_KEY, "w - swipe to up", std::bind(&GameController::SwipeUp, (*this->game)));
-  screen_menu->AddAction(GAME_MENU_SWIPE_LEFT_KEY, "a - swipe to left", std::bind(&GameController::SwipeLeft, (*this->game)));
-  screen_menu->AddAction(GAME_MENU_SWIPE_DOWN_KEY, "s - swipe to down", std::bind(&GameController::SwipeDown, (*this->game)));
-  screen_menu->AddAction(GAME_MENU_SWIPE_RIGHT_KEY, "d - swipe to right", std::bind(&GameController::SwipeRight, (*this->game)));
+  screen_menu->AddAction(GAME_MENU_SWIPE_UP_KEY, "w - swipe to up", std::bind(Core::ToMove, "up"));
+  screen_menu->AddAction(GAME_MENU_SWIPE_LEFT_KEY, "a - swipe to left", std::bind(Core::ToMove, "left"));
+  screen_menu->AddAction(GAME_MENU_SWIPE_DOWN_KEY, "s - swipe to down", std::bind(Core::ToMove, "down"));
+  screen_menu->AddAction(GAME_MENU_SWIPE_RIGHT_KEY, "d - swipe to right", std::bind(Core::ToMove, "right"));
   screen_menu->AddAction(GAME_MENU_EXIT_KEY, "e - exit", this->fn_exit);
   this->screen_menu = screen_menu;
 }
@@ -51,14 +52,11 @@ void GamePlayScreen::Terminate()
 
 void GamePlayScreen::Render()
 {
-  GameMatrix *matrix = (*this->game)->GetMatrix();
-  int score = (*this->game)->GetScore();
-
   UI::PrintVerticalAlign(4 * 3 + 2 + 1 + 7);
   UI::PrintCenter("━━━━ 2048 Game Session ━━━━", 28);
-  UI::PrintCenter("Your score: " + std::to_string(score));
+  UI::PrintCenter("Your score: " + std::to_string(Core::Score::Get()));
 
-  GameUI::OutputMatrix(matrix->GetMatrix(), matrix->GetMatrixSize());
+  GameUI::OutputMatrix(Core::Matrix::Get(), Core::Matrix::GetSize());
 
   MenuUI::PrintMenu(this->screen_menu);
 }
@@ -67,6 +65,6 @@ void GamePlayScreen::Run()
 {
   MenuUI::ActivateMenu(this->screen_menu);
 
-  if (!(*this->game)->ExistsMove())
+  if (!Core::ExistsMove())
     this->fn_call_game_over();
 }

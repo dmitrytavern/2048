@@ -2,9 +2,14 @@ project(2048_game)
 
 add_library(UILibrary libraries/UI/UI.cpp)
 
+add_library(Core
+  core/Core.cpp
+  core/CoreMatrix.cpp
+  core/CoreScore.cpp
+  core/GameMatrix.cpp
+)
+
 add_library(GameLibrary
-  libraries/Game/GameMatrix.cpp
-  libraries/Game/GameController.cpp
   libraries/Game/GameUI.cpp
 )
 
@@ -31,6 +36,7 @@ add_executable(main
 target_link_libraries(GameLibrary UILibrary)
 target_link_libraries(MenuLibrary UILibrary)
 target_link_libraries(main
+  Core
   UILibrary
   GameLibrary
   MenuLibrary

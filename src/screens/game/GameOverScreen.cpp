@@ -1,4 +1,7 @@
 #include "global.h"
+#include "core/Core.h"
+#include "core/CoreMatrix.h"
+#include "core/CoreScore.h"
 #include "libraries/Menu/Menu.h"
 #include "libraries/Menu/MenuUI.h"
 #include "libraries/Game/GameUI.h"
@@ -11,7 +14,7 @@ enum Triggers
   GAME_MENU_EXIT_KEY = 101,
 };
 
-GameOverScreen::GameOverScreen(GameController **game) : Screen(SCREEN_GAME_OVER_NAME)
+GameOverScreen::GameOverScreen() : Screen(SCREEN_GAME_OVER_NAME)
 {
   this->fn_exit = [&]() -> void
   {
@@ -22,8 +25,6 @@ GameOverScreen::GameOverScreen(GameController **game) : Screen(SCREEN_GAME_OVER_
   {
     this->SetSignal(SCREEN_SIGNAL_SET, SCREEN_GAME_PLAY_NAME);
   };
-
-  this->game = game;
 }
 
 void GameOverScreen::Initialize()
@@ -42,14 +43,11 @@ void GameOverScreen::Terminate()
 
 void GameOverScreen::Render()
 {
-  GameMatrix *matrix = (*this->game)->GetMatrix();
-  int score = (*this->game)->GetScore();
-
   UI::PrintVerticalAlign(4 * 3 + 2 + 1 + 7);
   UI::PrintCenter("━━━━ 2048 Game Session ━━━━", 28);
-  UI::PrintCenter("Your result: " + std::to_string(score));
+  UI::PrintCenter("Your result: " + std::to_string(Core::Score::Get()));
 
-  GameUI::OutputMatrix(matrix->GetMatrix(), matrix->GetMatrixSize());
+  GameUI::OutputMatrix(Core::Matrix::Get(), Core::Matrix::GetSize());
 
   MenuUI::PrintMenu(this->screen_menu);
 }
