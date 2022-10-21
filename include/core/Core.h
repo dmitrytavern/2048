@@ -9,5 +9,6 @@ namespace Core
   void ToMove(Core::Matrix::SwipeDirections direction);
   bool ExistsMove();
 
+  static void Next();
   static int GenerateNumber();
 }

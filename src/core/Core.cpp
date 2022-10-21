@@ -1,4 +1,3 @@
-#pragma once
 #include <iostream>
 #include "core/Core.h"
 #include "core/CoreMatrix.h"
@@ -8,10 +7,14 @@ namespace Core
 {
   void ToStartGame()
   {
-    int number = GenerateNumber();
     Core::Matrix::Create();
-    Core::Matrix::FillCell(number);
-    Core::Score::Increment(number);
+    Next();
+  }
+
+  void ToMove(Core::Matrix::SwipeDirections direction)
+  {
+    Core::Matrix::Swipe(direction);
+    Next();
   }
 
   void ToFinishGame()
@@ -20,17 +23,16 @@ namespace Core
     Core::Score::Clear();
   }
 
-  void ToMove(Core::Matrix::SwipeDirections direction)
+  bool ExistsMove()
+  {
+    return Core::Matrix::GetEmptyCellCount() != 0;
+  }
+
+  static void Next()
   {
     int number = GenerateNumber();
     Core::Score::Increment(number);
     Core::Matrix::FillCell(number);
-    Core::Matrix::Swipe(direction);
-  }
-
-  bool ExistsMove()
-  {
-    return Core::Matrix::GetEmptyCellCount() != 0;
   }
 
   static int GenerateNumber()
