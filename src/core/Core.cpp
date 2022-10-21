@@ -8,6 +8,7 @@ namespace Core
   void ToStartGame()
   {
     Core::Matrix::Create();
+    Core::Score::Clear();
     Next();
   }
 
