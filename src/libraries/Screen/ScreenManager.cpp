@@ -1,10 +1,13 @@
 #include <iostream>
 #include <functional>
-#include <csignal>
 #include "libraries/Screen/Screen.h"
 #include "libraries/Screen/ScreenStore.h"
 #include "libraries/Screen/ScreenSignal.h"
 #include "libraries/Screen/ScreenManager.h"
+#include <iostream>
+#ifdef __linux__ 
+  #include <csignal>
+#endif
 
 using namespace std;
 
@@ -19,7 +22,9 @@ ScreenManager::ScreenManager(ScreenStore *app_screen_store)
     this->WindowsResizeHandler();
   };
 
-  signal(SIGWINCH, signal_handler);
+  #ifdef __linux__ 
+    signal(SIGWINCH, signal_handler);
+  #endif
 
   this->app_screen_store = app_screen_store;
   this->current_screen_exists = false;
@@ -41,7 +46,13 @@ void ScreenManager::Run()
   while (!this->ui_exit)
     if (this->current_screen_exists)
     {
-      system("clear");
+      #ifdef __linux__ 
+        system("clear");
+      #elif _WIN32
+        system("cls");
+      #else
+        exit(1);
+      #endif
 
       this->current_screen->Render();
 

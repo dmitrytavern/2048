@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <functional>
+#include <vector>
 #include "MenuAction.h"
 
 class Menu

@@ -54,7 +54,11 @@ void GamePlayScreen::Terminate()
 void GamePlayScreen::Render()
 {
   Interface::Window::PrintVerticalAlign(4 * 3 + 2 + 1 + 7);
+#ifdef __linux__
   Interface::Window::PrintCenter("━━━━ 2048 Game Session ━━━━", 28);
+#else
+  Interface::Window::PrintCenter("---- 2048 Game Session ----");
+#endif
   Interface::Window::PrintCenter("Your score: " + std::to_string(Core::Score::Get()));
 
   Interface::Matrix::Print(Core::Matrix::Get(), Core::Matrix::GetSize());

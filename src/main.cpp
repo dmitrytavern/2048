@@ -1,4 +1,4 @@
-#include "interface/Interface.h"
+﻿#include "interface/Interface.h"
 #include "libraries/Screen/ScreenStore.h"
 #include "libraries/Screen/ScreenManager.h"
 #include "screens/MainScreen.h"

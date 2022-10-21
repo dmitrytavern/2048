@@ -1,3 +1,5 @@
+#include <iostream>
+#include <string>
 #include "global.h"
 #include "core/Core.h"
 #include "core/CoreMatrix.h"
@@ -45,7 +47,11 @@ void GameOverScreen::Terminate()
 void GameOverScreen::Render()
 {
   Interface::Window::PrintVerticalAlign(4 * 3 + 2 + 1 + 7);
-  Interface::Window::PrintCenter("━━━━ 2048 Game Session ━━━━", 28);
+#ifdef __linux__
+  Interface::Window::PrintCenter("━━━━ 2048 Game Session ━━━━", 24);
+#else
+  Interface::Window::PrintCenter("---- 2048 Game Session ----");
+#endif
   Interface::Window::PrintCenter("Your result: " + std::to_string(Core::Score::Get()));
 
   Interface::Matrix::Print(Core::Matrix::Get(), Core::Matrix::GetSize());

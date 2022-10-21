@@ -42,7 +42,11 @@ void MainScreen::Terminate()
 void MainScreen::Render()
 {
   Interface::Window::PrintVerticalAlign(6);
+#ifdef __linux__
   Interface::Window::PrintCenter("━━━━ 2048 Game Menu ━━━━", 24);
+#else
+  Interface::Window::PrintCenter("---- 2048 Game Menu ----");
+#endif
   Interface::Print();
 
   Interface::Menu::Print(this->screen_menu->GetTitle(), this->screen_menu->GetActionNames());

@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include "interface/Interface.h"
 
 namespace Interface::Menu
 {
