@@ -20,7 +20,7 @@ namespace Core
     Core::Score::Clear();
   }
 
-  void ToMove(std::string direction)
+  void ToMove(Core::Matrix::SwipeDirections direction)
   {
     int number = GenerateNumber();
     Core::Score::Increment(number);

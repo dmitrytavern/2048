@@ -37,10 +37,10 @@ void GamePlayScreen::Initialize()
 
   Menu *screen_menu = new Menu;
   screen_menu->SetTitle("Control");
-  screen_menu->AddAction(GAME_MENU_SWIPE_UP_KEY, "w - swipe to up", std::bind(Core::ToMove, "up"));
-  screen_menu->AddAction(GAME_MENU_SWIPE_LEFT_KEY, "a - swipe to left", std::bind(Core::ToMove, "left"));
-  screen_menu->AddAction(GAME_MENU_SWIPE_DOWN_KEY, "s - swipe to down", std::bind(Core::ToMove, "down"));
-  screen_menu->AddAction(GAME_MENU_SWIPE_RIGHT_KEY, "d - swipe to right", std::bind(Core::ToMove, "right"));
+  screen_menu->AddAction(GAME_MENU_SWIPE_UP_KEY, "w - swipe to up", std::bind(Core::ToMove, Core::Matrix::SWIPE_DIRECTION_UP));
+  screen_menu->AddAction(GAME_MENU_SWIPE_LEFT_KEY, "a - swipe to left", std::bind(Core::ToMove, Core::Matrix::SWIPE_DIRECTION_LEFT));
+  screen_menu->AddAction(GAME_MENU_SWIPE_DOWN_KEY, "s - swipe to down", std::bind(Core::ToMove, Core::Matrix::SWIPE_DIRECTION_DOWN));
+  screen_menu->AddAction(GAME_MENU_SWIPE_RIGHT_KEY, "d - swipe to right", std::bind(Core::ToMove, Core::Matrix::SWIPE_DIRECTION_RIGHT));
   screen_menu->AddAction(GAME_MENU_EXIT_KEY, "e - exit", this->fn_exit);
   this->screen_menu = screen_menu;
 }

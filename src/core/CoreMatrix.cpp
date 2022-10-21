@@ -8,6 +8,14 @@ namespace Core
     static GameMatrix *matrix;
     static bool exists_matrix;
 
+    enum SwipeDirections
+    {
+      SWIPE_DIRECTION_UP,
+      SWIPE_DIRECTION_LEFT,
+      SWIPE_DIRECTION_DOWN,
+      SWIPE_DIRECTION_RIGHT,
+    };
+
     unsigned int **Get()
     {
       return matrix->GetMatrix();
@@ -40,24 +48,24 @@ namespace Core
       delete matrix;
     }
 
-    void Swipe(std::string direction)
-    {
-      if (direction == "up")
-        matrix->SwipeUp();
-
-      if (direction == "left")
-        matrix->SwipeLeft();
-
-      if (direction == "down")
-        matrix->SwipeDown();
-
-      if (direction == "right")
-        matrix->SwipeRight();
-    }
-
     bool Exists()
     {
       return exists_matrix;
+    }
+
+    void Swipe(SwipeDirections direction)
+    {
+      if (direction == SWIPE_DIRECTION_UP)
+        matrix->SwipeUp();
+
+      if (direction == SWIPE_DIRECTION_LEFT)
+        matrix->SwipeLeft();
+
+      if (direction == SWIPE_DIRECTION_DOWN)
+        matrix->SwipeDown();
+
+      if (direction == SWIPE_DIRECTION_RIGHT)
+        matrix->SwipeRight();
     }
   }
 }
