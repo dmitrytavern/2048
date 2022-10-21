@@ -1,7 +1,5 @@
 project(2048_game)
 
-add_library(UILibrary libraries/UI/UI.cpp)
-
 add_library(Core
   core/Core.cpp
   core/CoreMatrix.cpp
@@ -9,14 +7,17 @@ add_library(Core
   core/GameMatrix.cpp
 )
 
-add_library(GameLibrary
-  libraries/Game/GameUI.cpp
+add_library(Interface
+  interface/Interface.cpp
+  interface/TerminalInterface.cpp
+  interface/WindowInterface.cpp
+  interface/MenuInterface.cpp
+  interface/MatrixInterface.cpp
 )
 
 add_library(MenuLibrary
   libraries/Menu/Menu.cpp
   libraries/Menu/MenuAction.cpp
-  libraries/Menu/MenuUI.cpp
 )
 
 add_library(ScreenLibrary
@@ -33,12 +34,9 @@ add_executable(main
   screens/game/GameOverScreen.cpp
 )
 
-target_link_libraries(GameLibrary UILibrary)
-target_link_libraries(MenuLibrary UILibrary)
 target_link_libraries(main
   Core
-  UILibrary
-  GameLibrary
+  Interface
   MenuLibrary
   ScreenLibrary
 )

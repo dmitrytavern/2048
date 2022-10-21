@@ -1,8 +1,9 @@
 #include "global.h"
+#include "interface/Interface.h"
+#include "interface/MenuInterface.h"
+#include "interface/WindowInterface.h"
 #include "libraries/Screen/ScreenSignal.h"
 #include "libraries/Menu/Menu.h"
-#include "libraries/Menu/MenuUI.h"
-#include "libraries/UI/UI.h"
 #include "screens/MainScreen.h"
 
 enum Triggers
@@ -40,11 +41,11 @@ void MainScreen::Terminate()
 
 void MainScreen::Render()
 {
-  UI::PrintVerticalAlign(6);
-  UI::PrintCenter("━━━━ 2048 Game Menu ━━━━", 24);
-  UI::Print();
+  Interface::Window::PrintVerticalAlign(6);
+  Interface::Window::PrintCenter("━━━━ 2048 Game Menu ━━━━", 24);
+  Interface::Print();
 
-  MenuUI::PrintMenu(this->screen_menu->GetTitle(), this->screen_menu->GetActionNames());
+  Interface::Menu::Print(this->screen_menu->GetTitle(), this->screen_menu->GetActionNames());
 }
 
 void MainScreen::Run()

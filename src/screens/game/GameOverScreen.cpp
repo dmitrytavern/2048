@@ -2,10 +2,11 @@
 #include "core/Core.h"
 #include "core/CoreMatrix.h"
 #include "core/CoreScore.h"
+#include "interface/Interface.h"
+#include "interface/MenuInterface.h"
+#include "interface/WindowInterface.h"
+#include "interface/MatrixInterface.h"
 #include "libraries/Menu/Menu.h"
-#include "libraries/Menu/MenuUI.h"
-#include "libraries/Game/GameUI.h"
-#include "libraries/UI/UI.h"
 #include "screens/game/GameOverScreen.h"
 
 enum Triggers
@@ -43,13 +44,13 @@ void GameOverScreen::Terminate()
 
 void GameOverScreen::Render()
 {
-  UI::PrintVerticalAlign(4 * 3 + 2 + 1 + 7);
-  UI::PrintCenter("━━━━ 2048 Game Session ━━━━", 28);
-  UI::PrintCenter("Your result: " + std::to_string(Core::Score::Get()));
+  Interface::Window::PrintVerticalAlign(4 * 3 + 2 + 1 + 7);
+  Interface::Window::PrintCenter("━━━━ 2048 Game Session ━━━━", 28);
+  Interface::Window::PrintCenter("Your result: " + std::to_string(Core::Score::Get()));
 
-  GameUI::OutputMatrix(Core::Matrix::Get(), Core::Matrix::GetSize());
+  Interface::Matrix::Print(Core::Matrix::Get(), Core::Matrix::GetSize());
 
-  MenuUI::PrintMenu(this->screen_menu->GetTitle(), this->screen_menu->GetActionNames());
+  Interface::Menu::Print(this->screen_menu->GetTitle(), this->screen_menu->GetActionNames());
 }
 
 void GameOverScreen::Run()

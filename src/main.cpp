@@ -1,4 +1,4 @@
-#include "libraries/UI/UI.h"
+#include "interface/Interface.h"
 #include "libraries/Screen/ScreenStore.h"
 #include "libraries/Screen/ScreenManager.h"
 #include "screens/MainScreen.h"
@@ -9,7 +9,7 @@ int main()
   srand(time(0));
   setlocale(LC_ALL, "");
 
-  UI::HideCursor();
+  Interface::HideCursor();
 
   /**
    * Init application screens
@@ -29,6 +29,6 @@ int main()
   app_screen_manager.Set(&app_main_screen);
   app_screen_manager.Run();
 
-  UI::Print("Exiting...");
-  UI::ShowCursor();
+  Interface::Print("Exiting...");
+  Interface::ShowCursor();
 }
