@@ -1,7 +1,13 @@
 #include <iostream>
-#include <conio.h>
 #include "libraries/Menu/Menu.h"
 #include "libraries/Menu/MenuAction.h"
+#ifdef __linux__
+#include <coniolinux.h>
+#elif _WIN32
+#include <conio.h>
+#else
+exit(1);
+#endif
 
 using namespace std;
 
