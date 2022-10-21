@@ -1,4 +1,5 @@
 #include <iostream>
+#include <conio.h>
 #include "libraries/Menu/Menu.h"
 #include "libraries/Menu/MenuAction.h"
 
@@ -9,14 +10,27 @@ Menu::Menu()
   this->actions = {};
 }
 
+void Menu::SetTitle(string title)
+{
+  this->title = title;
+}
+
 string Menu::GetTitle()
 {
   return this->title;
 }
 
-void Menu::SetTitle(string title)
+int Menu::GetActionsLength()
 {
-  this->title = title;
+  return this->actions.size();
+}
+
+vector<string> Menu::GetActionNames()
+{
+  vector<string> titles;
+  for (int index = 0; index < this->GetActionsLength(); index++)
+    titles.push_back(this->actions[index].GetTitle());
+  return titles;
 }
 
 void Menu::AddAction(int trigger, string title, function<void()> callback)
@@ -28,19 +42,16 @@ void Menu::AddAction(int trigger, string title, function<void()> callback)
   this->actions[index].SetCallback(callback);
 }
 
-vector<MenuAction> &Menu::GetActions()
-{
-  return this->actions;
-}
-
-int Menu::GetActionsLength()
-{
-  return this->actions.size();
-}
-
 void Menu::Trigger(int trigger)
 {
   for (int action_index = 0; action_index < this->GetActionsLength(); action_index++)
     if (this->actions[action_index].GetTrigger() == trigger)
       this->actions[action_index].Execute();
+}
+
+int Menu::ActivateMenu(Menu *menu)
+{
+  int pressed_key = getch();
+  menu->Trigger(pressed_key);
+  return pressed_key;
 }

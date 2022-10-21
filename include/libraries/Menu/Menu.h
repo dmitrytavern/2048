@@ -16,5 +16,6 @@ public:
   void Trigger(int trigger);
   void AddAction(int trigger, std::string title, std::function<void()>);
   int GetActionsLength();
-  std::vector<MenuAction> &GetActions();
+  std::vector<std::string> GetActionNames();
+  static int ActivateMenu(Menu *menu);
 };

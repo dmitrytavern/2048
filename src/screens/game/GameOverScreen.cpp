@@ -49,10 +49,10 @@ void GameOverScreen::Render()
 
   GameUI::OutputMatrix(Core::Matrix::Get(), Core::Matrix::GetSize());
 
-  MenuUI::PrintMenu(this->screen_menu);
+  MenuUI::PrintMenu(this->screen_menu->GetTitle(), this->screen_menu->GetActionNames());
 }
 
 void GameOverScreen::Run()
 {
-  MenuUI::ActivateMenu(this->screen_menu);
+  Menu::ActivateMenu(this->screen_menu);
 }

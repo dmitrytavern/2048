@@ -44,10 +44,10 @@ void MainScreen::Render()
   UI::PrintCenter("━━━━ 2048 Game Menu ━━━━", 24);
   UI::Print();
 
-  MenuUI::PrintMenu(this->screen_menu);
+  MenuUI::PrintMenu(this->screen_menu->GetTitle(), this->screen_menu->GetActionNames());
 }
 
 void MainScreen::Run()
 {
-  MenuUI::ActivateMenu(this->screen_menu);
+  Menu::ActivateMenu(this->screen_menu);
 }

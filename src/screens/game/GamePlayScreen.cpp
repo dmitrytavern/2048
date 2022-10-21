@@ -58,12 +58,12 @@ void GamePlayScreen::Render()
 
   GameUI::OutputMatrix(Core::Matrix::Get(), Core::Matrix::GetSize());
 
-  MenuUI::PrintMenu(this->screen_menu);
+  MenuUI::PrintMenu(this->screen_menu->GetTitle(), this->screen_menu->GetActionNames());
 }
 
 void GamePlayScreen::Run()
 {
-  MenuUI::ActivateMenu(this->screen_menu);
+  Menu::ActivateMenu(this->screen_menu);
 
   if (!Core::ExistsMove())
     this->fn_call_game_over();

@@ -1,9 +1,7 @@
 #include <iostream>
 #include <iomanip>
-#include <conio.h>
 #include <string>
-
-#include "libraries/Menu/Menu.h"
+#include <vector>
 #include "libraries/Menu/MenuUI.h"
 #include "libraries/UI/UI.h"
 
@@ -12,22 +10,19 @@ using namespace std;
 const int MenuUI::BORDER_SIZE = 1;
 const int MenuUI::BORDER_WINDOW_PADDING = 3;
 
-void MenuUI::PrintMenu(Menu *menu)
+void MenuUI::PrintMenu(string title, vector<string> actions)
 {
-  string menu_title = menu->GetTitle();
-  vector<MenuAction> menu_actions = menu->GetActions();
-  int menu_actions_length = menu->GetActionsLength();
-
-  int content_size = MenuUI::CalcContentSize(menu);
+  int menu_actions_length = actions.size();
+  int content_size = MenuUI::CalcContentSize(actions);
   int windows_size = MenuUI::CalcWindowsSize(content_size);
   int spaces_count = UI::CalcSpacesCount(windows_size);
 
   UI::PrintSpaces(spaces_count);
-  UI::PrintWindowBorderTopWithTitle(windows_size, menu_title);
+  UI::PrintWindowBorderTopWithTitle(windows_size, title);
 
   for (int index = 0; index < menu_actions_length; index++)
   {
-    string action_title = menu_actions[index].GetTitle();
+    string action_title = actions[index];
     if (action_title != "")
     {
       UI::PrintSpaces(spaces_count);
@@ -43,23 +38,14 @@ void MenuUI::PrintMenu(Menu *menu)
   UI::PrintWindowBorderBottom(windows_size);
 }
 
-int MenuUI::ActivateMenu(Menu *menu)
+int MenuUI::CalcContentSize(vector<string> actions)
 {
-  int pressed_key = getch();
-  menu->Trigger(pressed_key);
-  return pressed_key;
-}
-
-int MenuUI::CalcContentSize(Menu *menu)
-{
-  vector<MenuAction> menu_actions = menu->GetActions();
-  int menu_actions_length = menu->GetActionsLength();
-
+  int menu_actions_length = actions.size();
   int max_content_length = 0;
 
   for (int index = 0; index < menu_actions_length; index++)
   {
-    int length = menu_actions[index].GetTitle().length();
+    int length = actions[index].length();
     max_content_length = length > max_content_length ? length : max_content_length;
   }
 
