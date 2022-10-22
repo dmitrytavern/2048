@@ -1,4 +1,5 @@
 ﻿#include "interface/Interface.h"
+#include "interface/TerminalInterface.h"
 #include "libraries/Screen/ScreenStore.h"
 #include "libraries/Screen/ScreenManager.h"
 #include "screens/MainScreen.h"
@@ -10,6 +11,7 @@ int main()
   setlocale(LC_ALL, "");
 
   Interface::HideCursor();
+  Interface::Terminal::ActivateResizeListener();
 
   /**
    * Init application screens

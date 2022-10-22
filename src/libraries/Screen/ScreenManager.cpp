@@ -1,30 +1,20 @@
 #include <iostream>
 #include <functional>
+#include <string>
+#include "interface/TerminalInterface.h"
 #include "libraries/Screen/Screen.h"
 #include "libraries/Screen/ScreenStore.h"
 #include "libraries/Screen/ScreenSignal.h"
 #include "libraries/Screen/ScreenManager.h"
-#include <iostream>
-#ifdef __linux__
-#include <csignal>
-#endif
 
 using namespace std;
 
-std::function<void(int)> windows_resize_handler;
-
-void signal_handler(int signal) { windows_resize_handler(signal); }
-
 ScreenManager::ScreenManager(ScreenStore *app_screen_store)
 {
-  windows_resize_handler = [&](int signal)
+  this->windows_resize_handler = [&](int signal)
   {
     this->WindowsResizeHandler();
   };
-
-#ifdef __linux__
-  signal(SIGWINCH, signal_handler);
-#endif
 
   this->app_screen_store = app_screen_store;
   this->current_screen_exists = false;
@@ -33,6 +23,8 @@ ScreenManager::ScreenManager(ScreenStore *app_screen_store)
 
 void ScreenManager::Set(Screen *screen)
 {
+  Interface::Terminal::SetResizeHandler(this->windows_resize_handler);
+
   if (this->current_screen_exists)
     this->current_screen->Terminate();
   this->current_screen = screen;
@@ -46,13 +38,7 @@ void ScreenManager::Run()
   while (!this->ui_exit)
     if (this->current_screen_exists)
     {
-#ifdef __linux__
-      system("clear");
-#elif _WIN32
-      system("cls");
-#else
-      exit(1);
-#endif
+      Interface::Terminal::Clear();
 
       this->current_screen->Render();
 
@@ -74,6 +60,8 @@ void ScreenManager::Run()
 
 void ScreenManager::Exit()
 {
+  Interface::Terminal::ClearResizeHandler();
+
   if (this->current_screen_exists)
     this->current_screen->Terminate();
   this->ui_exit = true;
@@ -107,7 +95,7 @@ void ScreenManager::WindowsResizeHandler()
 {
   if (this->ExistsActiveScreen())
   {
-    system("clear");
+    Interface::Terminal::Clear();
     if (this->current_screen_exists)
       this->current_screen->Render();
   }

@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <functional>
 #include "Screen.h"
 #include "ScreenSignal.h"
 
@@ -10,6 +11,7 @@ private:
   ScreenStore *app_screen_store;
   bool current_screen_exists;
   bool ui_exit;
+  std::function<void(int)> windows_resize_handler;
   void WindowsResizeHandler();
 
 public:

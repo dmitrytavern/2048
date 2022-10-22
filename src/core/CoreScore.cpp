@@ -1,24 +1,21 @@
 #include <iostream>
 
-namespace Core
+namespace Core::Score
 {
-  namespace Score
+  static int score;
+
+  int Get()
   {
-    static int score;
+    return score;
+  }
 
-    int Get()
-    {
-      return score;
-    }
+  void Clear()
+  {
+    score = 0;
+  }
 
-    void Clear()
-    {
-      score = 0;
-    }
-
-    void Increment(int number)
-    {
-      score += number;
-    }
+  void Increment(int number)
+  {
+    score += number;
   }
 }

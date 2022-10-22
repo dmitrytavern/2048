@@ -1,14 +1,11 @@
 #pragma once
 #include <iostream>
 
-namespace Core
+namespace Core::Score
 {
-  namespace Score
-  {
-    static int score;
+  static int score;
 
-    int Get();
-    void Clear();
-    void Increment(int number);
-  }
+  int Get();
+  void Clear();
+  void Increment(int number);
 }
