@@ -17,8 +17,10 @@ namespace Interface
 
   void PrintSpaces(int spaces_count)
   {
+    string spaces;
     for (int i = 0; i < spaces_count; i++)
-      cout << " ";
+        spaces += " ";
+    cout << spaces;
   }
 
   string PaintText(int color, string message)
