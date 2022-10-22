@@ -23,7 +23,11 @@ namespace Interface
 
   string PaintText(int color, string message)
   {
+#ifdef __linux__
     return "\033[38:5:" + to_string(color) + "m" + message + "\033[0m";
+#else
+    return "\x1B[" + to_string(color) + "m" + message + "\033[0m";
+#endif
   }
 
   void HideCursor()

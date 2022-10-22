@@ -99,10 +99,11 @@ namespace Interface::Matrix
   {
     int color = CELL_START_COLOR;
 
+#ifdef __linux__
     for (int i = 1; number > 2; i++)
     {
       number = number / 2;
-
+        
       if (i % 6 == 0)
         color += 67;
       else
@@ -111,6 +112,16 @@ namespace Interface::Matrix
 
     if (color > 255)
       color = 255;
+#else
+    for (int i = 1; number > 2; i++)
+    {
+        number = number / 2;
+        color++;
+    }
+
+    if (color > 37)
+        color = 37;
+#endif
 
     return color;
   }
