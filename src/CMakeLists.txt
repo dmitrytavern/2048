@@ -1,4 +1,4 @@
-project(2048_game)
+project(DTavernGameApplication)
 
 add_library(Core
   core/Core.cpp
