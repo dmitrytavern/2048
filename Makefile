@@ -1,7 +1,7 @@
 OUTPUT_CMAKE_DIRECTORY=build
 OUTPUT_DIRECTORY=bin
-OUTPUT_TEST_FILE=tests
-OUTPUT_FILE=main
+OUTPUT_TEST_FILE=GameApplicationTests
+OUTPUT_FILE=GameApplication
 
 all: build compile
 

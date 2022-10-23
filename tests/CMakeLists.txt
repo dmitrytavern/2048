@@ -10,9 +10,9 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(Catch2)
 
-add_executable(tests
+add_executable(GameApplicationTests
   GameMatrix.cpp
   ../src/core/GameMatrix.cpp
 )
 
-target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
+target_link_libraries(GameApplicationTests PRIVATE Catch2::Catch2WithMain)

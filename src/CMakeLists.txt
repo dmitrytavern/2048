@@ -27,8 +27,8 @@ add_library(ScreenLibrary
   libraries/Screen/ScreenManager.cpp
 )
 
-add_executable(main
-  main.cpp
+add_executable(GameApplication
+  GameApplication.cpp
   screens/MainScreen.cpp
   screens/GameScreen.cpp
   screens/ExitScreen.cpp
@@ -36,7 +36,7 @@ add_executable(main
   screens/game/GameOverScreen.cpp
 )
 
-target_link_libraries(main
+target_link_libraries(GameApplication
   Core
   Interface
   MenuLibrary

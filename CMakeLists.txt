@@ -1,6 +1,5 @@
 cmake_minimum_required (VERSION 3.15)
-
-project(2048_game)
+project(GameApplication)
 
 file(MAKE_DIRECTORY ${PROJECT_SOURCE_DIR}/bin/)
 file(MAKE_DIRECTORY ${PROJECT_SOURCE_DIR}/build/)
