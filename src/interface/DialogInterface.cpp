@@ -12,4 +12,18 @@ namespace Interface::Dialog
   {
     return getch();
   }
+
+  bool GetComfirm()
+  {
+    while (true)
+    {
+      int input = getch();
+
+      if (input == CHAR_Y || input == CHAR_1)
+        return true;
+
+      if (input == CHAR_N || input == CHAR_0)
+        return false;
+    }
+  }
 }

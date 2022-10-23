@@ -17,7 +17,7 @@ MainScreen::MainScreen() : Screen(SCREEN_MAIN_NAME)
 {
   this->fn_exit = [&]() -> void
   {
-    this->SetSignal(SCREEN_SIGNAL_EXIT);
+    this->SetSignal(SCREEN_SIGNAL_SET, SCREEN_EXIT_NAME);
   };
 
   this->fn_start_game = [&]() -> void

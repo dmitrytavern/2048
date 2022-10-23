@@ -4,6 +4,7 @@
 #include "libraries/Screen/ScreenManager.h"
 #include "screens/MainScreen.h"
 #include "screens/GameScreen.h"
+#include "screens/ExitScreen.h"
 
 int main()
 {
@@ -23,6 +24,9 @@ int main()
 
   GameScreen app_game_screen;
   app_screen_store.AddScreen(&app_game_screen);
+
+  ExitScreen app_exit_screen;
+  app_screen_store.AddScreen(&app_exit_screen);
 
   /**
    * Start application
