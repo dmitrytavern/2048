@@ -8,6 +8,7 @@
 #include "interface/MenuInterface.h"
 #include "interface/WindowInterface.h"
 #include "interface/MatrixInterface.h"
+#include "interface/DialogInterface.h"
 #include "libraries/Menu/Menu.h"
 #include "screens/game/GameOverScreen.h"
 
@@ -71,5 +72,7 @@ void GameOverScreen::Render()
 
 void GameOverScreen::Run()
 {
-  Menu::ActivateMenu(this->screen_menu);
+  const int code = Interface::Dialog::GetCharCode();
+
+  this->screen_menu->Trigger(code);
 }

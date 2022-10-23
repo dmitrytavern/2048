@@ -9,10 +9,11 @@ add_library(Core
 
 add_library(Interface
   interface/Interface.cpp
-  interface/TerminalInterface.cpp
-  interface/WindowInterface.cpp
   interface/MenuInterface.cpp
   interface/MatrixInterface.cpp
+  interface/WindowInterface.cpp
+  interface/DialogInterface.cpp
+  interface/TerminalInterface.cpp
 )
 
 add_library(MenuLibrary

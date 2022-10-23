@@ -1,11 +1,6 @@
 #include <iostream>
 #include "libraries/Menu/Menu.h"
 #include "libraries/Menu/MenuAction.h"
-#ifdef __linux__
-#include <coniolinux.h>
-#else
-#include <conio.h>
-#endif
 
 using namespace std;
 
@@ -51,11 +46,4 @@ void Menu::Trigger(int trigger)
   for (int action_index = 0; action_index < this->GetActionsLength(); action_index++)
     if (this->actions[action_index].GetTrigger() == trigger)
       this->actions[action_index].Execute();
-}
-
-int Menu::ActivateMenu(Menu *menu)
-{
-  int pressed_key = getch();
-  menu->Trigger(pressed_key);
-  return pressed_key;
 }

@@ -2,6 +2,7 @@
 #include "interface/Interface.h"
 #include "interface/MenuInterface.h"
 #include "interface/WindowInterface.h"
+#include "interface/DialogInterface.h"
 #include "libraries/Screen/ScreenSignal.h"
 #include "libraries/Menu/Menu.h"
 #include "screens/MainScreen.h"
@@ -60,5 +61,7 @@ void MainScreen::Render()
 
 void MainScreen::Run()
 {
-  Menu::ActivateMenu(this->screen_menu);
+  const int code = Interface::Dialog::GetCharCode();
+
+  this->screen_menu->Trigger(code);
 }

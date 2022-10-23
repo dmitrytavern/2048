@@ -18,5 +18,4 @@ public:
   void AddAction(int trigger, std::string title, std::function<void()>);
   int GetActionsLength();
   std::vector<std::string> GetActionNames();
-  static int ActivateMenu(Menu *menu);
 };
