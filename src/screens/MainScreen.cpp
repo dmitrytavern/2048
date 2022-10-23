@@ -41,12 +41,18 @@ void MainScreen::Terminate()
 
 void MainScreen::Render()
 {
-  Interface::Window::PrintVerticalAlign(6);
+  unsigned int menu_borders = Interface::Menu::BORDER_SIZE * 2;
+  unsigned int menu_print_rows = menu_borders + this->screen_menu->GetActionsLength();
+  unsigned int other_print_rows = 2; // Title and \n
+
+  Interface::Window::PrintVerticalAlign(menu_print_rows + other_print_rows);
+
 #ifdef __linux__
   Interface::Window::PrintCenter("━━━━ 2048 Game Menu ━━━━", 24);
 #else
   Interface::Window::PrintCenter("---- 2048 Game Menu ----");
 #endif
+
   Interface::Print();
 
   Interface::Menu::Print(this->screen_menu->GetTitle(), this->screen_menu->GetActionNames());

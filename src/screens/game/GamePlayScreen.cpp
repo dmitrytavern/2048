@@ -53,12 +53,22 @@ void GamePlayScreen::Terminate()
 
 void GamePlayScreen::Render()
 {
-  Interface::Window::PrintVerticalAlign(4 * 3 + 2 + 1 + 7);
+  unsigned int matrix_size = Core::Matrix::GetSize();
+  unsigned int matrix_cell_height = Interface::Matrix::CELL_HEIGHT;
+  unsigned int matrix_borders = Interface::Matrix::BORDER_SIZE * 2;
+  unsigned int menu_borders = Interface::Menu::BORDER_SIZE * 2;
+  unsigned int matrix_print_rows = matrix_size * matrix_cell_height + matrix_borders;
+  unsigned int menu_print_rows = menu_borders + this->screen_menu->GetActionsLength();
+  unsigned int other_print_rows = 2; // Score, Title
+
+  Interface::Window::PrintVerticalAlign(matrix_print_rows + menu_print_rows + other_print_rows);
+
 #ifdef __linux__
   Interface::Window::PrintCenter("━━━━ 2048 Game Session ━━━━", 28);
 #else
   Interface::Window::PrintCenter("---- 2048 Game Session ----");
 #endif
+
   Interface::Window::PrintCenter("Your score: " + std::to_string(Core::Score::Get()));
 
   Interface::Matrix::Print(Core::Matrix::Get(), Core::Matrix::GetSize());
