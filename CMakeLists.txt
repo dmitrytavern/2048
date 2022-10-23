@@ -14,3 +14,4 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin/)
 include_directories(include)
 
 add_subdirectory(src)
+add_subdirectory(tests)

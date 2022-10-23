@@ -1,5 +1,6 @@
 OUTPUT_CMAKE_DIRECTORY=build
 OUTPUT_DIRECTORY=bin
+OUTPUT_TEST_FILE=tests
 OUTPUT_FILE=main
 
 all: build compile
@@ -12,6 +13,9 @@ compile:
 
 start:
 	./$(OUTPUT_DIRECTORY)/$(OUTPUT_FILE)
+
+test:
+	./$(OUTPUT_DIRECTORY)/$(OUTPUT_TEST_FILE)
 
 clean:
 	rm -rf ./$(OUTPUT_DIRECTORY)/
