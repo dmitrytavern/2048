@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
+#include <string>
 #include "interface/Interface.h"
 #include "interface/MenuInterface.h"
 #include "interface/WindowInterface.h"
@@ -24,11 +25,12 @@ namespace Interface::Menu
       if (actions[index] != "")
       {
         Interface::PrintSpaces(spaces_count);
-        cout << Interface::Window::BORDER_VERTICAL_CHAR;
+        Interface::Print(Interface::Window::BORDER_VERTICAL_CHAR);
         Interface::PrintSpaces(BORDER_WINDOW_PADDING);
-        cout << std::left << setw(content_size) << actions[index];
+        printf(((string)("%-" + to_string(content_size) + "s")).c_str(), actions[index].c_str());
         Interface::PrintSpaces(BORDER_WINDOW_PADDING);
-        cout << Interface::Window::BORDER_VERTICAL_CHAR << endl;
+        Interface::Print(Interface::Window::BORDER_VERTICAL_CHAR);
+        Interface::Print();
       }
     }
 

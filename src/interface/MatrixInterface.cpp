@@ -65,15 +65,15 @@ namespace Interface::Matrix
       for (int column = 0; column < output_matrix_columns; column++)
       {
         if (column == 0)
-          cout << Interface::Window::BORDER_VERTICAL_CHAR;
+          Interface::Print(Interface::Window::BORDER_VERTICAL_CHAR);
 
-        cout << chars_matrix[row][column];
+        Interface::Print(chars_matrix[row][column]);
 
         if (column == output_matrix_columns - 1)
-          cout << Interface::Window::BORDER_VERTICAL_CHAR;
+          Interface::Print(Interface::Window::BORDER_VERTICAL_CHAR);
       }
 
-      cout << endl;
+      Interface::Print();
     }
 
     Interface::PrintSpaces(spaces_count);
@@ -103,7 +103,7 @@ namespace Interface::Matrix
     for (int i = 1; number > 2; i++)
     {
       number = number / 2;
-        
+
       if (i % 6 == 0)
         color += 67;
       else
@@ -115,12 +115,12 @@ namespace Interface::Matrix
 #else
     for (int i = 1; number > 2; i++)
     {
-        number = number / 2;
-        color++;
+      number = number / 2;
+      color++;
     }
 
     if (color > 37)
-        color = 37;
+      color = 37;
 #endif
 
     return color;

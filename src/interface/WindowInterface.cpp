@@ -14,6 +14,7 @@ namespace Interface::Window
 
     Interface::PrintSpaces(spaces_count);
     Interface::Print(message);
+    Interface::Print();
   }
 
   void PrintCenter(string message, int message_length)
@@ -22,27 +23,32 @@ namespace Interface::Window
 
     Interface::PrintSpaces(spaces_count);
     Interface::Print(message);
+    Interface::Print();
   }
 
   void PrintVerticalAlign(int content_row_count)
   {
     unsigned int window_height = Interface::Terminal::GetTerminalHeight();
     unsigned int length = (window_height - content_row_count) / 2;
+    string n = "";
 
     for (int i = 0; i < length; i++)
-      cout << endl;
+      n += "\n";
+
+    Interface::Print(n);
   }
 
   void PrintBorderTop(int chars_count)
   {
     for (int index = 0; index < chars_count; index++)
       if (index == 0)
-        cout << BORDER_TOP_LEFT_CHAR;
+        Interface::Print(BORDER_TOP_LEFT_CHAR);
       else if (index == chars_count - 1)
-        cout << BORDER_TOP_RIGHT_CHAR;
+        Interface::Print(BORDER_TOP_RIGHT_CHAR);
       else
-        cout << BORDER_HORIZONTAL_CHAR;
-    cout << endl;
+        Interface::Print(BORDER_HORIZONTAL_CHAR);
+
+    Interface::Print();
   }
 
   void PrintBorderTopWithTitle(int chars_count, string title)
@@ -53,34 +59,36 @@ namespace Interface::Window
     for (int index = 1; index <= chars_count; index++)
       if (index == 1)
       {
-        cout << BORDER_TOP_LEFT_CHAR;
+        Interface::Print(BORDER_TOP_LEFT_CHAR);
       }
       else if (index == chars_count)
       {
-        cout << BORDER_TOP_RIGHT_CHAR;
+        Interface::Print(BORDER_TOP_RIGHT_CHAR);
       }
       else if (index == start_print_index)
       {
-        cout << " " << title << " ";
+        Interface::Print(" " + title + " ");
         index += title_length + 1;
       }
       else
       {
-        cout << BORDER_HORIZONTAL_CHAR;
+        Interface::Print(BORDER_HORIZONTAL_CHAR);
       }
-    cout << endl;
+
+    Interface::Print();
   }
 
   void PrintBorderBottom(int count)
   {
     for (int index = 0; index < count; index++)
       if (index == 0)
-        cout << BORDER_BOTTOM_LEFT_CHAR;
+        Interface::Print(BORDER_BOTTOM_LEFT_CHAR);
       else if (index == count - 1)
-        cout << BORDER_BOTTOM_RIGHT_CHAR;
+        Interface::Print(BORDER_BOTTOM_RIGHT_CHAR);
       else
-        cout << BORDER_HORIZONTAL_CHAR;
-    cout << endl;
+        Interface::Print(BORDER_HORIZONTAL_CHAR);
+
+    Interface::Print();
   }
 
   unsigned int CalcSpacesCount(int windows_size)

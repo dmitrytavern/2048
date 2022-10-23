@@ -48,7 +48,7 @@ void GameOverScreen::Render()
 {
   Interface::Window::PrintVerticalAlign(4 * 3 + 2 + 1 + 7);
 #ifdef __linux__
-  Interface::Window::PrintCenter("━━━━ 2048 Game Session ━━━━", 24);
+  Interface::Window::PrintCenter("━━━━ 2048 Game Session ━━━━", 28);
 #else
   Interface::Window::PrintCenter("---- 2048 Game Session ----");
 #endif
