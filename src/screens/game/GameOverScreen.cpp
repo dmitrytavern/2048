@@ -11,12 +11,6 @@
 #include "interface/DialogInterface.h"
 #include "screens/game/GameOverScreen.h"
 
-enum Triggers
-{
-  GAME_MENU_START_GAME_KEY = 97,
-  GAME_MENU_EXIT_KEY = 101,
-};
-
 void GameOverScreen::Render()
 {
   unsigned int matrix_size = Core::Matrix::GetSize();
@@ -53,12 +47,12 @@ void GameOverScreen::Run()
 
     switch (code)
     {
-    case GAME_MENU_START_GAME_KEY:
+    case Interface::Dialog::CHAR_A:
       this->SetSignal(SCREEN_SIGNAL_SET, SCREEN_GAME_PLAY_NAME);
       dialog = false;
       break;
 
-    case GAME_MENU_EXIT_KEY:
+    case Interface::Dialog::CHAR_E:
       this->SetSignal(SCREEN_SIGNAL_EXIT);
       dialog = false;
       break;

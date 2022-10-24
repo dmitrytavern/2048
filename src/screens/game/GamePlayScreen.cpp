@@ -10,15 +10,6 @@
 #include "interface/DialogInterface.h"
 #include "screens/game/GamePlayScreen.h"
 
-enum Triggers
-{
-  GAME_MENU_SWIPE_UP_KEY = 119,
-  GAME_MENU_SWIPE_LEFT_KEY = 97,
-  GAME_MENU_SWIPE_DOWN_KEY = 115,
-  GAME_MENU_SWIPE_RIGHT_KEY = 100,
-  GAME_MENU_EXIT_KEY = 101,
-};
-
 void GamePlayScreen::Initialize()
 {
   Core::ToStartGame();
@@ -63,27 +54,31 @@ void GamePlayScreen::Run()
 
     switch (code)
     {
-    case GAME_MENU_SWIPE_UP_KEY:
+    case Interface::Dialog::KEY_UP:
+    case Interface::Dialog::CHAR_W:
       Core::ToMove(Core::Matrix::SWIPE_DIRECTION_UP);
       dialog = false;
       break;
 
-    case GAME_MENU_SWIPE_LEFT_KEY:
+    case Interface::Dialog::KEY_LEFT:
+    case Interface::Dialog::CHAR_A:
       Core::ToMove(Core::Matrix::SWIPE_DIRECTION_LEFT);
       dialog = false;
       break;
 
-    case GAME_MENU_SWIPE_DOWN_KEY:
+    case Interface::Dialog::KEY_DOWN:
+    case Interface::Dialog::CHAR_S:
       Core::ToMove(Core::Matrix::SWIPE_DIRECTION_DOWN);
       dialog = false;
       break;
 
-    case GAME_MENU_SWIPE_RIGHT_KEY:
+    case Interface::Dialog::KEY_RIGHT:
+    case Interface::Dialog::CHAR_D:
       Core::ToMove(Core::Matrix::SWIPE_DIRECTION_RIGHT);
       dialog = false;
       break;
 
-    case GAME_MENU_EXIT_KEY:
+    case Interface::Dialog::CHAR_E:
       this->SetSignal(SCREEN_SIGNAL_EXIT);
       dialog = false;
       break;
