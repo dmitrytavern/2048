@@ -19,9 +19,9 @@ namespace Interface::Window
   const std::string BORDER_BOTTOM_RIGHT_CHAR = "+";
 #endif
 
-  void PrintCenter(std::string message);
-  void PrintCenter(std::string message, int message_length);
-  void PrintVerticalAlign(int count);
+  void OutputCenter(std::string message);
+  void OutputCenter(std::string message, int message_length);
+  void OutputVerticalAlign(int count);
   void PrintBorderTop(int chars_count);
   void PrintBorderTopWithTitle(int chars_count, std::string title);
   void PrintBorderBottom(int chars_count);

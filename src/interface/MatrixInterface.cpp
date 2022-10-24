@@ -9,7 +9,7 @@ using namespace std;
 
 namespace Interface::Matrix
 {
-  void Print(unsigned int **matrix, int matrix_size)
+  void Output(unsigned int **matrix, int matrix_size)
   {
     unsigned int output_matrix_rows = CalcMatrixRow(matrix_size);
     unsigned int output_matrix_columns = CalcMatrixColumns(matrix_size);
@@ -55,28 +55,28 @@ namespace Interface::Matrix
         chars_matrix[number_row + 2][number_column + 4] = number != 0 ? Interface::PaintText(number_color, Interface::Window::BORDER_BOTTOM_RIGHT_CHAR) : " ";
       }
 
-    Interface::PrintSpaces(spaces_count);
+    Interface::OutputSpaces(spaces_count);
     Interface::Window::PrintBorderTop(windows_size);
 
     for (int row = 0; row < output_matrix_rows; row++)
     {
-      Interface::PrintSpaces(spaces_count);
+      Interface::OutputSpaces(spaces_count);
 
       for (int column = 0; column < output_matrix_columns; column++)
       {
         if (column == 0)
-          Interface::Print(Interface::Window::BORDER_VERTICAL_CHAR);
+          Interface::Output(Interface::Window::BORDER_VERTICAL_CHAR);
 
-        Interface::Print(chars_matrix[row][column]);
+        Interface::Output(chars_matrix[row][column]);
 
         if (column == output_matrix_columns - 1)
-          Interface::Print(Interface::Window::BORDER_VERTICAL_CHAR);
+          Interface::Output(Interface::Window::BORDER_VERTICAL_CHAR);
       }
 
-      Interface::Print();
+      Interface::Output();
     }
 
-    Interface::PrintSpaces(spaces_count);
+    Interface::OutputSpaces(spaces_count);
     Interface::Window::PrintBorderBottom(windows_size);
   }
 

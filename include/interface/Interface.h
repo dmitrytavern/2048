@@ -3,9 +3,12 @@
 
 namespace Interface
 {
+  static std::string output;
+
   void Print();
-  void Print(std::string message);
-  void PrintSpaces(int count);
+  void Output();
+  void Output(std::string message);
+  void OutputSpaces(int count);
   std::string PaintText(int color, std::string text);
   void HideCursor();
   void ShowCursor();

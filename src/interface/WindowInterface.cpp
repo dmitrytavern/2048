@@ -7,26 +7,26 @@ using namespace std;
 
 namespace Interface::Window
 {
-  void PrintCenter(string message)
+  void OutputCenter(string message)
   {
     unsigned int length = message.length();
     unsigned int spaces_count = CalcSpacesCount(length);
 
-    Interface::PrintSpaces(spaces_count);
-    Interface::Print(message);
-    Interface::Print();
+    Interface::OutputSpaces(spaces_count);
+    Interface::Output(message);
+    Interface::Output();
   }
 
-  void PrintCenter(string message, int message_length)
+  void OutputCenter(string message, int message_length)
   {
     unsigned int spaces_count = CalcSpacesCount(message_length);
 
-    Interface::PrintSpaces(spaces_count);
-    Interface::Print(message);
-    Interface::Print();
+    Interface::OutputSpaces(spaces_count);
+    Interface::Output(message);
+    Interface::Output();
   }
 
-  void PrintVerticalAlign(int content_row_count)
+  void OutputVerticalAlign(int content_row_count)
   {
     unsigned int window_height = Interface::Terminal::GetTerminalHeight();
     unsigned int length = (window_height - content_row_count) / 2;
@@ -35,20 +35,20 @@ namespace Interface::Window
     for (int i = 0; i < length; i++)
       n += "\n";
 
-    Interface::Print(n);
+    Interface::Output(n);
   }
 
   void PrintBorderTop(int chars_count)
   {
     for (int index = 0; index < chars_count; index++)
       if (index == 0)
-        Interface::Print(BORDER_TOP_LEFT_CHAR);
+        Interface::Output(BORDER_TOP_LEFT_CHAR);
       else if (index == chars_count - 1)
-        Interface::Print(BORDER_TOP_RIGHT_CHAR);
+        Interface::Output(BORDER_TOP_RIGHT_CHAR);
       else
-        Interface::Print(BORDER_HORIZONTAL_CHAR);
+        Interface::Output(BORDER_HORIZONTAL_CHAR);
 
-    Interface::Print();
+    Interface::Output();
   }
 
   void PrintBorderTopWithTitle(int chars_count, string title)
@@ -59,36 +59,36 @@ namespace Interface::Window
     for (int index = 1; index <= chars_count; index++)
       if (index == 1)
       {
-        Interface::Print(BORDER_TOP_LEFT_CHAR);
+        Interface::Output(BORDER_TOP_LEFT_CHAR);
       }
       else if (index == chars_count)
       {
-        Interface::Print(BORDER_TOP_RIGHT_CHAR);
+        Interface::Output(BORDER_TOP_RIGHT_CHAR);
       }
       else if (index == start_print_index)
       {
-        Interface::Print(" " + title + " ");
+        Interface::Output(" " + title + " ");
         index += title_length + 1;
       }
       else
       {
-        Interface::Print(BORDER_HORIZONTAL_CHAR);
+        Interface::Output(BORDER_HORIZONTAL_CHAR);
       }
 
-    Interface::Print();
+    Interface::Output();
   }
 
   void PrintBorderBottom(int count)
   {
     for (int index = 0; index < count; index++)
       if (index == 0)
-        Interface::Print(BORDER_BOTTOM_LEFT_CHAR);
+        Interface::Output(BORDER_BOTTOM_LEFT_CHAR);
       else if (index == count - 1)
-        Interface::Print(BORDER_BOTTOM_RIGHT_CHAR);
+        Interface::Output(BORDER_BOTTOM_RIGHT_CHAR);
       else
-        Interface::Print(BORDER_HORIZONTAL_CHAR);
+        Interface::Output(BORDER_HORIZONTAL_CHAR);
 
-    Interface::Print();
+    Interface::Output();
   }
 
   unsigned int CalcSpacesCount(int windows_size)

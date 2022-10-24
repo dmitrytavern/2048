@@ -25,23 +25,25 @@ void GamePlayScreen::Render()
   unsigned int menu_print_rows = menu_borders + 5;
   unsigned int other_print_rows = 2; // Score, Title
 
-  Interface::Window::PrintVerticalAlign(matrix_print_rows + menu_print_rows + other_print_rows);
+  Interface::Window::OutputVerticalAlign(matrix_print_rows + menu_print_rows + other_print_rows);
 
 #ifdef __linux__
-  Interface::Window::PrintCenter("━━━━ 2048 Game Session ━━━━", 28);
+  Interface::Window::OutputCenter("━━━━ 2048 Game Session ━━━━", 28);
 #else
-  Interface::Window::PrintCenter("---- 2048 Game Session ----");
+  Interface::Window::OutputCenter("---- 2048 Game Session ----");
 #endif
 
-  Interface::Window::PrintCenter("Your score: " + std::to_string(Core::Score::Get()));
+  Interface::Window::OutputCenter("Your score: " + std::to_string(Core::Score::Get()));
 
-  Interface::Matrix::Print(Core::Matrix::Get(), Core::Matrix::GetSize());
+  Interface::Matrix::Output(Core::Matrix::Get(), Core::Matrix::GetSize());
 
-  Interface::Banner::Print("Control", {"w - swipe to up",
+  Interface::Banner::Output("Control", {"w - swipe to up",
                                        "a - swipe to left",
                                        "s - swipe to down",
                                        "d - swipe to right",
                                        "e - exit"});
+
+  Interface::Print();
 }
 
 void GamePlayScreen::Run()
@@ -56,34 +58,29 @@ void GamePlayScreen::Run()
     {
     case Interface::Dialog::KEY_UP:
     case Interface::Dialog::CHAR_W:
-    case Interface::Dialog::CHAR_W_UPPER:
       Core::ToMove(Core::Matrix::SWIPE_DIRECTION_UP);
       dialog = false;
       break;
 
     case Interface::Dialog::KEY_LEFT:
     case Interface::Dialog::CHAR_A:
-    case Interface::Dialog::CHAR_A_UPPER:
       Core::ToMove(Core::Matrix::SWIPE_DIRECTION_LEFT);
       dialog = false;
       break;
 
     case Interface::Dialog::KEY_DOWN:
     case Interface::Dialog::CHAR_S:
-    case Interface::Dialog::CHAR_S_UPPER:
       Core::ToMove(Core::Matrix::SWIPE_DIRECTION_DOWN);
       dialog = false;
       break;
 
     case Interface::Dialog::KEY_RIGHT:
     case Interface::Dialog::CHAR_D:
-    case Interface::Dialog::CHAR_D_UPPER:
       Core::ToMove(Core::Matrix::SWIPE_DIRECTION_RIGHT);
       dialog = false;
       break;
 
     case Interface::Dialog::CHAR_E:
-    case Interface::Dialog::CHAR_E_UPPER:
       this->SetSignal(SCREEN_SIGNAL_EXIT);
       dialog = false;
       break;

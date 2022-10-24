@@ -36,6 +36,6 @@ int main()
   app_screen_manager.Set(&app_main_screen);
   app_screen_manager.Run();
 
-  Interface::Print("Exiting...");
+  Interface::Terminal::Clear();
   Interface::ShowCursor();
 }

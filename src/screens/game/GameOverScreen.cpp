@@ -21,20 +21,22 @@ void GameOverScreen::Render()
   unsigned int menu_print_rows = menu_borders + 2;
   unsigned int other_print_rows = 2; // Result, Title
 
-  Interface::Window::PrintVerticalAlign(matrix_print_rows + menu_print_rows + other_print_rows);
+  Interface::Window::OutputVerticalAlign(matrix_print_rows + menu_print_rows + other_print_rows);
 
 #ifdef __linux__
-  Interface::Window::PrintCenter("━━━━ 2048 Game Session ━━━━", 28);
+  Interface::Window::OutputCenter("━━━━ 2048 Game Session ━━━━", 28);
 #else
-  Interface::Window::PrintCenter("---- 2048 Game Session ----");
+  Interface::Window::OutputCenter("---- 2048 Game Session ----");
 #endif
 
-  Interface::Window::PrintCenter("Your result: " + std::to_string(Core::Score::Get()));
+  Interface::Window::OutputCenter("Your result: " + std::to_string(Core::Score::Get()));
 
-  Interface::Matrix::Print(Core::Matrix::Get(), Core::Matrix::GetSize());
+  Interface::Matrix::Output(Core::Matrix::Get(), Core::Matrix::GetSize());
 
-  Interface::Banner::Print("Game Over", {"a - new game",
+  Interface::Banner::Output("Game Over", {"a - new game",
                                          "e - close game"});
+
+  Interface::Print();
 }
 
 void GameOverScreen::Run()
@@ -48,13 +50,11 @@ void GameOverScreen::Run()
     switch (code)
     {
     case Interface::Dialog::CHAR_A:
-    case Interface::Dialog::CHAR_A_UPPER:
       this->SetSignal(SCREEN_SIGNAL_SET, SCREEN_GAME_PLAY_NAME);
       dialog = false;
       break;
 
     case Interface::Dialog::CHAR_E:
-    case Interface::Dialog::CHAR_E_UPPER:
       this->SetSignal(SCREEN_SIGNAL_EXIT);
       dialog = false;
       break;

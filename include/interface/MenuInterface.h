@@ -15,7 +15,7 @@ namespace Interface::Menu
   const int ACTIVE_ELEMENT_COLOR = 97;
 #endif
 
-  void Print(_Menu *menu);
+  void Output(_Menu *menu);
 
   int Activate(_Menu *menu);
 }

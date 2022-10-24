@@ -11,7 +11,7 @@ namespace Interface::Matrix
   const int CELL_START_COLOR = 31;
 #endif
 
-  void Print(unsigned int **matrix, const int matrix_size);
+  void Output(unsigned int **matrix, const int matrix_size);
   static int CalcMatrixRow(int matrix_size);
   static int CalcMatrixColumns(int matrix_size);
   static int CalcWindowSize(int content_size);

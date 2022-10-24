@@ -10,28 +10,29 @@ using namespace std;
 
 namespace Interface::Banner
 {
-  void Print(string title, vector<string> actions)
+  void Output(string title, vector<string> actions)
   {
     int actions_size = actions.size();
     int content_size = CalcContentSize(actions);
     int window_size = CalcWindowSize(content_size);
     int spaces_count = Interface::Window::CalcSpacesCount(window_size);
 
-    Interface::PrintSpaces(spaces_count);
+    Interface::OutputSpaces(spaces_count);
     Interface::Window::PrintBorderTopWithTitle(window_size, title);
 
     for (int index = 0; index < actions_size; index++)
     {
-      Interface::PrintSpaces(spaces_count);
-      Interface::Print(Interface::Window::BORDER_VERTICAL_CHAR);
-      Interface::PrintSpaces(BORDER_WINDOW_PADDING);
-      printf(((string)("%-" + to_string(content_size) + "s")).c_str(), actions[index].c_str());
-      Interface::PrintSpaces(BORDER_WINDOW_PADDING);
-      Interface::Print(Interface::Window::BORDER_VERTICAL_CHAR);
-      Interface::Print();
+      Interface::OutputSpaces(spaces_count);
+      Interface::Output(Interface::Window::BORDER_VERTICAL_CHAR);
+      Interface::OutputSpaces(BORDER_WINDOW_PADDING);
+      Interface::Output(actions[index]);
+      Interface::OutputSpaces(content_size - actions[index].length());
+      Interface::OutputSpaces(BORDER_WINDOW_PADDING);
+      Interface::Output(Interface::Window::BORDER_VERTICAL_CHAR);
+      Interface::Output();
     }
 
-    Interface::PrintSpaces(spaces_count);
+    Interface::OutputSpaces(spaces_count);
     Interface::Window::PrintBorderBottom(window_size);
   }
 

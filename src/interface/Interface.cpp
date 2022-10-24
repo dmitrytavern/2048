@@ -10,20 +10,26 @@ namespace Interface
 {
   void Print()
   {
-    printf("\n");
+      printf("%s", output.c_str());
+      output = "";
   }
 
-  void Print(string message)
+  void Output()
   {
-    printf("%s", message.c_str());
+      output += "\n";
   }
 
-  void PrintSpaces(int spaces_count)
+  void Output(string message)
+  {
+      output += message;
+  }
+
+  void OutputSpaces(int spaces_count)
   {
     string spaces;
     for (int i = 0; i < spaces_count; i++)
       spaces += " ";
-    Print(spaces);
+    Output(spaces);
   }
 
   string PaintText(int color, string message)

@@ -11,7 +11,7 @@ using namespace std;
 
 namespace Interface::Menu
 {
-  void Print(_Menu *menu)
+  void Output(_Menu *menu)
   {
     vector<MenuElement> elements = menu->GetElements();
     int active_element_index = menu->GetActiveElementIndex();
@@ -21,10 +21,10 @@ namespace Interface::Menu
       const int color = index == active_element_index ? ACTIVE_ELEMENT_COLOR : ELEMENT_COLOR;
       string title = Interface::PaintText(color, elements[index].name);
 
-      Interface::Window::PrintCenter(title, elements[index].name.length());
+      Interface::Window::OutputCenter(title, elements[index].name.length());
 
       if (index < elements.size() - 1)
-        Interface::Print();
+        Interface::Output();
     }
   }
 

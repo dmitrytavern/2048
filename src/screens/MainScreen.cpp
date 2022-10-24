@@ -26,27 +26,29 @@ void MainScreen::Render()
   unsigned int menu_borders = Interface::Banner::BORDER_SIZE * 2 + 2;
   unsigned int other_print_rows = 10; // Title and \n
 
-  Interface::Window::PrintVerticalAlign(menu_borders + other_print_rows);
+  Interface::Window::OutputVerticalAlign(menu_borders + other_print_rows);
 
   if (Interface::Terminal::GetTerminalWidth() >= 58)
   {
-    Interface::Window::PrintCenter("$$$$$$$\\            $$\\      $$\\           $$$$$$$\\  ");
-    Interface::Window::PrintCenter("$$  __$$\\           $$ | $\\  $$ |          $$  __$$\\ ");
-    Interface::Window::PrintCenter("$$ |  $$ | $$$$$$\\  $$ |$$$\\ $$ | $$$$$$\\  $$ |  $$ |");
-    Interface::Window::PrintCenter("$$$$$$$  |$$  __$$\\ $$ $$ $$\\$$ |$$  __$$\\ $$$$$$$  |");
-    Interface::Window::PrintCenter("$$  ____/ $$ /  $$ |$$$$  _$$$$ |$$$$$$$$ |$$  __$$< ");
-    Interface::Window::PrintCenter("$$ |      $$ |  $$ |$$$  / \\$$$ |$$   ____|$$ |  $$ |");
-    Interface::Window::PrintCenter("$$ |      \\$$$$$$  |$$  /   \\$$ |\\$$$$$$$\\ $$ |  $$ |");
-    Interface::Window::PrintCenter("\\__|       \\______/ \\__/     \\__| \\_______|\\__|  \\__|");
+    Interface::Window::OutputCenter("$$$$$$$\\            $$\\      $$\\           $$$$$$$\\  ");
+    Interface::Window::OutputCenter("$$  __$$\\           $$ | $\\  $$ |          $$  __$$\\ ");
+    Interface::Window::OutputCenter("$$ |  $$ | $$$$$$\\  $$ |$$$\\ $$ | $$$$$$\\  $$ |  $$ |");
+    Interface::Window::OutputCenter("$$$$$$$  |$$  __$$\\ $$ $$ $$\\$$ |$$  __$$\\ $$$$$$$  |");
+    Interface::Window::OutputCenter("$$  ____/ $$ /  $$ |$$$$  _$$$$ |$$$$$$$$ |$$  __$$< ");
+    Interface::Window::OutputCenter("$$ |      $$ |  $$ |$$$  / \\$$$ |$$   ____|$$ |  $$ |");
+    Interface::Window::OutputCenter("$$ |      \\$$$$$$  |$$  /   \\$$ |\\$$$$$$$\\ $$ |  $$ |");
+    Interface::Window::OutputCenter("\\__|       \\______/ \\__/     \\__| \\_______|\\__|  \\__|");
   }
   else
   {
-    Interface::Window::PrintCenter("Power");
+    Interface::Window::OutputCenter("Power");
   }
 
-  Interface::Print("\n\n");
+  Interface::Output("\n\n");
 
-  Interface::Menu::Print(this->screen_menu);
+  Interface::Menu::Output(this->screen_menu);
+
+  Interface::Print();
 }
 
 void MainScreen::Run()

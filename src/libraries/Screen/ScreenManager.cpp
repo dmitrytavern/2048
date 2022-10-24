@@ -1,6 +1,7 @@
 #include <iostream>
 #include <functional>
 #include <string>
+#include "interface/Interface.h"
 #include "interface/TerminalInterface.h"
 #include "libraries/Screen/Screen.h"
 #include "libraries/Screen/ScreenStore.h"
