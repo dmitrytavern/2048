@@ -5,6 +5,7 @@
 namespace Interface::Terminal
 {
   void Clear();
+  void SetTerminalSize(int width, int height);
   void DisableTerminalScrollbar();
   unsigned int GetTerminalWidth();
   unsigned int GetTerminalHeight();

@@ -16,6 +16,16 @@ namespace Interface::Terminal
     system("clear");
   }
 
+  void SetTerminalSize()
+  {
+    std::cout << "Linux does not need setting terminal size." << std::endl;
+  }
+
+  void DisableTerminalScrollbar()
+  {
+    std::cout << "Linux does not need disabling terminal scrollbar." << std::endl;
+  }
+
   unsigned int GetTerminalWidth()
   {
     struct winsize window;
@@ -33,6 +43,41 @@ namespace Interface::Terminal
   void Clear()
   {
     system("cls");
+  }
+
+  void SetTerminalSize(int width, int height)
+  {
+    HWND hwndConsole = GetConsoleWindow();
+    RECT rectConsole;
+    GetWindowRect(hwndConsole, &rectConsole);
+
+    HWND hwndScreen = GetDesktopWindow();
+    RECT rectScreen;
+    GetWindowRect(hwndScreen, &rectScreen);
+
+    int ConsolePosX = ((rectScreen.right - rectScreen.left) / 2 - width / 2);
+    int ConsolePosY = ((rectScreen.bottom - rectScreen.top) / 2 - height / 2);
+
+    MoveWindow(hwndConsole, ConsolePosX, ConsolePosY, width, height, TRUE);
+  }
+
+  void DisableTerminalScrollbar()
+  {
+    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+
+    CONSOLE_SCREEN_BUFFER_INFO scrBufferInfo;
+    GetConsoleScreenBufferInfo(hOut, &scrBufferInfo);
+
+    short winWidth = scrBufferInfo.srWindow.Right - scrBufferInfo.srWindow.Left + 1;
+    short winHeight = scrBufferInfo.srWindow.Bottom - scrBufferInfo.srWindow.Top + 1;
+    short scrBufferWidth = scrBufferInfo.dwSize.X;
+    short scrBufferHeight = scrBufferInfo.dwSize.Y;
+
+    COORD newSize;
+    newSize.X = scrBufferWidth;
+    newSize.Y = winHeight;
+
+    SetConsoleScreenBufferSize(hOut, newSize);
   }
 
   unsigned int GetTerminalWidth()
@@ -82,34 +127,10 @@ namespace Interface::Terminal
   {
     signal(SIGWINCH, &CallResizeHandler);
   }
-
-  void DisableTerminalScrollbar()
-  {
-    std::cout << "Linux does not need disabling terminal scrollbar." << std::endl;
-  }
 #else
   void ActivateResizeListener()
   {
     std::cout << "Windows don't support hot resizing." << std::endl;
-  }
-
-  void DisableTerminalScrollbar()
-  {
-    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-
-    CONSOLE_SCREEN_BUFFER_INFO scrBufferInfo;
-    GetConsoleScreenBufferInfo(hOut, &scrBufferInfo);
-
-    short winWidth = scrBufferInfo.srWindow.Right - scrBufferInfo.srWindow.Left + 1;
-    short winHeight = scrBufferInfo.srWindow.Bottom - scrBufferInfo.srWindow.Top + 1;
-    short scrBufferWidth = scrBufferInfo.dwSize.X;
-    short scrBufferHeight = scrBufferInfo.dwSize.Y;
-
-    COORD newSize;
-    newSize.X = scrBufferWidth;
-    newSize.Y = winHeight;
-
-    SetConsoleScreenBufferSize(hOut, newSize);
   }
 #endif
 }

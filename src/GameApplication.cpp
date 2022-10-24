@@ -12,9 +12,10 @@ int main()
   srand(time(0));
   setlocale(LC_ALL, "");
 
-  Interface::HideCursor();
+  Interface::Terminal::SetTerminalSize(1000, 800);
   Interface::Terminal::DisableTerminalScrollbar();
   Interface::Terminal::ActivateResizeListener();
+  Interface::HideCursor();
 
   /**
    * Init application screens
