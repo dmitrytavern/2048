@@ -31,7 +31,34 @@ namespace Interface::Dialog
 {
   int GetCharCode()
   {
+#ifdef __linux__
+    int c, d, e;
+
+    c = getch();
+    if (c != 27)
+      return c;
+
+    d = getch();
+    if (d != 91)
+      return d;
+
+    e = getch();
+
+    if (e == 65)
+      return KEY_UP;
+    if (e == 66)
+      return KEY_DOWN;
+    if (e == 67)
+      return KEY_RIGHT;
+    if (e == 68)
+      return KEY_LEFT;
+    return e;
+#else
+    int c = getch();
+    if (c != 224)
+      return c;
     return getch();
+#endif
   }
 
   bool GetComfirm()
