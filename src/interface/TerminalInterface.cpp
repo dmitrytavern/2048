@@ -16,7 +16,7 @@ namespace Interface::Terminal
     system("clear");
   }
 
-  void SetTerminalSize()
+  void SetTerminalSize(int width, int height)
   {
     std::cout << "Linux does not need setting terminal size." << std::endl;
   }
