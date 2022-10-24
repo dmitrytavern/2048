@@ -1,6 +1,7 @@
 #include <vector>
 #include "global.h"
 #include "interface/Interface.h"
+#include "interface/MenuInterface.h"
 #include "interface/BannerInterface.h"
 #include "interface/WindowInterface.h"
 #include "interface/TerminalInterface.h"
@@ -9,9 +10,16 @@
 
 enum Triggers
 {
-  MAIN_MENU_START_GAME_KEY = 97,
-  MAIN_MENU_CLOSE_GAME_KEY = 101,
+  MAIN_MENU_START_GAME_CODE = 1,
+  MAIN_MENU_CLOSE_GAME_CODE = 2,
 };
+
+MainScreen::MainScreen() : Screen(SCREEN_MAIN_NAME)
+{
+  this->screen_menu = new Menu;
+  this->screen_menu->AddElement(MAIN_MENU_START_GAME_CODE, "Start game");
+  this->screen_menu->AddElement(MAIN_MENU_CLOSE_GAME_CODE, "Exit");
+}
 
 void MainScreen::Render()
 {
@@ -22,7 +30,7 @@ void MainScreen::Render()
 
   if (Interface::Terminal::GetTerminalWidth() >= 58)
   {
-    Interface::Window::PrintCenter("  $$$$$$$\\   $$$$$$\\  $$\\      $$\\ $$$$$$$$\\ $$$$$$$\\ ");
+    Interface::Window::PrintCenter("$$$$$$$\\   $$$$$$\\  $$\\      $$\\ $$$$$$$$\\ $$$$$$$\\");
     Interface::Window::PrintCenter("$$  __$$\\ $$  __$$\\ $$ | $\\  $$ |$$  _____|$$  __$$\\ ");
     Interface::Window::PrintCenter("$$ |  $$ |$$ /  $$ |$$ |$$$\\ $$ |$$ |      $$ |  $$ |");
     Interface::Window::PrintCenter("$$$$$$$  |$$ |  $$ |$$ $$ $$\\$$ |$$$$$\\    $$$$$$$  |");
@@ -35,31 +43,23 @@ void MainScreen::Render()
     Interface::Window::PrintCenter("Power");
   }
 
-  Interface::Print();
+  Interface::Print("\n\n");
 
-  Interface::Banner::Print("Main", {"a - start game",
-                                    "e - close game"});
+  Interface::Menu::Print(this->screen_menu);
 }
 
 void MainScreen::Run()
 {
-  bool dialog = true;
+  const int code = Interface::Menu::Activate(this->screen_menu);
 
-  while (dialog)
+  switch (code)
   {
-    const int code = Interface::Dialog::GetCharCode();
+  case MAIN_MENU_START_GAME_CODE:
+    this->SetSignal(SCREEN_SIGNAL_SET, SCREEN_GAME_NAME);
+    break;
 
-    switch (code)
-    {
-    case MAIN_MENU_START_GAME_KEY:
-      this->SetSignal(SCREEN_SIGNAL_SET, SCREEN_GAME_NAME);
-      dialog = false;
-      break;
-
-    case MAIN_MENU_CLOSE_GAME_KEY:
-      this->SetSignal(SCREEN_SIGNAL_SET, SCREEN_EXIT_NAME);
-      dialog = false;
-      break;
-    }
+  case MAIN_MENU_CLOSE_GAME_CODE:
+    this->SetSignal(SCREEN_SIGNAL_SET, SCREEN_EXIT_NAME);
+    break;
   }
 }

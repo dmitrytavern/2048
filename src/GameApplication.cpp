@@ -20,7 +20,7 @@ int main()
    */
   ScreenStore app_screen_store;
 
-  MainScreen app_main_screen(SCREEN_MAIN_NAME);
+  MainScreen app_main_screen;
   app_screen_store.AddScreen(&app_main_screen);
 
   GameScreen app_game_screen(SCREEN_GAME_NAME);

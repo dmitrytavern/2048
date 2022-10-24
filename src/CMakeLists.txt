@@ -9,11 +9,16 @@ add_library(Core
 
 add_library(Interface
   interface/Interface.cpp
+  interface/MenuInterface.cpp
   interface/BannerInterface.cpp
   interface/MatrixInterface.cpp
   interface/WindowInterface.cpp
   interface/DialogInterface.cpp
   interface/TerminalInterface.cpp
+)
+
+add_library(MenuLibrary
+  libraries/Menu/Menu.cpp
 )
 
 add_library(ScreenLibrary
@@ -34,5 +39,6 @@ add_executable(GameApplication
 target_link_libraries(GameApplication
   Core
   Interface
+  MenuLibrary
   ScreenLibrary
 )
