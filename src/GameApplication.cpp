@@ -13,6 +13,7 @@ int main()
   setlocale(LC_ALL, "");
 
   Interface::HideCursor();
+  Interface::Terminal::DisableTerminalScrollbar();
   Interface::Terminal::ActivateResizeListener();
 
   /**
