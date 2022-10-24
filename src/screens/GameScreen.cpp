@@ -4,21 +4,13 @@
 #include "screens/game/GamePlayScreen.h"
 #include "screens/game/GameOverScreen.h"
 
-GameScreen::GameScreen() : Screen(SCREEN_GAME_NAME)
-{
-  this->fn_exit = [&]() -> void
-  {
-    this->SetSignal(SCREEN_SIGNAL_SET, SCREEN_MAIN_NAME);
-  };
-}
-
 void GameScreen::Initialize()
 {
   this->game_screen_store = new ScreenStore;
   this->game_screen_manager = new ScreenManager(this->game_screen_store);
 
-  this->game_screen_store->AddScreen(new GamePlayScreen());
-  this->game_screen_store->AddScreen(new GameOverScreen());
+  this->game_screen_store->AddScreen(new GamePlayScreen(SCREEN_GAME_PLAY_NAME));
+  this->game_screen_store->AddScreen(new GameOverScreen(SCREEN_GAME_OVER_NAME));
 
   ScreenSignal signal = {SCREEN_SIGNAL_SET, SCREEN_GAME_PLAY_NAME};
   this->game_screen_manager->SendSignal(signal);
@@ -34,5 +26,5 @@ void GameScreen::Terminate()
 void GameScreen::Run()
 {
   this->game_screen_manager->Run();
-  this->fn_exit();
+  this->SetSignal(SCREEN_SIGNAL_SET, SCREEN_MAIN_NAME);
 }

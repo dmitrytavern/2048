@@ -3,12 +3,12 @@
 #include <vector>
 #include <string>
 #include "interface/Interface.h"
-#include "interface/MenuInterface.h"
+#include "interface/BannerInterface.h"
 #include "interface/WindowInterface.h"
 
 using namespace std;
 
-namespace Interface::Menu
+namespace Interface::Banner
 {
   void Print(string title, vector<string> actions)
   {
@@ -22,16 +22,13 @@ namespace Interface::Menu
 
     for (int index = 0; index < actions_size; index++)
     {
-      if (actions[index] != "")
-      {
-        Interface::PrintSpaces(spaces_count);
-        Interface::Print(Interface::Window::BORDER_VERTICAL_CHAR);
-        Interface::PrintSpaces(BORDER_WINDOW_PADDING);
-        printf(((string)("%-" + to_string(content_size) + "s")).c_str(), actions[index].c_str());
-        Interface::PrintSpaces(BORDER_WINDOW_PADDING);
-        Interface::Print(Interface::Window::BORDER_VERTICAL_CHAR);
-        Interface::Print();
-      }
+      Interface::PrintSpaces(spaces_count);
+      Interface::Print(Interface::Window::BORDER_VERTICAL_CHAR);
+      Interface::PrintSpaces(BORDER_WINDOW_PADDING);
+      printf(((string)("%-" + to_string(content_size) + "s")).c_str(), actions[index].c_str());
+      Interface::PrintSpaces(BORDER_WINDOW_PADDING);
+      Interface::Print(Interface::Window::BORDER_VERTICAL_CHAR);
+      Interface::Print();
     }
 
     Interface::PrintSpaces(spaces_count);

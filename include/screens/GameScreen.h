@@ -3,17 +3,15 @@
 #include "libraries/Screen/Screen.h"
 #include "libraries/Screen/ScreenStore.h"
 #include "libraries/Screen/ScreenManager.h"
-#include "libraries/Menu/Menu.h"
 
 class GameScreen : public Screen
 {
 private:
+  using Screen::Screen;
   ScreenStore *game_screen_store;
   ScreenManager *game_screen_manager;
-  std::function<void()> fn_exit;
 
 public:
-  GameScreen();
   void Initialize();
   void Terminate();
   void Run();

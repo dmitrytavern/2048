@@ -3,7 +3,7 @@
 #include <vector>
 #include "interface/Interface.h"
 
-namespace Interface::Menu
+namespace Interface::Banner
 {
   const int BORDER_SIZE = 1;
   const int BORDER_WINDOW_PADDING = 3;

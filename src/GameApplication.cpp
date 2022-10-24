@@ -1,4 +1,5 @@
-﻿#include "interface/Interface.h"
+﻿#include "global.h"
+#include "interface/Interface.h"
 #include "interface/TerminalInterface.h"
 #include "libraries/Screen/ScreenStore.h"
 #include "libraries/Screen/ScreenManager.h"
@@ -19,13 +20,13 @@ int main()
    */
   ScreenStore app_screen_store;
 
-  MainScreen app_main_screen;
+  MainScreen app_main_screen(SCREEN_MAIN_NAME);
   app_screen_store.AddScreen(&app_main_screen);
 
-  GameScreen app_game_screen;
+  GameScreen app_game_screen(SCREEN_GAME_NAME);
   app_screen_store.AddScreen(&app_game_screen);
 
-  ExitScreen app_exit_screen;
+  ExitScreen app_exit_screen(SCREEN_EXIT_NAME);
   app_screen_store.AddScreen(&app_exit_screen);
 
   /**
