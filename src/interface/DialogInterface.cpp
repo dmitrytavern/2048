@@ -67,10 +67,10 @@ namespace Interface::Dialog
     {
       int input = getch();
 
-      if (input == CHAR_Y || input == CHAR_1 || input == KEY_ENTER)
+      if (input == CHAR_Y || input == CHAR_1 || input == CHAR_Y_UPPER || input == KEY_ENTER)
         return true;
 
-      if (input == CHAR_N || input == CHAR_0)
+      if (input == CHAR_N || input == CHAR_N_UPPER || input == CHAR_0)
         return false;
     }
   }

@@ -56,29 +56,34 @@ void GamePlayScreen::Run()
     {
     case Interface::Dialog::KEY_UP:
     case Interface::Dialog::CHAR_W:
+    case Interface::Dialog::CHAR_W_UPPER:
       Core::ToMove(Core::Matrix::SWIPE_DIRECTION_UP);
       dialog = false;
       break;
 
     case Interface::Dialog::KEY_LEFT:
     case Interface::Dialog::CHAR_A:
+    case Interface::Dialog::CHAR_A_UPPER:
       Core::ToMove(Core::Matrix::SWIPE_DIRECTION_LEFT);
       dialog = false;
       break;
 
     case Interface::Dialog::KEY_DOWN:
     case Interface::Dialog::CHAR_S:
+    case Interface::Dialog::CHAR_S_UPPER:
       Core::ToMove(Core::Matrix::SWIPE_DIRECTION_DOWN);
       dialog = false;
       break;
 
     case Interface::Dialog::KEY_RIGHT:
     case Interface::Dialog::CHAR_D:
+    case Interface::Dialog::CHAR_D_UPPER:
       Core::ToMove(Core::Matrix::SWIPE_DIRECTION_RIGHT);
       dialog = false;
       break;
 
     case Interface::Dialog::CHAR_E:
+    case Interface::Dialog::CHAR_E_UPPER:
       this->SetSignal(SCREEN_SIGNAL_EXIT);
       dialog = false;
       break;
