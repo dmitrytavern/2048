@@ -3,6 +3,7 @@
 #include "interface/Interface.h"
 #include "interface/BannerInterface.h"
 #include "interface/WindowInterface.h"
+#include "interface/TerminalInterface.h"
 #include "interface/DialogInterface.h"
 #include "screens/MainScreen.h"
 
@@ -15,15 +16,24 @@ enum Triggers
 void MainScreen::Render()
 {
   unsigned int menu_borders = Interface::Banner::BORDER_SIZE * 2 + 2;
-  unsigned int other_print_rows = 2; // Title and \n
+  unsigned int other_print_rows = 8; // Title and \n
 
   Interface::Window::PrintVerticalAlign(menu_borders + other_print_rows);
 
-#ifdef __linux__
-  Interface::Window::PrintCenter("━━━━ 2048 Game Menu ━━━━", 24);
-#else
-  Interface::Window::PrintCenter("---- 2048 Game Menu ----");
-#endif
+  if (Interface::Terminal::GetTerminalWidth() >= 58)
+  {
+    Interface::Window::PrintCenter("  $$$$$$$\\   $$$$$$\\  $$\\      $$\\ $$$$$$$$\\ $$$$$$$\\ ");
+    Interface::Window::PrintCenter("$$  __$$\\ $$  __$$\\ $$ | $\\  $$ |$$  _____|$$  __$$\\ ");
+    Interface::Window::PrintCenter("$$ |  $$ |$$ /  $$ |$$ |$$$\\ $$ |$$ |      $$ |  $$ |");
+    Interface::Window::PrintCenter("$$$$$$$  |$$ |  $$ |$$ $$ $$\\$$ |$$$$$\\    $$$$$$$  |");
+    Interface::Window::PrintCenter("$$  ____/ $$ |  $$ |$$$$  _$$$$ |$$  __|   $$  __$$< ");
+    Interface::Window::PrintCenter("$$ |       $$$$$$  |$$  /   \\$$ |$$$$$$$$\\ $$ |  $$ |");
+    Interface::Window::PrintCenter("\\__|       \\______/ \\__/     \\__|\\________|\\__|  \\__|");
+  }
+  else
+  {
+    Interface::Window::PrintCenter("Power");
+  }
 
   Interface::Print();
 
