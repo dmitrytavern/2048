@@ -5,6 +5,7 @@
 #include "libraries/Screen/ScreenManager.h"
 #include "screens/MainScreen.h"
 #include "screens/GameScreen.h"
+#include "screens/AboutScreen.h"
 #include "screens/ExitScreen.h"
 
 void TerminalResizeHandler(int signum);
@@ -33,6 +34,9 @@ int main()
 
   GameScreen app_game_screen(SCREEN_GAME_NAME);
   app_screen_store.AddScreen(&app_game_screen);
+
+  AboutScreen app_about_screen;
+  app_screen_store.AddScreen(&app_about_screen);
 
   ExitScreen app_exit_screen(SCREEN_EXIT_NAME);
   app_screen_store.AddScreen(&app_exit_screen);

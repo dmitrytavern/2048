@@ -32,6 +32,7 @@ add_executable(GameApplication
   screens/MainScreen.cpp
   screens/GameScreen.cpp
   screens/ExitScreen.cpp
+  screens/AboutScreen.cpp
   screens/game/GamePlayScreen.cpp
   screens/game/GameOverScreen.cpp
 )

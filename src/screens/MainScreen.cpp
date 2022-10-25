@@ -12,12 +12,14 @@ enum Triggers
 {
   MAIN_MENU_START_GAME_CODE = 1,
   MAIN_MENU_CLOSE_GAME_CODE = 2,
+  MAIN_MENU_ABOUT_GAME_CODE = 3,
 };
 
 MainScreen::MainScreen() : Screen(SCREEN_MAIN_NAME)
 {
   this->screen_menu = new Menu;
   this->screen_menu->AddElement(MAIN_MENU_START_GAME_CODE, "Start game");
+  this->screen_menu->AddElement(MAIN_MENU_ABOUT_GAME_CODE, "About me");
   this->screen_menu->AddElement(MAIN_MENU_CLOSE_GAME_CODE, "Exit");
 }
 
@@ -60,6 +62,10 @@ void MainScreen::Run()
   {
   case MAIN_MENU_START_GAME_CODE:
     this->SetSignal(SCREEN_SIGNAL_SET, SCREEN_GAME_NAME);
+    break;
+
+  case MAIN_MENU_ABOUT_GAME_CODE:
+    this->SetSignal(SCREEN_SIGNAL_SET, SCREEN_ABOUT_NAME);
     break;
 
   case MAIN_MENU_CLOSE_GAME_CODE:
