@@ -10,6 +10,7 @@ add_library(Core
 add_library(Interface
   interface/Interface.cpp
   interface/MenuInterface.cpp
+  interface/TitleInterface.cpp
   interface/BannerInterface.cpp
   interface/MatrixInterface.cpp
   interface/WindowInterface.cpp

@@ -3,10 +3,14 @@
 #include "interface/TerminalInterface.h"
 #include "interface/WindowInterface.h"
 #include "interface/DialogInterface.h"
+#include "interface/TitleInterface.h"
 #include "screens/ExitScreen.h"
 
 void ExitScreen::Render()
 {
+  Interface::Title::OutputMainTitle();
+  Interface::Output("\n\n");
+
   Interface::Window::OutputCenter("Exit from game?");
   Interface::Window::OutputCenter("[Y/n]");
 

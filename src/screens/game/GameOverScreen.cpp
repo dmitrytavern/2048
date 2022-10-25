@@ -10,17 +10,14 @@
 #include "interface/WindowInterface.h"
 #include "interface/MatrixInterface.h"
 #include "interface/DialogInterface.h"
+#include "interface/TitleInterface.h"
 #include "screens/game/GameOverScreen.h"
 
 void GameOverScreen::Render()
 {
   std::string score = std::to_string(Core::Score::Get());
 
-  Interface::Window::OutputCenter("       ___   ____  __ __  ____ ");
-  Interface::Window::OutputCenter("    |__ \\ / __ \\/ // / ( __ )");
-  Interface::Window::OutputCenter("    __/ // / / / // /_/ __  |");
-  Interface::Window::OutputCenter("   / __// /_/ /__  __/ /_/ / ");
-  Interface::Window::OutputCenter("/____/\\____/  /_/  \\____/");
+  Interface::Title::OutputGameTitle();
   Interface::Output();
 
   Interface::Window::OutputCenter("Your result: " + score);

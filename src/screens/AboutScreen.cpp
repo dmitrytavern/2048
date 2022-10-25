@@ -2,6 +2,7 @@
 #include "config.h"
 #include "interface/Interface.h"
 #include "interface/MenuInterface.h"
+#include "interface/TitleInterface.h"
 #include "interface/WindowInterface.h"
 #include "interface/TerminalInterface.h"
 #include "screens/AboutScreen.h"
@@ -33,11 +34,7 @@ void AboutScreen::Render()
 {
   this->CalculateSpaces();
 
-  Interface::Window::OutputCenter("     ___    __                __ ");
-  Interface::Window::OutputCenter("    /   |  / /_  ____  __  __/ /_");
-  Interface::Window::OutputCenter("   / /| | / __ \\/ __ \\/ / / / __/");
-  Interface::Window::OutputCenter("  / ___ |/ /_/ / /_/ / /_/ / /_  ");
-  Interface::Window::OutputCenter("/_/  |_/_.___/\\____/\\__,_/\\__/");
+  Interface::Title::OutputAboutTitle();
   Interface::Output("\n\n");
 
   for (int index = 0; index < this->data.size(); index++)

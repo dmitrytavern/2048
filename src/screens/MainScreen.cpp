@@ -5,6 +5,7 @@
 #include "interface/WindowInterface.h"
 #include "interface/TerminalInterface.h"
 #include "interface/DialogInterface.h"
+#include "interface/TitleInterface.h"
 #include "screens/MainScreen.h"
 
 enum Triggers
@@ -24,22 +25,7 @@ MainScreen::MainScreen() : Screen(SCREEN_MAIN_NAME)
 
 void MainScreen::Render()
 {
-  if (Interface::Terminal::GetWidth() >= 58)
-  {
-    Interface::Window::OutputCenter("$$$$$$$\\            $$\\      $$\\           $$$$$$$\\  ");
-    Interface::Window::OutputCenter("$$  __$$\\           $$ | $\\  $$ |          $$  __$$\\ ");
-    Interface::Window::OutputCenter("$$ |  $$ | $$$$$$\\  $$ |$$$\\ $$ | $$$$$$\\  $$ |  $$ |");
-    Interface::Window::OutputCenter("$$$$$$$  |$$  __$$\\ $$ $$ $$\\$$ |$$  __$$\\ $$$$$$$  |");
-    Interface::Window::OutputCenter("$$  ____/ $$ /  $$ |$$$$  _$$$$ |$$$$$$$$ |$$  __$$< ");
-    Interface::Window::OutputCenter("$$ |      $$ |  $$ |$$$  / \\$$$ |$$   ____|$$ |  $$ |");
-    Interface::Window::OutputCenter("$$ |      \\$$$$$$  |$$  /   \\$$ |\\$$$$$$$\\ $$ |  $$ |");
-    Interface::Window::OutputCenter("\\__|       \\______/ \\__/     \\__| \\_______|\\__|  \\__|");
-  }
-  else
-  {
-    Interface::Window::OutputCenter("Power");
-  }
-
+  Interface::Title::OutputMainTitle();
   Interface::Output("\n\n");
 
   Interface::Menu::Output(this->screen_menu);
