@@ -15,14 +15,19 @@ int main()
   srand(time(0));
   setlocale(LC_ALL, "");
 
-  /**
-   * Set terminal
-   */
-  Interface::Terminal::SetTerminalSize(1000, 800);
+/**
+ * Set terminal
+ */
+#ifdef _WIN32
+  Interface::Terminal::SetWindowSize(1000, 800);
+  Interface::Terminal::DisableWindowScrollbar();
+#endif
+
+#ifdef __linux__
   Interface::Terminal::SetResizeHandler(&TerminalResizeHandler);
   Interface::Terminal::ActivateResizeListener();
-  Interface::Terminal::DisableTerminalScrollbar();
-  Interface::HideCursor();
+#endif
+  Interface::Terminal::HideCursor();
 
   /**
    * Init application screens
@@ -49,7 +54,7 @@ int main()
   app_screen_manager.Run();
 
   Interface::Terminal::Clear();
-  Interface::ShowCursor();
+  Interface::Terminal::ShowCursor();
 }
 
 void TerminalResizeHandler(int signum)

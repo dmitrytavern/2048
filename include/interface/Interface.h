@@ -11,6 +11,4 @@ namespace Interface
   void OutputInStart(std::string message);
   void OutputSpaces(int count);
   std::string PaintText(int color, std::string text);
-  void HideCursor();
-  void ShowCursor();
 }

@@ -16,24 +16,24 @@ namespace Interface::Terminal
     system("clear");
   }
 
-  void SetTerminalSize(int width, int height)
+  void HideCursor()
   {
-    std::cout << "Linux does not need setting terminal size." << std::endl;
+    printf("\33[?25l");
   }
 
-  void DisableTerminalScrollbar()
+  void ShowCursor()
   {
-    std::cout << "Linux does not need disabling terminal scrollbar." << std::endl;
+    printf("\33[?25h");
   }
 
-  unsigned int GetTerminalWidth()
+  unsigned int GetWidth()
   {
     struct winsize window;
     ioctl(STDOUT_FILENO, TIOCGWINSZ, &window);
     return window.ws_col;
   }
 
-  unsigned int GetTerminalHeight()
+  unsigned int GetHeight()
   {
     struct winsize window;
     ioctl(STDOUT_FILENO, TIOCGWINSZ, &window);
@@ -45,7 +45,25 @@ namespace Interface::Terminal
     system("cls");
   }
 
-  void SetTerminalSize(int width, int height)
+  void HideCursor()
+  {
+    HANDLE out = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_CURSOR_INFO cursorInfo;
+    GetConsoleCursorInfo(out, &cursorInfo);
+    cursorInfo.bVisible = false;
+    SetConsoleCursorInfo(out, &cursorInfo);
+  }
+
+  void ShowCursor()
+  {
+    HANDLE out = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_CURSOR_INFO cursorInfo;
+    GetConsoleCursorInfo(out, &cursorInfo);
+    cursorInfo.bVisible = true;
+    SetConsoleCursorInfo(out, &cursorInfo);
+  }
+
+  void SetWindowSize(int width, int height)
   {
     HWND hwndConsole = GetConsoleWindow();
     RECT rectConsole;
@@ -61,7 +79,7 @@ namespace Interface::Terminal
     MoveWindow(hwndConsole, ConsolePosX, ConsolePosY, width, height, TRUE);
   }
 
-  void DisableTerminalScrollbar()
+  void DisableWindowScrollbar()
   {
     HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -80,7 +98,7 @@ namespace Interface::Terminal
     SetConsoleScreenBufferSize(hOut, newSize);
   }
 
-  unsigned int GetTerminalWidth()
+  unsigned int GetWidth()
   {
     CONSOLE_SCREEN_BUFFER_INFO csbi;
 
@@ -89,7 +107,7 @@ namespace Interface::Terminal
     return csbi.srWindow.Right - csbi.srWindow.Left + 1;
   }
 
-  unsigned int GetTerminalHeight()
+  unsigned int GetHeight()
   {
     CONSOLE_SCREEN_BUFFER_INFO csbi;
 
@@ -100,6 +118,7 @@ namespace Interface::Terminal
 #endif
 }
 
+#ifdef __linux__
 namespace Interface::Terminal
 {
   static std::function<void(int)> resize_handler;
@@ -122,15 +141,10 @@ namespace Interface::Terminal
     if (resize_handler_exists)
       resize_handler(signum);
   }
-#ifdef __linux__
+
   void ActivateResizeListener()
   {
     signal(SIGWINCH, &CallResizeHandler);
   }
-#else
-  void ActivateResizeListener()
-  {
-    std::cout << "Windows don't support hot resizing." << std::endl;
-  }
-#endif
 }
+#endif

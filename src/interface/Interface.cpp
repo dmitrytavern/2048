@@ -1,8 +1,5 @@
 #include <string>
 #include "interface/Interface.h"
-#ifdef _WIN32
-#include <Windows.h>
-#endif
 
 using namespace std;
 
@@ -45,32 +42,6 @@ namespace Interface
     return "\033[38:5:" + to_string(color) + "m" + message + "\033[0m";
 #else
     return "\x1B[" + to_string(color) + "m" + message + "\033[0m";
-#endif
-  }
-
-  void HideCursor()
-  {
-#ifdef __linux__
-    printf("\33[?25l");
-#else
-    HANDLE out = GetStdHandle(STD_OUTPUT_HANDLE);
-    CONSOLE_CURSOR_INFO cursorInfo;
-    GetConsoleCursorInfo(out, &cursorInfo);
-    cursorInfo.bVisible = false;
-    SetConsoleCursorInfo(out, &cursorInfo);
-#endif
-  }
-
-  void ShowCursor()
-  {
-#ifdef __linux__
-    printf("\33[?25h");
-#else
-    HANDLE out = GetStdHandle(STD_OUTPUT_HANDLE);
-    CONSOLE_CURSOR_INFO cursorInfo;
-    GetConsoleCursorInfo(out, &cursorInfo);
-    cursorInfo.bVisible = true;
-    SetConsoleCursorInfo(out, &cursorInfo);
 #endif
   }
 }

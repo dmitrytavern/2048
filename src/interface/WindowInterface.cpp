@@ -29,7 +29,7 @@ namespace Interface::Window
 
   void AlignVertically()
   {
-    unsigned int window_height = Interface::Terminal::GetTerminalHeight();
+    unsigned int window_height = Interface::Terminal::GetHeight();
     unsigned int content_row_count = 0;
     char *char_string = new char[output.size() + 1];
     char *tmp_char;
@@ -108,6 +108,6 @@ namespace Interface::Window
 
   unsigned int CalcSpacesCount(int windows_size)
   {
-    return Interface::Terminal::GetTerminalWidth() / 2 - windows_size / 2;
+    return Interface::Terminal::GetWidth() / 2 - windows_size / 2;
   }
 }

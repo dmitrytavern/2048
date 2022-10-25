@@ -2,7 +2,6 @@
 #include "global.h"
 #include "interface/Interface.h"
 #include "interface/MenuInterface.h"
-#include "interface/BannerInterface.h"
 #include "interface/WindowInterface.h"
 #include "interface/TerminalInterface.h"
 #include "interface/DialogInterface.h"
@@ -25,7 +24,7 @@ MainScreen::MainScreen() : Screen(SCREEN_MAIN_NAME)
 
 void MainScreen::Render()
 {
-  if (Interface::Terminal::GetTerminalWidth() >= 58)
+  if (Interface::Terminal::GetWidth() >= 58)
   {
     Interface::Window::OutputCenter("$$$$$$$\\            $$\\      $$\\           $$$$$$$\\  ");
     Interface::Window::OutputCenter("$$  __$$\\           $$ | $\\  $$ |          $$  __$$\\ ");
