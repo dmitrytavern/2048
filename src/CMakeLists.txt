@@ -35,6 +35,7 @@ add_executable(GameApplication
   screens/AboutScreen.cpp
   screens/game/GamePlayScreen.cpp
   screens/game/GameOverScreen.cpp
+  "../resources/appicon.rc"
 )
 
 target_link_libraries(GameApplication
