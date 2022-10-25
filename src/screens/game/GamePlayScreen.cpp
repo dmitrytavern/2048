@@ -4,6 +4,7 @@
 #include "core/CoreMatrix.h"
 #include "core/CoreScore.h"
 #include "interface/Interface.h"
+#include "interface/TerminalInterface.h"
 #include "interface/BannerInterface.h"
 #include "interface/WindowInterface.h"
 #include "interface/MatrixInterface.h"
@@ -38,11 +39,12 @@ void GamePlayScreen::Render()
   Interface::Matrix::Output(Core::Matrix::Get(), Core::Matrix::GetSize());
 
   Interface::Banner::Output("Control", {"w - swipe to up",
-                                       "a - swipe to left",
-                                       "s - swipe to down",
-                                       "d - swipe to right",
-                                       "e - exit"});
+                                        "a - swipe to left",
+                                        "s - swipe to down",
+                                        "d - swipe to right",
+                                        "e - exit"});
 
+  Interface::Terminal::Clear();
   Interface::Print();
 }
 

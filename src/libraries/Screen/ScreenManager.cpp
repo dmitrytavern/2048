@@ -1,8 +1,6 @@
 #include <iostream>
 #include <functional>
 #include <string>
-#include "interface/Interface.h"
-#include "interface/TerminalInterface.h"
 #include "libraries/Screen/Screen.h"
 #include "libraries/Screen/ScreenStore.h"
 #include "libraries/Screen/ScreenSignal.h"
@@ -10,13 +8,10 @@
 
 using namespace std;
 
+ScreenManager *ScreenManager::currect_manager = nullptr;
+
 ScreenManager::ScreenManager(ScreenStore *app_screen_store)
 {
-  this->windows_resize_handler = [&](int signal)
-  {
-    this->WindowsResizeHandler();
-  };
-
   this->app_screen_store = app_screen_store;
   this->current_screen_exists = false;
   this->ui_exit = false;
@@ -24,8 +19,6 @@ ScreenManager::ScreenManager(ScreenStore *app_screen_store)
 
 void ScreenManager::Set(Screen *screen)
 {
-  Interface::Terminal::SetResizeHandler(this->windows_resize_handler);
-
   if (this->current_screen_exists)
     this->current_screen->Terminate();
   this->current_screen = screen;
@@ -37,10 +30,11 @@ void ScreenManager::Set(Screen *screen)
 void ScreenManager::Run()
 {
   while (!this->ui_exit)
+  {
+    ScreenManager::currect_manager = this;
+
     if (this->current_screen_exists)
     {
-      Interface::Terminal::Clear();
-
       this->current_screen->Render();
 
       this->current_screen->Run();
@@ -55,17 +49,22 @@ void ScreenManager::Run()
     else
     {
       this->ui_exit = true;
-      std::cout << "Warning: ScreenManager have not setted screen." << std::endl;
+      std::cout << "Warning: ScreenManager have not setted screen.\n";
     }
+  }
 }
 
 void ScreenManager::Exit()
 {
-  Interface::Terminal::ClearResizeHandler();
-
   if (this->current_screen_exists)
     this->current_screen->Terminate();
   this->ui_exit = true;
+}
+
+void ScreenManager::RenderActiveScreen()
+{
+  if (this->current_screen_exists)
+    this->current_screen->Render();
 }
 
 bool ScreenManager::ExistsActiveScreen()
@@ -86,18 +85,13 @@ void ScreenManager::SendSignal(ScreenSignal signal)
     this->Exit();
     break;
   default:
-    cout << "Error: screen signal '" << signal.signum << "' not found" << endl;
+    std::cout << "Error: screen signal '" << signal.signum << "' not found\n";
     exit(1);
     break;
   }
 }
 
-void ScreenManager::WindowsResizeHandler()
+ScreenManager *ScreenManager::GetCurrectManager()
 {
-  if (this->ExistsActiveScreen())
-  {
-    Interface::Terminal::Clear();
-    if (this->current_screen_exists)
-      this->current_screen->Render();
-  }
+  return ScreenManager::currect_manager;
 }

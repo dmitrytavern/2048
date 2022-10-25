@@ -48,6 +48,7 @@ void MainScreen::Render()
 
   Interface::Menu::Output(this->screen_menu);
 
+  Interface::Terminal::Clear();
   Interface::Print();
 }
 

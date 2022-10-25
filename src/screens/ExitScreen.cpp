@@ -1,5 +1,6 @@
 #include "global.h"
 #include "interface/Interface.h"
+#include "interface/TerminalInterface.h"
 #include "interface/WindowInterface.h"
 #include "interface/DialogInterface.h"
 #include "screens/ExitScreen.h"
@@ -9,6 +10,8 @@ void ExitScreen::Render()
   Interface::Window::OutputVerticalAlign(2);
   Interface::Window::OutputCenter("Exit from game?");
   Interface::Window::OutputCenter("[Y/n]");
+
+  Interface::Terminal::Clear();
   Interface::Print();
 }
 

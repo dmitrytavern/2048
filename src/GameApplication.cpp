@@ -7,14 +7,20 @@
 #include "screens/GameScreen.h"
 #include "screens/ExitScreen.h"
 
+void TerminalResizeHandler(int signum);
+
 int main()
 {
   srand(time(0));
   setlocale(LC_ALL, "");
 
+  /**
+   * Set terminal
+   */
   Interface::Terminal::SetTerminalSize(1000, 800);
-  Interface::Terminal::DisableTerminalScrollbar();
+  Interface::Terminal::SetResizeHandler(&TerminalResizeHandler);
   Interface::Terminal::ActivateResizeListener();
+  Interface::Terminal::DisableTerminalScrollbar();
   Interface::HideCursor();
 
   /**
@@ -40,4 +46,11 @@ int main()
 
   Interface::Terminal::Clear();
   Interface::ShowCursor();
+}
+
+void TerminalResizeHandler(int signum)
+{
+  ScreenManager *manager = ScreenManager::GetCurrectManager();
+  if (manager)
+    manager->RenderActiveScreen();
 }

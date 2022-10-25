@@ -7,18 +7,21 @@
 class ScreenManager
 {
 private:
+  static ScreenManager *currect_manager;
+
   Screen *current_screen;
   ScreenStore *app_screen_store;
   bool current_screen_exists;
   bool ui_exit;
-  std::function<void(int)> windows_resize_handler;
-  void WindowsResizeHandler();
 
 public:
+  static ScreenManager *GetCurrectManager();
+
   ScreenManager(ScreenStore *app_screen_store);
   void Set(Screen *screen);
   void Run();
   void Exit();
-  void SendSignal(ScreenSignal signal);
+  void RenderActiveScreen();
   bool ExistsActiveScreen();
+  void SendSignal(ScreenSignal signal);
 };

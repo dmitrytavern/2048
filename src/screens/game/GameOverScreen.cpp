@@ -5,6 +5,7 @@
 #include "core/CoreMatrix.h"
 #include "core/CoreScore.h"
 #include "interface/Interface.h"
+#include "interface/TerminalInterface.h"
 #include "interface/BannerInterface.h"
 #include "interface/WindowInterface.h"
 #include "interface/MatrixInterface.h"
@@ -34,8 +35,9 @@ void GameOverScreen::Render()
   Interface::Matrix::Output(Core::Matrix::Get(), Core::Matrix::GetSize());
 
   Interface::Banner::Output("Game Over", {"a - new game",
-                                         "e - close game"});
+                                          "e - close game"});
 
+  Interface::Terminal::Clear();
   Interface::Print();
 }
 
