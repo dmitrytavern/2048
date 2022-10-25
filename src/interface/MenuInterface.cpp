@@ -18,10 +18,18 @@ namespace Interface::Menu
 
     for (int index = 0; index < elements.size(); index++)
     {
-      const int color = index == active_element_index ? ACTIVE_ELEMENT_COLOR : ELEMENT_COLOR;
-      string title = Interface::PaintText(color, elements[index].name);
+      string title;
 
-      Interface::Window::OutputCenter(title, elements[index].name.length());
+      if (index == active_element_index)
+      {
+        title = Interface::PaintText(ACTIVE_ELEMENT_COLOR, "> " + elements[index].name + " <");
+        Interface::Window::OutputCenter(title, elements[index].name.length() + 4);
+      }
+      else
+      {
+        title = Interface::PaintText(ELEMENT_COLOR, elements[index].name);
+        Interface::Window::OutputCenter(title, elements[index].name.length());
+      }
 
       if (index < elements.size() - 1)
         Interface::Output();
