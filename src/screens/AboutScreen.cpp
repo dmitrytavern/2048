@@ -11,6 +11,8 @@ enum Triggers
   MAIN_MENU_CLOSE_GAME_CODE = 1,
 };
 
+unsigned int AboutScreen::COLUMNS_INDENT = 6;
+
 AboutScreen::AboutScreen() : Screen(SCREEN_ABOUT_NAME)
 {
   this->screen_menu = new Menu;
@@ -23,36 +25,25 @@ AboutScreen::AboutScreen() : Screen(SCREEN_ABOUT_NAME)
   this->data.push_back({"", ""});
   this->data.push_back({"About application:", ""});
   this->data.push_back({"Version:", APP_VERSION});
+
+  this->CalculateWindowSize();
 }
 
 void AboutScreen::Render()
 {
-  const int columns_indent = 12;
-  int data_size = this->data.size();
+  this->CalculateSpaces();
 
-  int max_column_name_length = 0;
-  int max_column_value_length = 0;
-  for (int index = 0; index < data_size; index++)
+  for (int index = 0; index < this->data.size(); index++)
   {
     AboutItem item = this->data[index];
-    max_column_name_length = (item.column_name.length() > max_column_name_length) ? item.column_name.length() : max_column_name_length;
-    max_column_value_length = (item.column_value.length() > max_column_value_length) ? item.column_name.length() : max_column_value_length;
-  }
-
-  int window_size = max_column_name_length + max_column_value_length + columns_indent;
-  int spaces_count = Interface::Window::CalcSpacesCount(window_size);
-
-  for (int index = 0; index < data_size; index++)
-  {
-    AboutItem item = this->data[index];
-    Interface::OutputSpaces(spaces_count);
+    Interface::OutputSpaces(this->window_spaces);
     Interface::Output(item.column_name);
-    Interface::OutputSpaces(max_column_name_length + columns_indent - item.column_name.length());
+    Interface::OutputSpaces(this->column_name_width - item.column_name.length());
     Interface::Output(item.column_value);
     Interface::Output();
   }
 
-  Interface::Output();
+  Interface::Output("\n\n");
   Interface::Menu::Output(this->screen_menu);
 
   Interface::Window::AlignVertically();
@@ -70,4 +61,27 @@ void AboutScreen::Run()
     this->SetSignal(SCREEN_SIGNAL_SET, SCREEN_MAIN_NAME);
     break;
   }
+}
+
+void AboutScreen::CalculateSpaces()
+{
+  int window_size = this->column_name_width + this->column_value_width;
+  this->window_spaces = Interface::Window::CalcSpacesCount(window_size);
+}
+
+void AboutScreen::CalculateWindowSize()
+{
+  int data_size = this->data.size();
+  int max_column_name_length = 0;
+  int max_column_value_length = 0;
+
+  for (int index = 0; index < data_size; index++)
+  {
+    AboutItem item = this->data[index];
+    max_column_name_length = (item.column_name.length() > max_column_name_length) ? item.column_name.length() : max_column_name_length;
+    max_column_value_length = (item.column_value.length() > max_column_value_length) ? item.column_value.length() : max_column_value_length;
+  }
+
+  this->column_name_width = max_column_name_length + AboutScreen::COLUMNS_INDENT;
+  this->column_value_width = max_column_value_length;
 }
