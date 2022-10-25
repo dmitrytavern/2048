@@ -33,6 +33,13 @@ void AboutScreen::Render()
 {
   this->CalculateSpaces();
 
+  Interface::Window::OutputCenter("     ___    __                __ ");
+  Interface::Window::OutputCenter("    /   |  / /_  ____  __  __/ /_");
+  Interface::Window::OutputCenter("   / /| | / __ \\/ __ \\/ / / / __/");
+  Interface::Window::OutputCenter("  / ___ |/ /_/ / /_/ / /_/ / /_  ");
+  Interface::Window::OutputCenter("/_/  |_/_.___/\\____/\\__,_/\\__/");
+  Interface::Output("\n\n");
+
   for (int index = 0; index < this->data.size(); index++)
   {
     AboutItem item = this->data[index];
