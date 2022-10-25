@@ -26,8 +26,6 @@ void AboutScreen::Render()
   const int columns_indent = 12;
   int data_size = this->data.size();
 
-  Interface::Window::OutputVerticalAlign(data_size + 2);
-
   int max_column_name_length = 0;
   int max_column_value_length = 0;
   for (int index = 0; index < data_size; index++)
@@ -53,6 +51,7 @@ void AboutScreen::Render()
   Interface::Output();
   Interface::Menu::Output(this->screen_menu);
 
+  Interface::Window::AlignVertically();
   Interface::Terminal::Clear();
   Interface::Print();
 }

@@ -7,10 +7,10 @@
 
 void ExitScreen::Render()
 {
-  Interface::Window::OutputVerticalAlign(2);
   Interface::Window::OutputCenter("Exit from game?");
   Interface::Window::OutputCenter("[Y/n]");
 
+  Interface::Window::AlignVertically();
   Interface::Terminal::Clear();
   Interface::Print();
 }

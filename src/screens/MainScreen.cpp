@@ -25,11 +25,6 @@ MainScreen::MainScreen() : Screen(SCREEN_MAIN_NAME)
 
 void MainScreen::Render()
 {
-  unsigned int menu_borders = Interface::Banner::BORDER_SIZE * 2 + 2;
-  unsigned int other_print_rows = 10; // Title and \n
-
-  Interface::Window::OutputVerticalAlign(menu_borders + other_print_rows);
-
   if (Interface::Terminal::GetTerminalWidth() >= 58)
   {
     Interface::Window::OutputCenter("$$$$$$$\\            $$\\      $$\\           $$$$$$$\\  ");
@@ -50,6 +45,7 @@ void MainScreen::Render()
 
   Interface::Menu::Output(this->screen_menu);
 
+  Interface::Window::AlignVertically();
   Interface::Terminal::Clear();
   Interface::Print();
 }

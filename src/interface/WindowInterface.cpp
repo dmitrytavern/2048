@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string.h>
 #include "interface/Interface.h"
 #include "interface/WindowInterface.h"
 #include "interface/TerminalInterface.h"
@@ -26,16 +27,30 @@ namespace Interface::Window
     Interface::Output();
   }
 
-  void OutputVerticalAlign(int content_row_count)
+  void AlignVertically()
   {
     unsigned int window_height = Interface::Terminal::GetTerminalHeight();
-    unsigned int length = (window_height - content_row_count) / 2;
+    unsigned int content_row_count = 0;
+    char *char_string = new char[output.size() + 1];
+    char *tmp_char;
+
+    strcpy(char_string, output.c_str());
+
+    tmp_char = strtok(char_string, "\n");
+    while (tmp_char != NULL)
+    {
+      tmp_char = strtok(NULL, "\n");
+      content_row_count++;
+    }
+
+    int length = (window_height - content_row_count) / 2;
     string n = "";
 
     for (int i = 0; i < length; i++)
       n += "\n";
 
-    Interface::Output(n);
+    OutputInStart(n);
+    delete[] char_string;
   }
 
   void PrintBorderTop(int chars_count)

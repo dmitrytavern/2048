@@ -8,20 +8,27 @@ using namespace std;
 
 namespace Interface
 {
+  std::string output = "";
+
   void Print()
   {
-      printf("%s", output.c_str());
-      output = "";
+    printf("%s", output.c_str());
+    output = "";
   }
 
   void Output()
   {
-      output += "\n";
+    output += "\n";
   }
 
   void Output(string message)
   {
-      output += message;
+    output += message;
+  }
+
+  void OutputInStart(string message)
+  {
+    output = message + output;
   }
 
   void OutputSpaces(int spaces_count)

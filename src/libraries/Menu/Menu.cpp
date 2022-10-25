@@ -29,7 +29,6 @@ void Menu::SetActiveElementIndex(int index)
 
 void Menu::AddElement(int code, string name)
 {
-  std::cout << "Added: " << std::endl;
   int currect_size = this->elements.size();
   this->elements.push_back(MenuElement());
   this->elements[currect_size].code = code;

@@ -14,16 +14,6 @@
 
 void GameOverScreen::Render()
 {
-  unsigned int matrix_size = Core::Matrix::GetSize();
-  unsigned int matrix_cell_height = Interface::Matrix::CELL_HEIGHT;
-  unsigned int matrix_borders = Interface::Matrix::BORDER_SIZE * 2;
-  unsigned int menu_borders = Interface::Banner::BORDER_SIZE * 2;
-  unsigned int matrix_print_rows = matrix_size * matrix_cell_height + matrix_borders;
-  unsigned int menu_print_rows = menu_borders + 2;
-  unsigned int other_print_rows = 2; // Result, Title
-
-  Interface::Window::OutputVerticalAlign(matrix_print_rows + menu_print_rows + other_print_rows);
-
 #ifdef __linux__
   Interface::Window::OutputCenter("━━━━ 2048 Game Session ━━━━", 28);
 #else
@@ -37,6 +27,7 @@ void GameOverScreen::Render()
   Interface::Banner::Output("Game Over", {"a - new game",
                                           "e - close game"});
 
+  Interface::Window::AlignVertically();
   Interface::Terminal::Clear();
   Interface::Print();
 }
