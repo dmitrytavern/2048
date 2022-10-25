@@ -1,4 +1,5 @@
 #include "global.h"
+#include "config.h"
 #include "interface/Interface.h"
 #include "interface/MenuInterface.h"
 #include "interface/WindowInterface.h"
@@ -19,6 +20,9 @@ AboutScreen::AboutScreen() : Screen(SCREEN_ABOUT_NAME)
   this->data.push_back({"About developers:", ""});
   this->data.push_back({"Author:", "Dmitry Tavern"});
   this->data.push_back({"Author GitHub:", "https://github.com/dmitrytavern"});
+  this->data.push_back({"", ""});
+  this->data.push_back({"About application:", ""});
+  this->data.push_back({"Version:", APP_VERSION});
 }
 
 void AboutScreen::Render()
