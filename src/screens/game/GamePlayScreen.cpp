@@ -80,6 +80,6 @@ void GamePlayScreen::Run()
     }
   }
 
-  if (!Core::ExistsMove())
+  if (!Core::Matrix::ExistsMove())
     this->SetSignal(SCREEN_SIGNAL_SET, SCREEN_GAME_OVER_NAME);
 }

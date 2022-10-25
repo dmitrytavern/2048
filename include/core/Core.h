@@ -7,7 +7,6 @@ namespace Core
   void ToStartGame();
   void ToFinishGame();
   void ToMove(Core::Matrix::SwipeDirections direction);
-  bool ExistsMove();
 
   static void Next();
   static int GenerateNumber();

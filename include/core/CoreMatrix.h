@@ -22,5 +22,6 @@ namespace Core::Matrix
   void Swipe(SwipeDirections direction);
   void Create();
   void Clear();
-  void Exists();
+  bool Exists();
+  bool ExistsMove();
 }

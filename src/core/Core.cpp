@@ -24,16 +24,14 @@ namespace Core
     Core::Score::Clear();
   }
 
-  bool ExistsMove()
-  {
-    return Core::Matrix::GetEmptyCellCount() != 0;
-  }
-
   static void Next()
   {
-    int number = GenerateNumber();
-    Core::Score::Increment(number);
-    Core::Matrix::FillCell(number);
+    if (Core::Matrix::GetEmptyCellCount() != 0)
+    {
+      int number = GenerateNumber();
+      Core::Score::Increment(number);
+      Core::Matrix::FillCell(number);
+    }
   }
 
   static int GenerateNumber()

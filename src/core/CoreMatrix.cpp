@@ -51,6 +51,13 @@ namespace Core::Matrix
     return exists_matrix;
   }
 
+  bool ExistsMove()
+  {
+    if (matrix->GetEmptyCellCount() == 0)
+      return matrix->ExistCompareRowCells() || matrix->ExistCompareColumnCells();
+    return true;
+  }
+
   void Swipe(SwipeDirections direction)
   {
     if (direction == SWIPE_DIRECTION_UP)

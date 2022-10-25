@@ -161,6 +161,44 @@ void GameMatrix::FillRandomCell(int number)
   }
 }
 
+bool GameMatrix::ExistCompareRowCells()
+{
+  for (int row = 0; row < this->size; row++)
+  {
+    unsigned int *current_cell, *previous_cell;
+
+    for (int column = 1; column < this->size; column++)
+    {
+      previous_cell = &this->matrix[row][column - 1];
+      current_cell = &this->matrix[row][column];
+
+      if (this->ExistCompareCells(previous_cell, current_cell))
+        return true;
+    }
+  }
+
+  return false;
+}
+
+bool GameMatrix::ExistCompareColumnCells()
+{
+  for (int column = 0; column < this->size; column++)
+  {
+    unsigned int *current_cell, *previous_cell;
+
+    for (int row = 1; row < this->size; row++)
+    {
+      previous_cell = &this->matrix[row - 1][column];
+      current_cell = &this->matrix[row][column];
+
+      if (this->ExistCompareCells(previous_cell, current_cell))
+        return true;
+    }
+  }
+
+  return false;
+}
+
 void GameMatrix::CompareCells(unsigned int *previous_cell, unsigned int *current_cell)
 {
   if (*previous_cell == 0 && *current_cell != 0)

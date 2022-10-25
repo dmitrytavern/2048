@@ -16,6 +16,8 @@ public:
   void SwipeDown();
   void SwipeRight();
   void FillRandomCell(int number);
+  bool ExistCompareRowCells();
+  bool ExistCompareColumnCells();
   unsigned int **GetMatrix();
   unsigned int GetMatrixSize();
   unsigned int GetEmptyCellCount();
