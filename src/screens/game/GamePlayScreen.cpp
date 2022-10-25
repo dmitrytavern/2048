@@ -18,13 +18,16 @@ void GamePlayScreen::Initialize()
 
 void GamePlayScreen::Render()
 {
-#ifdef __linux__
-  Interface::Window::OutputCenter("━━━━ 2048 Game Session ━━━━", 28);
-#else
-  Interface::Window::OutputCenter("---- 2048 Game Session ----");
-#endif
+  std::string score = std::to_string(Core::Score::Get());
 
-  Interface::Window::OutputCenter("Your score: " + std::to_string(Core::Score::Get()));
+  Interface::Window::OutputCenter("       ___   ____  __ __  ____ ");
+  Interface::Window::OutputCenter("    |__ \\ / __ \\/ // / ( __ )");
+  Interface::Window::OutputCenter("    __/ // / / / // /_/ __  |");
+  Interface::Window::OutputCenter("   / __// /_/ /__  __/ /_/ / ");
+  Interface::Window::OutputCenter("/____/\\____/  /_/  \\____/");
+  Interface::Output();
+
+  Interface::Window::OutputCenter("Your score: " + score);
 
   Interface::Matrix::Output(Core::Matrix::Get(), Core::Matrix::GetSize());
 
