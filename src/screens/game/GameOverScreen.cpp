@@ -43,11 +43,14 @@ void GameOverScreen::Run()
     switch (code)
     {
     case Interface::Dialog::CHAR_A:
+    case Interface::Dialog::CHAR_A_UPPER:
       this->SetSignal(SCREEN_SIGNAL_SET, SCREEN_GAME_PLAY_NAME);
       dialog = false;
       break;
 
     case Interface::Dialog::CHAR_E:
+    case Interface::Dialog::CHAR_E_UPPER:
+    case Interface::Dialog::KEY_ESC:
       this->SetSignal(SCREEN_SIGNAL_EXIT);
       dialog = false;
       break;

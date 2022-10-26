@@ -67,11 +67,20 @@ namespace Interface::Dialog
     {
       int input = getch();
 
-      if (input == CHAR_Y || input == CHAR_1 || input == CHAR_Y_UPPER || input == KEY_ENTER)
+      switch (input)
+      {
+      case CHAR_Y:
+      case CHAR_Y_UPPER:
+      case CHAR_1:
+      case KEY_ENTER:
         return true;
 
-      if (input == CHAR_N || input == CHAR_N_UPPER || input == CHAR_0)
+      case CHAR_N:
+      case CHAR_N_UPPER:
+      case CHAR_0:
+      case KEY_ESC:
         return false;
+      }
     }
   }
 }

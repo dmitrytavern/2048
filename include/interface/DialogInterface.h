@@ -12,6 +12,7 @@ namespace Interface::Dialog
   const int KEY_DOWN = 80;
   const int KEY_LEFT = 75;
   const int KEY_RIGHT = 77;
+  const int KEY_ESC = 27;
 
   const int CHAR_W = 119;
   const int CHAR_W_UPPER = 87;
