@@ -1,4 +1,8 @@
-project(DTavernGameApplication)
+if($ENV{APP_ARCHITECTURE} STREQUAL "x64")
+  set(APP_OUTPUT_TITLE "TavernGame2048_${PROJECT_VERSION}")
+else()
+  set(APP_OUTPUT_TITLE "TavernGame2048_$ENV{APP_ARCHITECTURE}_${PROJECT_VERSION}")
+endif()
 
 add_library(Core
   core/Core.cpp
@@ -28,7 +32,7 @@ add_library(ScreenLibrary
   libraries/Screen/ScreenManager.cpp
 )
 
-add_executable(GameApplication
+add_executable(${APP_OUTPUT_TITLE}
   GameApplication.cpp
   screens/MainScreen.cpp
   screens/GameScreen.cpp
@@ -39,7 +43,7 @@ add_executable(GameApplication
   "../resources/appicon.rc"
 )
 
-target_link_libraries(GameApplication
+target_link_libraries(${APP_OUTPUT_TITLE}
   Core
   Interface
   MenuLibrary
