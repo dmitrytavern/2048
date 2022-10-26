@@ -8,12 +8,15 @@ struct AboutItem
 {
   std::string column_name;
   std::string column_value;
+  unsigned int color;
 };
 
 class AboutScreen : public Screen
 {
 private:
   static unsigned int COLUMNS_INDENT;
+  static unsigned int COLOR_TITLE;
+  static unsigned int COLOR_ITEM;
 
   Menu *screen_menu;
   std::vector<AboutItem> data;

@@ -14,18 +14,26 @@ enum Triggers
 
 unsigned int AboutScreen::COLUMNS_INDENT = 6;
 
+#ifdef __linux__
+unsigned int AboutScreen::COLOR_TITLE = 255;
+unsigned int AboutScreen::COLOR_ITEM = 253;
+#else
+unsigned int AboutScreen::COLOR_TITLE = 97;
+unsigned int AboutScreen::COLOR_ITEM = 37;
+#endif
+
 AboutScreen::AboutScreen() : Screen(SCREEN_ABOUT_NAME)
 {
   this->screen_menu = new Menu;
   this->screen_menu->AddElement(MAIN_MENU_CLOSE_GAME_CODE, "Exit");
 
   this->data = {};
-  this->data.push_back({"About developers:", ""});
-  this->data.push_back({"Author:", "Dmitry Tavern"});
-  this->data.push_back({"Author GitHub:", "https://github.com/dmitrytavern"});
-  this->data.push_back({"", ""});
-  this->data.push_back({"About application:", ""});
-  this->data.push_back({"Version:", APP_VERSION});
+  this->data.push_back({"About developers:", "", AboutScreen::COLOR_TITLE});
+  this->data.push_back({"Author:", "Dmitry Tavern", AboutScreen::COLOR_ITEM});
+  this->data.push_back({"Author GitHub:", "https://github.com/dmitrytavern", AboutScreen::COLOR_ITEM});
+  this->data.push_back({"", "", AboutScreen::COLOR_ITEM});
+  this->data.push_back({"About application:", "", AboutScreen::COLOR_TITLE});
+  this->data.push_back({"Version:", APP_VERSION, AboutScreen::COLOR_ITEM});
 
   this->CalculateWindowSize();
 }
@@ -40,10 +48,13 @@ void AboutScreen::Render()
   for (int index = 0; index < this->data.size(); index++)
   {
     AboutItem item = this->data[index];
+    std::string item_name = Interface::PaintText(item.color, item.column_name);
+    std::string item_value = Interface::PaintText(item.color, item.column_value);
+
     Interface::OutputSpaces(this->window_spaces);
-    Interface::Output(item.column_name);
+    Interface::Output(item_name);
     Interface::OutputSpaces(this->column_name_width - item.column_name.length());
-    Interface::Output(item.column_value);
+    Interface::Output(item_value);
     Interface::Output();
   }
 
