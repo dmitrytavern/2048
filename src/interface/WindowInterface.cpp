@@ -30,27 +30,14 @@ namespace Interface::Window
   void AlignVertically()
   {
     unsigned int window_height = Interface::Terminal::GetHeight();
-    unsigned int content_row_count = 0;
-    char *char_string = new char[output.size() + 1];
-    char *tmp_char;
+    unsigned int content_row_count = std::count(output.begin(), output.end(), '\n');
+    int length = content_row_count < window_height ? ((window_height - content_row_count) / 2) : 0;
 
-    strcpy(char_string, output.c_str());
-
-    tmp_char = strtok(char_string, "\n");
-    while (tmp_char != NULL)
-    {
-      tmp_char = strtok(NULL, "\n");
-      content_row_count++;
-    }
-
-    int length = (window_height - content_row_count) / 2;
     string n = "";
-
     for (int i = 0; i < length; i++)
       n += "\n";
 
     OutputInStart(n);
-    delete[] char_string;
   }
 
   void PrintBorderTop(int chars_count)
