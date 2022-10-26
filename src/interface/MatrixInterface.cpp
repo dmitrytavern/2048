@@ -78,6 +78,10 @@ namespace Interface::Matrix
 
     Interface::OutputSpaces(spaces_count);
     Interface::Window::PrintBorderBottom(windows_size);
+
+    for (int row = 0; row < output_matrix_rows; row++)
+      delete[] chars_matrix[row];
+    delete[] chars_matrix;
   }
 
   static int CalcMatrixRow(int matrix_size)

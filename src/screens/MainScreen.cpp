@@ -23,6 +23,11 @@ MainScreen::MainScreen() : Screen(SCREEN_MAIN_NAME)
   this->screen_menu->AddElement(MAIN_MENU_CLOSE_GAME_CODE, "Exit");
 }
 
+MainScreen::~MainScreen()
+{
+  delete this->screen_menu;
+}
+
 void MainScreen::Render()
 {
   Interface::Title::OutputMainTitle();

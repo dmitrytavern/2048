@@ -10,6 +10,7 @@ private:
 
 public:
   MainScreen();
+  ~MainScreen();
   void Render();
   void Run();
 };

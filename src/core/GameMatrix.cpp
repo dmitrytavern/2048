@@ -14,6 +14,13 @@ GameMatrix::GameMatrix(unsigned int size)
   }
 }
 
+GameMatrix::~GameMatrix()
+{
+  for (int row = 0; row < this->size; row++)
+    delete[] this->matrix[row];
+  delete[] this->matrix;
+}
+
 unsigned int **GameMatrix::GetMatrix()
 {
   return this->matrix;

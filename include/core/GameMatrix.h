@@ -11,6 +11,7 @@ private:
 
 public:
   GameMatrix(unsigned int size);
+  ~GameMatrix();
   void SwipeUp();
   void SwipeLeft();
   void SwipeDown();
