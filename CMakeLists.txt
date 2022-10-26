@@ -1,5 +1,11 @@
 cmake_minimum_required (VERSION 3.15)
-project(DTavernGameApplication VERSION 0.0.0)
+project(TavernGame2048 VERSION 0.0.0)
+
+if($ENV{APP_ARCHITECTURE} STREQUAL "x64")
+  set(APP_PROJECT_NAME "${PROJECT_NAME}_${PROJECT_VERSION}")
+else()
+  set(APP_PROJECT_NAME "${PROJECT_NAME}_$ENV{APP_ARCHITECTURE}_${PROJECT_VERSION}")
+endif()
 
 configure_file(
   ${PROJECT_SOURCE_DIR}/include/config.h.in
@@ -19,4 +25,8 @@ include_directories(${PROJECT_BINARY_DIR})
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
 add_subdirectory(src)
-add_subdirectory(tests)
+
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+  enable_testing()
+  add_subdirectory(tests)
+endif()
