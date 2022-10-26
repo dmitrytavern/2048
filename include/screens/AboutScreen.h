@@ -24,6 +24,10 @@ private:
   int column_name_width;
   int column_value_width;
 
+  void AddSplit();
+  void AddRow(std::string column_name);
+  void AddRow(std::string column_name, std::string column_value);
+
 public:
   AboutScreen();
   void Render();

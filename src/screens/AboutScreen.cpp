@@ -28,12 +28,13 @@ AboutScreen::AboutScreen() : Screen(SCREEN_ABOUT_NAME)
   this->screen_menu->AddElement(MAIN_MENU_CLOSE_GAME_CODE, "Exit");
 
   this->data = {};
-  this->data.push_back({"About developers:", "", AboutScreen::COLOR_TITLE});
-  this->data.push_back({"Author:", "Dmitry Tavern", AboutScreen::COLOR_ITEM});
-  this->data.push_back({"Author GitHub:", "https://github.com/dmitrytavern", AboutScreen::COLOR_ITEM});
-  this->data.push_back({"", "", AboutScreen::COLOR_ITEM});
-  this->data.push_back({"About application:", "", AboutScreen::COLOR_TITLE});
-  this->data.push_back({"Version:", APP_VERSION, AboutScreen::COLOR_ITEM});
+
+  this->AddRow("About developers:");
+  this->AddRow("Author:", "Dmitry Tavern");
+  this->AddRow("Author GitHub:", "https://github.com/dmitrytavern");
+  this->AddSplit();
+  this->AddRow("About application:");
+  this->AddRow("Version:", APP_VERSION);
 
   this->CalculateWindowSize();
 }
@@ -99,4 +100,19 @@ void AboutScreen::CalculateWindowSize()
 
   this->column_name_width = max_column_name_length + AboutScreen::COLUMNS_INDENT;
   this->column_value_width = max_column_value_length;
+}
+
+void AboutScreen::AddSplit()
+{
+  this->data.push_back({"", "", AboutScreen::COLOR_TITLE});
+}
+
+void AboutScreen::AddRow(std::string column_name)
+{
+  this->data.push_back({column_name, "", AboutScreen::COLOR_TITLE});
+}
+
+void AboutScreen::AddRow(std::string column_name, std::string column_value)
+{
+  this->data.push_back({column_name, column_value, AboutScreen::COLOR_ITEM});
 }
