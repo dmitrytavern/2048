@@ -1,4 +1,4 @@
-[< Back to docs](../)
+[< Back to docs](./readme.md)
 
 # **Game directory structure**
 
