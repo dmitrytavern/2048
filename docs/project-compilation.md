@@ -1,4 +1,4 @@
-[< Back to docs](../)
+[< Back to docs](./readme.md)
 
 # **How to compile this game?**
 
@@ -15,7 +15,7 @@ Okay, let's start!
 
 ## **MS Visual Studio C++**
 
-1. Go to the [root](../) of the repository and download it. As zip or clone. (If you download the zip file, uncompress it)
+1. Go to the [root](https://github.com/dmitrytavern/dtavern-game-2048) of the repository and download it. As zip or clone. (If you download the zip file, uncompress it)
 
 1. Download and install [Visual Studio C++ Installer](https://visualstudio.microsoft.com/ru/vs/) from the official site.
 
