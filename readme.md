@@ -24,12 +24,12 @@
 
     After downloading, run it in the terminal:
     ```
-    ./dtavern-game-2048_1.0.0
+    ./dtavern-game-2048_v1.0.0
     ```
 
     Note: for linux, you need set rights for execution:
     ```
-    sudo chmod +x dtavern-game-2048_1.0.0
+    sudo chmod +x dtavern-game-2048_v1.0.0
     ```
 
   - **MacOS:** not available
