@@ -1,9 +1,12 @@
-#ifndef _CONFIG_H
-#define _CONFIG_H
+/**
+ * config.h
+ * ========
+ * This file will be updated by CMake after the build command.
+ * Contains global variables from the CMake builder
+ */
 
+#pragma once
 #define APP_VERSION "@PROJECT_VERSION@"
 #define APP_BUILD "@CMAKE_BUILD_TYPE@"
 #define APP_PLATFORM "$ENV{APP_PLATFORM}"
 #define APP_ARCHITECTURE "$ENV{APP_ARCHITECTURE}"
-
-#endif
