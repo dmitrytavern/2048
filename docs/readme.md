@@ -1,5 +1,3 @@
-[< Back to repository](../)
-
 # **Documentation**
 
 ## **Preview**
