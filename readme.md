@@ -13,14 +13,14 @@
 ## **Download**
 
   - <img src="./resources/windows-icon.png"> **Windows (7, 8, 10):**
-    - [dtavern-game-2048_v1.0.0.exe](https://drive.google.com/file/d/1t4yCrtjcXPxkSaiacC5OEYou9lGhANIO/view?usp=sharing) (x64 bit)
-    - [dtavern-game-2048_x86_v1.0.0.exe](https://drive.google.com/file/d/1a6jYKXxf05PsTE_gfKfG_kLkYzWN4QzA/view?usp=sharing) (x32 bit)
+    - [dtavern-game-2048_v1.0.0.exe](/dmitrytavern/dtavern-game-2048/releases/download/v1.0.0/dtavern-game-2048_v1.0.0.exe) (x64 bit)
+    - [dtavern-game-2048_x86_v1.0.0.exe](/dmitrytavern/dtavern-game-2048/releases/download/v1.0.0/dtavern-game-2048_x86_v1.0.0.exe) (x32 bit)
 
     After downloading, just run it as a standard exe file.
 
   - <img src="./resources/linux-icon.png"> **Linux:**
-    - [dtavern-game-2048_v1.0.0](https://drive.google.com/file/d/1hKbfPaa2YfsPiIbRv19E2Dman4lP9fCG/view?usp=sharing) (x64 bit)
-    - [dtavern-game-2048_x86_v1.0.0](https://drive.google.com/file/d/1tT_kJQJCTv3ozp3PBkBIVkwe_ehLclaw/view?usp=sharing) (x32 bit)
+    - [dtavern-game-2048_v1.0.0](/dmitrytavern/dtavern-game-2048/releases/download/v1.0.0/dtavern-game-2048_v1.0.0) (x64 bit)
+    - [dtavern-game-2048_x86_v1.0.0](/dmitrytavern/dtavern-game-2048/releases/download/v1.0.0/dtavern-game-2048_x86_v1.0.0) (x32 bit)
 
     After downloading, run it in the terminal:
     ```
