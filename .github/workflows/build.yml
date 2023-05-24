@@ -1,0 +1,64 @@
+name: Build
+
+on:
+  release:
+    types: [created]
+
+env:
+  WINDOWS_PRESET: windows-release
+  LINUX_PRESET: linux-release
+
+jobs:
+  build-windows-64:
+    name: Windows Latest
+    runs-on: windows-latest
+    permissions: write-all
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Configure
+        working-directory: ${{ github.workspace }}
+        run: cmake . --preset ${{ env.WINDOWS_PRESET }}
+
+      - name: Build
+        working-directory: ${{ github.workspace }}
+        run: make -C build/${{ env.WINDOWS_PRESET }}
+
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file_glob: true
+          file: ${{ github.workspace }}/bin/*
+          tag: ${{ github.ref }}
+          overwrite: false
+
+  build-linux-64:
+    name: Linux Latest
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Configure
+        working-directory: ${{ github.workspace }}
+        run: cmake . --preset ${{ env.LINUX_PRESET }}
+
+      - name: Build
+        working-directory: ${{ github.workspace }}
+        run: make -C build/${{ env.LINUX_PRESET }}
+
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file_glob: true
+          file: ${{ github.workspace }}/bin/*
+          tag: ${{ github.ref }}
+          overwrite: false
