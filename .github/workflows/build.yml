@@ -5,7 +5,7 @@ on:
     types: [created]
 
 env:
-  WINDOWS_PRESET: windows-release
+  WINDOWS_PRESET: windows-release-mingw
   LINUX_PRESET: linux-release
 
 jobs:
@@ -19,13 +19,18 @@ jobs:
         with:
           ref: ${{ github.ref }}
 
+      - name: Set up MinGW
+        uses: egor-tensin/setup-mingw@v2
+        with:
+          platform: x64
+
       - name: Configure
         working-directory: ${{ github.workspace }}
         run: cmake . --preset ${{ env.WINDOWS_PRESET }}
 
       - name: Build
         working-directory: ${{ github.workspace }}
-        run: make -C build/${{ env.WINDOWS_PRESET }}
+        run: make -C ./build/${{ env.WINDOWS_PRESET }}
 
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
