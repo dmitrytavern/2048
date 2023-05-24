@@ -35,8 +35,7 @@ AboutScreen::AboutScreen() : Screen(SCREEN_ABOUT_NAME)
   this->AddSplit();
   this->AddRow("About application:");
   this->AddRow("Version:", APP_VERSION);
-  this->AddRow("Repository:",
-               "https://github.com/dmitrytavern/dtavern-game-2048");
+  this->AddRow("Repository:", "https://github.com/dmitrytavern/2048");
   this->AddRow("Build:", APP_BUILD);
   this->AddRow("Platform:", APP_PLATFORM);
   this->AddRow("Architecture:", APP_ARCHITECTURE);
