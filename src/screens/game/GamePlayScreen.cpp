@@ -1,16 +1,16 @@
+#include "../../../include/screens/game/GamePlayScreen.h"
+#include "../../../include/core/Core.h"
+#include "../../../include/core/CoreMatrix.h"
+#include "../../../include/core/CoreScore.h"
+#include "../../../include/global.h"
+#include "../../../include/interface/BannerInterface.h"
+#include "../../../include/interface/DialogInterface.h"
+#include "../../../include/interface/Interface.h"
+#include "../../../include/interface/MatrixInterface.h"
+#include "../../../include/interface/TerminalInterface.h"
+#include "../../../include/interface/TitleInterface.h"
+#include "../../../include/interface/WindowInterface.h"
 #include <string>
-#include "global.h"
-#include "core/Core.h"
-#include "core/CoreMatrix.h"
-#include "core/CoreScore.h"
-#include "interface/Interface.h"
-#include "interface/TerminalInterface.h"
-#include "interface/BannerInterface.h"
-#include "interface/WindowInterface.h"
-#include "interface/MatrixInterface.h"
-#include "interface/DialogInterface.h"
-#include "interface/TitleInterface.h"
-#include "screens/game/GamePlayScreen.h"
 
 void GamePlayScreen::Initialize()
 {
@@ -28,11 +28,9 @@ void GamePlayScreen::Render()
 
   Interface::Matrix::Output(Core::Matrix::Get(), Core::Matrix::GetSize());
 
-  Interface::Banner::Output("Control", {"w - swipe to up",
-                                        "a - swipe to left",
+  Interface::Banner::Output("Control", {"w - swipe to up", "a - swipe to left",
                                         "s - swipe to down",
-                                        "d - swipe to right",
-                                        "e - exit"});
+                                        "d - swipe to right", "e - exit"});
 
   Interface::Window::AlignVertically();
   Interface::Terminal::Clear();

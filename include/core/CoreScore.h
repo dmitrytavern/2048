@@ -3,9 +3,9 @@
 
 namespace Core::Score
 {
-  static int score;
+static int score;
 
-  int Get();
-  void Clear();
-  void Increment(int number);
-}
+int Get();
+void Clear();
+void Increment(int number);
+} // namespace Core::Score

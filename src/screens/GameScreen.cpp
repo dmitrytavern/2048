@@ -1,8 +1,8 @@
-#include "global.h"
-#include "core/Core.h"
-#include "screens/GameScreen.h"
-#include "screens/game/GamePlayScreen.h"
-#include "screens/game/GameOverScreen.h"
+#include "../../include/screens/GameScreen.h"
+#include "../../include/core/Core.h"
+#include "../../include/global.h"
+#include "../../include/screens/game/GameOverScreen.h"
+#include "../../include/screens/game/GamePlayScreen.h"
 
 void GameScreen::Initialize()
 {

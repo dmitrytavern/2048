@@ -1,6 +1,6 @@
+#include "../../../include/libraries/Screen/Screen.h"
+#include "../../../include/libraries/Screen/ScreenSignal.h"
 #include <iostream>
-#include "libraries/Screen/Screen.h"
-#include "libraries/Screen/ScreenSignal.h"
 
 using namespace std;
 

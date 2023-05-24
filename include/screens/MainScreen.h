@@ -1,7 +1,7 @@
 #pragma once
+#include "../libraries/Menu/Menu.h"
+#include "../libraries/Screen/Screen.h"
 #include <iostream>
-#include "libraries/Screen/Screen.h"
-#include "libraries/Menu/Menu.h"
 
 class MainScreen : public Screen
 {

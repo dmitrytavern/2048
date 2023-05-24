@@ -1,8 +1,8 @@
-#include <iostream>
+#include "../../../include/libraries/Screen/ScreenStore.h"
+#include "../../../include/libraries/Screen/Screen.h"
 #include <iomanip>
+#include <iostream>
 #include <string>
-#include "libraries/Screen/Screen.h"
-#include "libraries/Screen/ScreenStore.h"
 
 using namespace std;
 

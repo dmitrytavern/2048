@@ -1,12 +1,12 @@
+#include "../../include/screens/MainScreen.h"
+#include "../../include/global.h"
+#include "../../include/interface/DialogInterface.h"
+#include "../../include/interface/Interface.h"
+#include "../../include/interface/MenuInterface.h"
+#include "../../include/interface/TerminalInterface.h"
+#include "../../include/interface/TitleInterface.h"
+#include "../../include/interface/WindowInterface.h"
 #include <vector>
-#include "global.h"
-#include "interface/Interface.h"
-#include "interface/MenuInterface.h"
-#include "interface/WindowInterface.h"
-#include "interface/TerminalInterface.h"
-#include "interface/DialogInterface.h"
-#include "interface/TitleInterface.h"
-#include "screens/MainScreen.h"
 
 enum Triggers
 {

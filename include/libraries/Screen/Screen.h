@@ -1,6 +1,6 @@
 #pragma once
-#include <iostream>
 #include "ScreenSignal.h"
+#include <iostream>
 
 class Screen
 {

@@ -1,10 +1,10 @@
 #include <iostream>
 #include <functional>
 #include <string>
-#include "libraries/Screen/Screen.h"
-#include "libraries/Screen/ScreenStore.h"
-#include "libraries/Screen/ScreenSignal.h"
-#include "libraries/Screen/ScreenManager.h"
+#include "../../../include/libraries/Screen/Screen.h"
+#include "../../../include/libraries/Screen/ScreenStore.h"
+#include "../../../include/libraries/Screen/ScreenSignal.h"
+#include "../../../include/libraries/Screen/ScreenManager.h"
 
 using namespace std;
 

@@ -1,5 +1,5 @@
+#include "../../include/core/GameMatrix.h"
 #include <iostream>
-#include "core/GameMatrix.h"
 
 GameMatrix::GameMatrix(unsigned int size)
 {
@@ -206,7 +206,8 @@ bool GameMatrix::ExistCompareColumnCells()
   return false;
 }
 
-void GameMatrix::CompareCells(unsigned int *previous_cell, unsigned int *current_cell)
+void GameMatrix::CompareCells(unsigned int *previous_cell,
+                              unsigned int *current_cell)
 {
   if (*previous_cell == 0 && *current_cell != 0)
   {
@@ -214,19 +215,22 @@ void GameMatrix::CompareCells(unsigned int *previous_cell, unsigned int *current
     *current_cell = 0;
   }
 
-  if ((*previous_cell == *current_cell) && (*previous_cell != 0 && *current_cell != 0))
+  if ((*previous_cell == *current_cell) &&
+      (*previous_cell != 0 && *current_cell != 0))
   {
     *previous_cell = *current_cell * 2;
     *current_cell = 0;
   }
 }
 
-bool GameMatrix::ExistCompareCells(unsigned int *previous_cell, unsigned int *current_cell)
+bool GameMatrix::ExistCompareCells(unsigned int *previous_cell,
+                                   unsigned int *current_cell)
 {
   if (*previous_cell == 0 && *current_cell != 0)
     return true;
 
-  if ((*previous_cell == *current_cell) && (*previous_cell != 0 && *current_cell != 0))
+  if ((*previous_cell == *current_cell) &&
+      (*previous_cell != 0 && *current_cell != 0))
     return true;
 
   return false;

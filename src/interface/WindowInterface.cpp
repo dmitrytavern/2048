@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string.h>
-#include "interface/Interface.h"
-#include "interface/WindowInterface.h"
-#include "interface/TerminalInterface.h"
+#include "../../include/interface/Interface.h"
+#include "../../include/interface/WindowInterface.h"
+#include "../../include/interface/TerminalInterface.h"
 
 using namespace std;
 

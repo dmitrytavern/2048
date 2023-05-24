@@ -1,7 +1,7 @@
 #pragma once
+#include "Screen.h"
 #include <iostream>
 #include <vector>
-#include "Screen.h"
 
 class ScreenStore
 {

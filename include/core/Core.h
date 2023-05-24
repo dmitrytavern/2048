@@ -1,13 +1,13 @@
 #pragma once
-#include <iostream>
 #include "CoreMatrix.h"
+#include <iostream>
 
 namespace Core
 {
-  void ToStartGame();
-  void ToFinishGame();
-  void ToMove(Core::Matrix::SwipeDirections direction);
+void ToStartGame();
+void ToFinishGame();
+void ToMove(Core::Matrix::SwipeDirections direction);
 
-  static void Next();
-  static int GenerateNumber();
-}
+static void Next();
+static int GenerateNumber();
+} // namespace Core

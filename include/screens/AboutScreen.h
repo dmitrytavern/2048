@@ -1,8 +1,8 @@
 #pragma once
+#include "../libraries/Menu/Menu.h"
+#include "../libraries/Screen/Screen.h"
 #include <iostream>
 #include <vector>
-#include "libraries/Screen/Screen.h"
-#include "libraries/Menu/Menu.h"
 
 struct AboutItem
 {

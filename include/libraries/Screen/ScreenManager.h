@@ -1,8 +1,9 @@
 #pragma once
-#include <iostream>
-#include <functional>
 #include "Screen.h"
 #include "ScreenSignal.h"
+#include "ScreenStore.h"
+#include <functional>
+#include <iostream>
 
 class ScreenManager
 {

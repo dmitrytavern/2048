@@ -1,11 +1,11 @@
-#include "global.h"
+#include "../../include/screens/AboutScreen.h"
+#include "../../include/global.h"
+#include "../../include/interface/Interface.h"
+#include "../../include/interface/MenuInterface.h"
+#include "../../include/interface/TerminalInterface.h"
+#include "../../include/interface/TitleInterface.h"
+#include "../../include/interface/WindowInterface.h"
 #include "config.h"
-#include "interface/Interface.h"
-#include "interface/MenuInterface.h"
-#include "interface/TitleInterface.h"
-#include "interface/WindowInterface.h"
-#include "interface/TerminalInterface.h"
-#include "screens/AboutScreen.h"
 
 enum Triggers
 {
@@ -35,7 +35,8 @@ AboutScreen::AboutScreen() : Screen(SCREEN_ABOUT_NAME)
   this->AddSplit();
   this->AddRow("About application:");
   this->AddRow("Version:", APP_VERSION);
-  this->AddRow("Repository:", "https://github.com/dmitrytavern/dtavern-game-2048");
+  this->AddRow("Repository:",
+               "https://github.com/dmitrytavern/dtavern-game-2048");
   this->AddRow("Build:", APP_BUILD);
   this->AddRow("Platform:", APP_PLATFORM);
   this->AddRow("Architecture:", APP_ARCHITECTURE);
@@ -54,11 +55,13 @@ void AboutScreen::Render()
   {
     AboutItem item = this->data[index];
     std::string item_name = Interface::PaintText(item.color, item.column_name);
-    std::string item_value = Interface::PaintText(item.color, item.column_value);
+    std::string item_value =
+        Interface::PaintText(item.color, item.column_value);
 
     Interface::OutputSpaces(this->window_spaces);
     Interface::Output(item_name);
-    Interface::OutputSpaces(this->column_name_width - item.column_name.length());
+    Interface::OutputSpaces(this->column_name_width -
+                            item.column_name.length());
     Interface::Output(item_value);
     Interface::Output();
   }
@@ -98,11 +101,18 @@ void AboutScreen::CalculateWindowSize()
   for (int index = 0; index < data_size; index++)
   {
     AboutItem item = this->data[index];
-    max_column_name_length = (item.column_name.length() > max_column_name_length) ? item.column_name.length() : max_column_name_length;
-    max_column_value_length = (item.column_value.length() > max_column_value_length) ? item.column_value.length() : max_column_value_length;
+    max_column_name_length =
+        (item.column_name.length() > max_column_name_length)
+            ? item.column_name.length()
+            : max_column_name_length;
+    max_column_value_length =
+        (item.column_value.length() > max_column_value_length)
+            ? item.column_value.length()
+            : max_column_value_length;
   }
 
-  this->column_name_width = max_column_name_length + AboutScreen::COLUMNS_INDENT;
+  this->column_name_width =
+      max_column_name_length + AboutScreen::COLUMNS_INDENT;
   this->column_value_width = max_column_value_length;
 }
 

@@ -1,12 +1,12 @@
-﻿#include "global.h"
-#include "interface/Interface.h"
-#include "interface/TerminalInterface.h"
-#include "libraries/Screen/ScreenStore.h"
-#include "libraries/Screen/ScreenManager.h"
-#include "screens/MainScreen.h"
-#include "screens/GameScreen.h"
-#include "screens/AboutScreen.h"
-#include "screens/ExitScreen.h"
+﻿#include "../include/global.h"
+#include "../include/interface/Interface.h"
+#include "../include/interface/TerminalInterface.h"
+#include "../include/libraries/Screen/ScreenManager.h"
+#include "../include/libraries/Screen/ScreenStore.h"
+#include "../include/screens/AboutScreen.h"
+#include "../include/screens/ExitScreen.h"
+#include "../include/screens/GameScreen.h"
+#include "../include/screens/MainScreen.h"
 
 void TerminalResizeHandler(int signum);
 
@@ -37,7 +37,7 @@ int main()
   MainScreen app_main_screen;
   app_screen_store.AddScreen(&app_main_screen);
 
-  GameScreen app_game_screen(SCREEN_GAME_NAME);
+  GameScreen app_game_screen(SCREEN_GAME_NAME); // NOLINT
   app_screen_store.AddScreen(&app_game_screen);
 
   AboutScreen app_about_screen;

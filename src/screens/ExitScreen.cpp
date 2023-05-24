@@ -1,10 +1,10 @@
-#include "global.h"
-#include "interface/Interface.h"
-#include "interface/TerminalInterface.h"
-#include "interface/WindowInterface.h"
-#include "interface/DialogInterface.h"
-#include "interface/TitleInterface.h"
-#include "screens/ExitScreen.h"
+#include "../../include/screens/ExitScreen.h"
+#include "../../include/global.h"
+#include "../../include/interface/DialogInterface.h"
+#include "../../include/interface/Interface.h"
+#include "../../include/interface/TerminalInterface.h"
+#include "../../include/interface/TitleInterface.h"
+#include "../../include/interface/WindowInterface.h"
 
 void ExitScreen::Render()
 {

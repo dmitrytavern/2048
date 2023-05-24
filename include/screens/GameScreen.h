@@ -1,8 +1,8 @@
 #pragma once
+#include "../libraries/Screen/Screen.h"
+#include "../libraries/Screen/ScreenManager.h"
+#include "../libraries/Screen/ScreenStore.h"
 #include <iostream>
-#include "libraries/Screen/Screen.h"
-#include "libraries/Screen/ScreenStore.h"
-#include "libraries/Screen/ScreenManager.h"
 
 class GameScreen : public Screen
 {

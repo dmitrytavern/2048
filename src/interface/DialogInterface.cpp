@@ -1,8 +1,8 @@
+#include "../../include/interface/DialogInterface.h"
 #include <iostream>
-#include "interface/DialogInterface.h"
 #ifdef __linux__
-#include <unistd.h>
 #include <termios.h>
+#include <unistd.h>
 int getch()
 {
   char buf = 0;
@@ -29,58 +29,58 @@ int getch()
 
 namespace Interface::Dialog
 {
-  int GetCharCode()
-  {
+int GetCharCode()
+{
 #ifdef __linux__
-    int c, d, e;
+  int c, d, e;
 
-    c = getch();
-    if (c != 27)
-      return c;
+  c = getch();
+  if (c != 27)
+    return c;
 
-    d = getch();
-    if (d != 91)
-      return d;
+  d = getch();
+  if (d != 91)
+    return d;
 
-    e = getch();
+  e = getch();
 
-    if (e == 65)
-      return KEY_UP;
-    if (e == 66)
-      return KEY_DOWN;
-    if (e == 67)
-      return KEY_RIGHT;
-    if (e == 68)
-      return KEY_LEFT;
-    return e;
+  if (e == 65)
+    return KEY_UP;
+  if (e == 66)
+    return KEY_DOWN;
+  if (e == 67)
+    return KEY_RIGHT;
+  if (e == 68)
+    return KEY_LEFT;
+  return e;
 #else
-    int c = getch();
-    if (c != 224)
-      return c;
-    return getch();
+  int c = getch();
+  if (c != 224)
+    return c;
+  return getch();
 #endif
-  }
+}
 
-  bool GetComfirm()
+bool GetComfirm()
+{
+  while (true)
   {
-    while (true)
+    int input = getch();
+
+    switch (input)
     {
-      int input = getch();
+    case CHAR_Y:
+    case CHAR_Y_UPPER:
+    case CHAR_1:
+    case KEY_ENTER:
+      return true;
 
-      switch (input)
-      {
-      case CHAR_Y:
-      case CHAR_Y_UPPER:
-      case CHAR_1:
-      case KEY_ENTER:
-        return true;
-
-      case CHAR_N:
-      case CHAR_N_UPPER:
-      case CHAR_0:
-      case KEY_ESC:
-        return false;
-      }
+    case CHAR_N:
+    case CHAR_N_UPPER:
+    case CHAR_0:
+    case KEY_ESC:
+      return false;
     }
   }
 }
+} // namespace Interface::Dialog

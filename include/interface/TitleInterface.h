@@ -3,9 +3,9 @@
 
 namespace Interface::Title
 {
-  void OutputMainTitle();
-  void OutputGameTitle();
-  void OutputAboutTitle();
+void OutputMainTitle();
+void OutputGameTitle();
+void OutputAboutTitle();
 
-  static bool BreakpointWidth(int form);
-}
+static bool BreakpointWidth(int form);
+} // namespace Interface::Title

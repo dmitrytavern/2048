@@ -1,6 +1,6 @@
 #pragma once
+#include "../libraries/Screen/Screen.h"
 #include <iostream>
-#include "libraries/Screen/Screen.h"
 
 class ExitScreen : public Screen
 {

@@ -1,8 +1,8 @@
 #include <iostream>
-#include "interface/Interface.h"
-#include "interface/TitleInterface.h"
-#include "interface/TerminalInterface.h"
-#include "interface/WindowInterface.h"
+#include "../../include/interface/Interface.h"
+#include "../../include/interface/TitleInterface.h"
+#include "../../include/interface/TerminalInterface.h"
+#include "../../include/interface/WindowInterface.h"
 
 namespace Interface::Title
 {
