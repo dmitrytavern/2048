@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.15)
-project(DTavernGame2048 VERSION 1.0.1)
+project(DTavernGame2048 VERSION 1.0.2)
 
 file(MAKE_DIRECTORY ${PROJECT_SOURCE_DIR}/bin/)
 file(MAKE_DIRECTORY ${PROJECT_SOURCE_DIR}/build/)
