@@ -10,6 +10,7 @@ void ToStartGame()
   Core::Matrix::Create();
   Core::Score::Clear();
   Next();
+  Next();
 }
 
 void ToMove(Core::Matrix::SwipeDirections direction)
