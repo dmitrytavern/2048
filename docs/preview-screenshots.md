@@ -3,28 +3,24 @@
 # **Game screenshots**
 
 Table of Contents:
-- [Windows Command Line](#windows-command-line)
-- [Windows Power shell](#windows-power-shell)
-- [Linux KDE with dark terminal](#linux-kde-with-dark-terminal)
-- [Linux Ubuntu with default terminal](#linux-ubuntu-with-default-terminal)
 
-## **Windows Command Line**
+- [Windows 10](#windows-10)
+- [Linux KDE with dark terminal](#linux-kde-with-dark-terminal-v100)
+- [Linux Ubuntu with default terminal](#linux-ubuntu-with-default-terminal-v100)
 
-<div>  
-  <img src="../resources/windows-cmd-main.png" style="max-width: 400px"/>
-  <img src="../resources/windows-cmd-gameplay.png" style="max-width: 400px"/>
-  <img src="../resources/windows-cmd-about.png" style="max-width: 400px"/>
-</div>
-
-## **Windows Power shell**
+## **Windows 10**
 
 <div>  
-  <img src="../resources/windows-shell-main.png" style="max-width: 400px"/>
-  <img src="../resources/windows-shell-gameplay.png" style="max-width: 400px"/>
-  <img src="../resources/windows-shell-about.png" style="max-width: 400px"/>
+  <img src="../resources/demo-windows-1.png" style="max-width: 400px"/>
+  <img src="../resources/demo-windows-2.png" style="max-width: 400px"/>
+  <img src="../resources/demo-windows-3.png" style="max-width: 400px"/>
+  <img src="../resources/demo-windows-4.png" style="max-width: 400px"/>
+  <img src="../resources/demo-windows-5.png" style="max-width: 400px"/>
+  <img src="../resources/demo-windows-6.png" style="max-width: 400px"/>
+  <img src="../resources/demo-windows-7.png" style="max-width: 400px"/>
 </div>
 
-## **Linux KDE with dark terminal**
+## **Linux KDE with dark terminal (v1.0.0)**
 
 <div>  
   <img src="../resources/linux-konsole-main.png" style="max-width: 400px"/>
@@ -32,7 +28,7 @@ Table of Contents:
   <img src="../resources/linux-konsole-about.png" style="max-width: 400px"/>
 </div>
 
-## **Linux Ubuntu with default terminal**
+## **Linux Ubuntu with default terminal (v1.0.0)**
 
 <div>  
   <img src="../resources/linux-ubuntu-main.png" style="max-width: 400px"/>
