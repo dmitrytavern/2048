@@ -30,7 +30,7 @@
   Note: for linux, you need set rights for execution:
 
   ```
-  sudo chmod +x dtavern-game-2048_v1.0.2
+  chmod +x dtavern-game-2048_v1.0.2
   ```
 
 - **MacOS:** not available
